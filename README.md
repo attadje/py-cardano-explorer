@@ -1,13 +1,11 @@
-# py-cardano-explorer
+# Python Cardano Explorer
 Python wrapper for accessing and processing information stored on the  Cardano blockchain using [Blockfrost API](https://blockfrost.io/).
 
 ## Install
-___
 
 pip3 install cardano_explorer
 
 ## Usage
-__
 
 
 ```python
@@ -15,7 +13,6 @@ from cardano_explorer import blockfrost_api
 ```
 
 ## Api Key
-___
 If you have an API key, you can either set it as environment variable **BLOCKFROST_API_KEY** or set it manually.
 
 
@@ -26,7 +23,6 @@ cardano_mainnet = blockfrost_api.Auth(api_key=api_key)
 ```
 
 ## Using Proxy authentication
-___
 
 
 ```python
@@ -49,7 +45,6 @@ cardano_mainnet = blockfrost_api.Auth(network='mainnet')
 ```
 
 ## Network
-___
 
 ### Network information
 Return detailed network information.
@@ -70,7 +65,6 @@ cardano_mainnet.network_info()
 
 
 ## Stake
-___
 
 ### Stake informations
 Obtain information about a specific stake account.
