@@ -158,26 +158,6 @@ cardano_mainnet.stake_amount_history(stake_address,
                                      pandas=True) # Optional: Return a pandas dataframe
 ```
 
-    [INFO] Function stake_amount_history, 1 API calls.
-
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -236,27 +216,6 @@ cardano_mainnet.stake_delegation(stake_address,
                                  nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                  pandas=True) # Optional: Return a pandas dataframe
 ```
-
-    [INFO] Function stake_delegation, 1 API calls.
-
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -296,24 +255,6 @@ cardano_mainnet.stake_registration_deregistrations(stake_address,
 
     [INFO] Function stake_registration_deregistrations, 1 API calls.
 
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -359,27 +300,6 @@ cardano_mainnet.stake_mir_history(stake_address,
                                   nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                   pandas=True) # Optional: Return a pandas dataframe
 ```
-
-    [INFO] Function stake_mir_history, 1 API calls.
-
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -417,27 +337,6 @@ cardano_mainnet.stake_associated_addresses(stake_address,
                                            nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                            pandas=True) # Optional: Return a pandas dataframe 
 ```
-
-    [INFO] Function stake_associated_addresses, 1 API calls.
-
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -547,9 +446,6 @@ Obtain details about an address.
 cardano_mainnet.address_details(address)
 ```
 
-
-
-
     {'address': 'addr1q8z24xgrlj3m2qjh2vxyqg2fh33y3tegufkll5c4lu8u35gkhpw3h4yhn93ve2whllg0wjazjs5jj8332mgqe332f3uq8m7m6h',
      'received_sum': [{'unit': 'lovelace', 'quantity': '350000000'}],
      'sent_sum': [{'unit': 'lovelace', 'quantity': '0'}],
@@ -564,9 +460,6 @@ UTXOs of the address.
 ```python
 cardano_mainnet.address_utxo(address)
 ```
-
-
-
 
     [{'tx_hash': '996ff0a57282ef943ecdbc263cf9c41c178d65587d70d9d9dcbe98e520f8e406',
       'tx_index': 4,
@@ -584,9 +477,6 @@ Transactions on the address.
 cardano_mainnet.address_transaction(address)
 ```
 
-
-
-
     [{'tx_hash': '996ff0a57282ef943ecdbc263cf9c41c178d65587d70d9d9dcbe98e520f8e406',
       'tx_index': 45,
       'block_height': 6095572}]
@@ -602,9 +492,6 @@ Obtain the information about the latest epoch.
 ```python
 cardano_mainnet.latest_epoch()
 ```
-
-
-
 
     {'epoch': 288,
      'start_time': 1630619091,
@@ -626,9 +513,6 @@ Return the protocol parameters for the latest epoch.
 ```python
 cardano_mainnet.latest_epoch_protocol_parameters()
 ```
-
-
-
 
     {'epoch': 288,
      'min_fee_a': 44,
@@ -661,9 +545,6 @@ Obtain informations about a specific epoch.
 cardano_mainnet.specific_epoch(287)
 ```
 
-
-
-
     {'epoch': 287,
      'start_time': 1630187091,
      'end_time': 1630619091,
@@ -685,27 +566,6 @@ Obtain informations about sevrals epochs.
 cardano_mainnet.epochs_history([270, 271, 272],
                                pandas=True) # Optional: Return a pandas dataframe 
 ```
-
-    [INFO] Function epochs_history, 4 API calls.
-
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -780,27 +640,6 @@ cardano_mainnet.registered_polls()
 cardano_mainnet.registered_polls(nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                  pandas=True) # Optional: Return a pandas dataframe 
 ```
-
-    [INFO] Function registered_polls, 1 API calls.
-
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -843,9 +682,6 @@ Pool informations.
 cardano_mainnet.pool_informations(pool_id)
 ```
 
-
-
-
     {'pool_id': 'pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288ys5kumqce5',
      'hex': 'cdae4a1a08974113e77ea332cb1da97d9e3fca5cf797f9394739214b',
      'vrf_key': '5517fbeb4c6a5a613835808de183345eaf85ab0e251210e493e088afa41d9ab0',
@@ -885,27 +721,6 @@ cardano_mainnet.stake_pool_history(pool_id)
 cardano_mainnet.stake_pool_history(pool_id,
                                    pandas=True) # Optional: Return a pandas dataframe 
 ```
-
-    [INFO] Function param_stake_pool_history, 1 API calls.
-
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -988,30 +803,6 @@ cardano_mainnet.rewards_history_analysis(stake_address)
 cardano_mainnet.rewards_history_analysis(stake_address,
                                          pandas=True). # Optional: Return a pandas dataframe 
 ```
-
-    [INFO] Function stake_reward_history, 1 API calls.
-    [INFO] Function stake_amount_history, 1 API calls.
-    [INFO] Function param_stake_pool_history, 1 API calls.
-    [INFO] Function epochs_history, 15 API calls.
-
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
