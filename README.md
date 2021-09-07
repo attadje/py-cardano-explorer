@@ -544,7 +544,6 @@ cardano_mainnet.stake_assets_associated_addresses(stake_address,
 
 
 # Addresse Informations
-___
 
 ### Addresses
 Obtain information about a specific address.
@@ -619,7 +618,6 @@ cardano_mainnet.address_transaction(address)
 
 
 ## Epochs
-___
 
 ### Latest epoch
 Obtain the information about the latest epoch.
@@ -795,7 +793,6 @@ cardano_mainnet.epochs_history([270, 271, 272],
 
 
 # Pools
-___
 
 ### List of stake pools
 List of registered stake pools.
@@ -1004,7 +1001,6 @@ cardano_mainnet.stake_pool_history(pool_id,
 
 
 ## Analysis
-___
 
 ### Rewards history analysis
 Data table to analyze the stake rewards.
