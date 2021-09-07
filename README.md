@@ -3,7 +3,9 @@ Python wrapper for accessing and processing information stored on the  Cardano b
 
 ## Install
 
+```python
 pip3 install cardano_explorer
+```
 
 ## Usage
 
