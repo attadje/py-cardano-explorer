@@ -103,25 +103,6 @@ cardano_mainnet.stake_reward_history(stake_address,
                                      pandas=True).head() # Optional: Return a pandas dataframe
 ```
 
-    [INFO] Function stake_reward_history, 1 API calls.
-
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
 </style>
 <table border="1" class="dataframe">
   <thead>
