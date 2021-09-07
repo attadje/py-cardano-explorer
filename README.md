@@ -54,9 +54,6 @@ Return detailed network information.
 cardano_mainnet.network_info()
 ```
 
-
-
-
     {'supply': {'max': '45000000000000000',
       'total': '33095610707522483',
       'circulating': '32815060450967318'},
@@ -73,9 +70,6 @@ Obtain information about a specific stake account.
 ```python
 cardano_mainnet.stake_informations(stake_address)
 ```
-
-
-
 
     {'stake_address': 'stake1uyttshgm6jtejckv48tll58hfw3fg2ffrcc4d5qvcc4yc7q9jsalf',
      'active': True,
@@ -103,7 +97,6 @@ cardano_mainnet.stake_reward_history(stake_address,
                                      pandas=True).head() # Optional: Return a pandas dataframe
 ```
 
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
