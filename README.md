@@ -2,12 +2,12 @@
 Python wrapper for accessing and processing information stored on the  Cardano blockchain using [Blockfrost API](https://blockfrost.io/).
 
 ## Install
-___
+__
 
 pip3 install cardano_explorer
 
 ## Usage
-___
+__
 
 
 ```python
