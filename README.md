@@ -25,7 +25,7 @@ api_key = os.getenv('BLOCKFROST_API_KEY')
 - [Usage](#Usage)
 - [Api Key](#Api-Key)
 - [Using With Proxy](#Using-With-Proxy)
-- [Networks](#Networks)
+- [Network](#Network)
   * [Stake Informations](#Stak-Informations)
 - [Stake](#Stake)
   * [Stake Informations](#Stake-Informations)
@@ -94,7 +94,7 @@ proxies = {
 cardano_mainnet = blockfrost_api.Auth(proxies=proxies)
 ```
 
-## Network (mainnet, tesnet)
+## Network
 You can specify the cardano network with the class parameter **network**.
 
 
@@ -102,6 +102,8 @@ You can specify the cardano network with the class parameter **network**.
 cardano_mainnet = blockfrost_api.Auth() # mainnet bu default
 #or
 cardano_mainnet = blockfrost_api.Auth(network='mainnet')
+#or
+cardano_mainnet = blockfrost_api.Auth(network='testnet')
 ```
 
 ## Network
