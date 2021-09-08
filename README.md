@@ -1,13 +1,69 @@
-# Python Cardano Explorer
-Python wrapper for accessing and processing information stored on the  Cardano blockchain using [Blockfrost API](https://blockfrost.io/).
-
-## Install
-
 ```python
-pip3 install cardano_explorer
+import os
 ```
 
+
+```python
+%env BLOCKFROST_API_KEY=iSXrfNxhpPChKCnts2KX9MJ1eQ7exYgb
+```
+
+    env: BLOCKFROST_API_KEY=iSXrfNxhpPChKCnts2KX9MJ1eQ7exYgb
+
+
+
+```python
+stake_address = 'stake1uyzxex6t9ct3mssa5em4sfu028gj46mjcakrel8rjtn9n8gf90st6'
+address = 'addr1q8z24xgrlj3m2qjh2vxyqg2fh33y3tegufkll5c4lu8u35gkhpw3h4yhn93ve2whllg0wjazjs5jj8332mgqe332f3uq8m7m6h'
+pool_id = "pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288ys5kumqce5"
+api_key = os.getenv('BLOCKFROST_API_KEY')
+```
+
+<br />
+
+**Table of contents**
+- [Install](#Install)
+- [Usage](#Usage)
+- [Api Key](#Api-Key)
+- [Using With Proxy](#Using-With-Proxy)
+- [Networks](#Networks)
+  * [Stake Informations](#Stak-Informations)
+- [Stake](#Stake)
+  * [Stake Informations](#Stake-Informations)
+  * [Stake Reward History](#Stake-Reward-History)
+  * [Stake Amount History](#Stake-Amount-History)
+  * [Stake Delegation History](#Stake-Delegation-History)
+  * [Stake Registrations And Deregistrations History](#Stake-Registrations-And-Deregistrations-History)
+  * [Stake Withdrawal History](#Stake-Withdrawal-History)
+  * [Stake MIR History](#Stake-MIR-History)
+  * [Stake Associated Addresses](#Stake-Associated-Addresses)
+  * [Stake Assets Associated Addresses](#Stake-Assets-Associated-Addresses)
+- [Address](#Address)
+  * [Specific Address](#Specific-Address)
+  * [Address Details](#Address-Details)
+  * [Address UTXOs](#Address-UTXOs)
+  * [Address Transactions](#Address-Transactions)
+- [Epoch](#Epoch)
+  * [Latest Epoch](#Latest-Epoch)
+  * [Latest Epoch Protocol Parameters](#Latest-Epoch-Protocol-Parameters)
+  * [Specific Epoch](#Specific-Epoch)
+  * [Epochs History](#Epochs-History)
+- [Pool](#Pool)
+  * [List Of Stake Pools](#List-Of-Stake-Pools)
+  * [Specific Stake Pool Informations](#Specific-Stake-Pool-Informations)
+  * [Epochs History](#Epochs-History)
+  * [Stake Pool History](#Stake-Pool-History)
+- [Data Analysis](#Data-Analysis)
+  * [Rewards History Analysis](#Rewards-History-Analysis)
+
+<br />
+
+## Install
+___
+
+pip3 install cardano_explorer
+
 ## Usage
+___
 
 
 ```python
@@ -15,6 +71,7 @@ from cardano_explorer import blockfrost_api
 ```
 
 ## Api Key
+___
 If you have an API key, you can either set it as environment variable **BLOCKFROST_API_KEY** or set it manually.
 
 
@@ -24,48 +81,54 @@ cardano_mainnet = blockfrost_api.Auth()
 cardano_mainnet = blockfrost_api.Auth(api_key=api_key)
 ```
 
-## Using Proxy authentication
+## Using with proxy
+___
 
 
 ```python
 proxies = {
  "http": "http://@:port",
- "https": "https://@:port8",
+ "https": "https://@:port",
 }
 
 cardano_mainnet = blockfrost_api.Auth(proxies=proxies)
 ```
 
-## Network (mainnet, tesnet, local)
-You can specify the cardano network with the class parameter **network** (mainnet by default).
+## Network (mainnet, tesnet)
+You can specify the cardano network with the class parameter **network**.
 
 
 ```python
-cardano_mainnet = blockfrost_api.Auth()
+cardano_mainnet = blockfrost_api.Auth() # mainnet bu default
 #or
 cardano_mainnet = blockfrost_api.Auth(network='mainnet')
 ```
 
 ## Network
+___
 
-### Network information
-Return detailed network information.
+### Network Informations
+Return detailed about the network.
 
 
 ```python
 cardano_mainnet.network_info()
 ```
 
+
+
+
     {'supply': {'max': '45000000000000000',
-      'total': '33095610707522483',
-      'circulating': '32815060450967318'},
-     'stake': {'live': '23309647932671648', 'active': '23136223153988390'}}
+      'total': '33117618880452547',
+      'circulating': '32830008455508086'},
+     'stake': {'live': '23250056607793135', 'active': '23311196777534712'}}
 
 
 
 ## Stake
+___
 
-### Stake informations
+### Stake Informations
 Obtain information about a specific stake account.
 
 
@@ -73,20 +136,23 @@ Obtain information about a specific stake account.
 cardano_mainnet.stake_informations(stake_address)
 ```
 
+
+
+
     {'stake_address': 'stake1uyttshgm6jtejckv48tll58hfw3fg2ffrcc4d5qvcc4yc7q9jsalf',
      'active': True,
      'active_epoch': 271,
-     'controlled_amount': '2868511950',
-     'rewards_sum': '18946556',
+     'controlled_amount': '3002782240',
+     'rewards_sum': '21216846',
      'withdrawals_sum': '0',
      'reserves_sum': '97317',
      'treasury_sum': '0',
-     'withdrawable_amount': '19043873',
+     'withdrawable_amount': '21314163',
      'pool_id': 'pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288ys5kumqce5'}
 
 
 
-### Stake reward history 
+### Stake Reward History 
 Obtain information about the reward history of a specific account.
 
 
@@ -96,9 +162,30 @@ cardano_mainnet.stake_reward_history(stake_address)
 cardano_mainnet.stake_reward_history(stake_address, 
                                      data_order='asc', # Optional: Data order (default: Ascending)
                                      nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                     pandas=True).head() # Optional: Return a pandas dataframe
+                                     pandas=True). # Optional: Return a pandas dataframe
 ```
 
+    [INFO] Function stake_reward_history, 1 API calls.
+    [INFO] Function stake_reward_history, 1 API calls.
+
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -111,33 +198,33 @@ cardano_mainnet.stake_reward_history(stake_address,
   <tbody>
     <tr>
       <th>0</th>
-      <td>273</td>
-      <td>587159</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>242</td>
+      <td>879367</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>274</td>
-      <td>715853</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>243</td>
+      <td>970119</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>275</td>
-      <td>902199</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>244</td>
+      <td>1164610</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>276</td>
-      <td>824733</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>245</td>
+      <td>1228869</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>277</td>
-      <td>1056705</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>246</td>
+      <td>857871</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
     </tr>
   </tbody>
 </table>
@@ -145,7 +232,7 @@ cardano_mainnet.stake_reward_history(stake_address,
 
 
 
-### Stake amount history 
+### Stake Amount History 
 Obtain information about the history of a specific account.
 
 
@@ -158,6 +245,27 @@ cardano_mainnet.stake_amount_history(stake_address,
                                      pandas=True) # Optional: Return a pandas dataframe
 ```
 
+    [INFO] Function stake_amount_history, 1 API calls.
+    [INFO] Function stake_amount_history, 1 API calls.
+
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -170,33 +278,33 @@ cardano_mainnet.stake_amount_history(stake_address,
   <tbody>
     <tr>
       <th>0</th>
-      <td>273</td>
-      <td>998824863</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>242</td>
+      <td>1424619058</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>274</td>
-      <td>998824863</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>243</td>
+      <td>1424619058</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>275</td>
-      <td>1618824863</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>244</td>
+      <td>1424619058</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>276</td>
-      <td>1619412022</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>245</td>
+      <td>1425498425</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>277</td>
-      <td>1620127875</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>246</td>
+      <td>1426468544</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
     </tr>
   </tbody>
 </table>
@@ -204,7 +312,7 @@ cardano_mainnet.stake_amount_history(stake_address,
 
 
 
-### Stake delegation history
+### Stake Delegation History
 Obtain information about the delegation of a specific account.
 
 
@@ -216,6 +324,28 @@ cardano_mainnet.stake_delegation(stake_address,
                                  nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                  pandas=True) # Optional: Return a pandas dataframe
 ```
+
+    [INFO] Function stake_delegation, 1 API calls.
+    [INFO] Function stake_delegation, 1 API calls.
+
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -229,10 +359,24 @@ cardano_mainnet.stake_delegation(stake_address,
   <tbody>
     <tr>
       <th>0</th>
-      <td>273</td>
-      <td>97a774aa60a2926c9949bfe1edf1dcc2f2297d36633e14...</td>
-      <td>497824863</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>242</td>
+      <td>b602262e1264dabd6c10747415558934d196834d7c7dea...</td>
+      <td>747625479</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>248</td>
+      <td>5822a3b2ebc0a45426aff524e5a0fd2bf7906f671e875a...</td>
+      <td>747452454</td>
+      <td>pool1m62sl6rauje9cknrkhwl39tc4hujudkd7gp478dpz...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>259</td>
+      <td>2c0c3c2123b74b926d2b6969ea21f49ae92861acecf2b8...</td>
+      <td>21263559</td>
+      <td>pool1lurfk0k0wwx54hlg8a7zp3jtstu57u59aeq7aketl...</td>
     </tr>
   </tbody>
 </table>
@@ -240,7 +384,7 @@ cardano_mainnet.stake_delegation(stake_address,
 
 
 
-### Stake registrations and deregistrations history
+### Stake Registrations And Deregistrations History
 Obtain information about the registrations and deregistrations of a specific account.
 
 
@@ -254,7 +398,26 @@ cardano_mainnet.stake_registration_deregistrations(stake_address,
 ```
 
     [INFO] Function stake_registration_deregistrations, 1 API calls.
+    [INFO] Function stake_registration_deregistrations, 1 API calls.
 
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -266,7 +429,7 @@ cardano_mainnet.stake_registration_deregistrations(stake_address,
   <tbody>
     <tr>
       <th>0</th>
-      <td>97a774aa60a2926c9949bfe1edf1dcc2f2297d36633e14...</td>
+      <td>b602262e1264dabd6c10747415558934d196834d7c7dea...</td>
       <td>registered</td>
     </tr>
   </tbody>
@@ -275,12 +438,12 @@ cardano_mainnet.stake_registration_deregistrations(stake_address,
 
 
 
-### Stake withdrawal history
+### Stake Withdrawal History
 Obtain information about the withdrawals of a specific account.
 
 
 ```python
-cardano_mainnet.stake_withdrawal_history(stake_address)
+cardano_mainnet.stake_withdrawal_history(stake_adress)
 #or
 cardano_mainnet.stake_withdrawal_history(stake_address, 
                                          data_order='asc', # Optional: Data order (default: Ascending)
@@ -288,18 +451,27 @@ cardano_mainnet.stake_withdrawal_history(stake_address,
                                          pandas=True) # Optional: Return a pandas dataframe
 ```
 
-### Stake MIR history
-Obtain information about the MIRs of a specific account.
+    [INFO] Function stake_withdrawal_history, 1 API calls.
+    [INFO] Function stake_withdrawal_history, 1 API calls.
 
 
-```python
-cardano_mainnet.stake_mir_history(stake_address)
-#or
-cardano_mainnet.stake_mir_history(stake_address, 
-                                  data_order='asc', # Optional: Data order (default: Ascending)
-                                  nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                  pandas=True) # Optional: Return a pandas dataframe
-```
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -311,13 +483,8 @@ cardano_mainnet.stake_mir_history(stake_address,
   <tbody>
     <tr>
       <th>0</th>
-      <td>c041e475d161444a6a8ca9005ef3deb36ebd579c347d90...</td>
-      <td>74456</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>9ede69b0ebd0903b1cc6a914a79fabd9a5d6dd94e8c110...</td>
-      <td>22861</td>
+      <td>80b09b61d2da86f5847d0b9a5f72d32224fcd7e1aa1716...</td>
+      <td>21239707</td>
     </tr>
   </tbody>
 </table>
@@ -325,7 +492,66 @@ cardano_mainnet.stake_mir_history(stake_address,
 
 
 
-### Stake associated addresses
+### Stake MIR History
+Obtain information about the MIRs of a specific account.
+
+
+```python
+cardano_mainnet.stake_mir_history(stake_address)
+#or
+cardano_mainnet.stake_mir_history(stake_address, 
+                                  data_order='asc', # Optional: Data order (default: Ascending)
+                                  nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
+                                  pandas=True) # Optional: Return a pandas dataframe
+```
+
+    [INFO] Function stake_mir_history, 1 API calls.
+    [INFO] Function stake_mir_history, 1 API calls.
+
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tx_hash</th>
+      <th>amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>443b98009b9a705c7112b031d223f26a3399f8cf1e7f12...</td>
+      <td>16922</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>f707cb4decf7f21991f506bba051a0184ca8ecbd402f79...</td>
+      <td>5196</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+### Stake Associated Addresses
 Obtain information about the MIRs of a specific account.
 
 
@@ -337,6 +563,28 @@ cardano_mainnet.stake_associated_addresses(stake_address,
                                            nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                            pandas=True) # Optional: Return a pandas dataframe 
 ```
+
+    [INFO] Function stake_associated_addresses, 1 API calls.
+    [INFO] Function stake_associated_addresses, 1 API calls.
+
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -347,23 +595,23 @@ cardano_mainnet.stake_associated_addresses(stake_address,
   <tbody>
     <tr>
       <th>0</th>
-      <td>addr1qx96yn08e5u7hthawh63ss6269dkzxekq85elrthw...</td>
+      <td>addr1q9asyce9kg8x8srwjuehtj0sxzc206rn5nv8tzc66...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>addr1q9u0kfvd57parl03j8v9fz52xqz8yjkcu47lcy8hw...</td>
+      <td>addr1qyyzytknnnr3yy3hrxt7puzxy2zle6cfs3c839rdw...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>addr1q8m6tn3edl333c8yzms8dzrkkckm0vn0dkvq436au...</td>
+      <td>addr1q8qe2873c334m7s3j2g27fq4sjqkh03mr28z3nd3l...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>addr1q9py3k58fmyu896charn6mey8c5f22uq830m4udsy...</td>
+      <td>addr1q9226w0sg40mjhnzdt3myvnucrljqg7pyxgn9vypc...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>addr1q8mk7kft30hwmj2yttltm8j5f4ccuguxr9z3werwm...</td>
+      <td>addr1q8amjln6cua3scnthlm8jd7vnz4w4j7hmpkj7l8vt...</td>
     </tr>
   </tbody>
 </table>
@@ -371,7 +619,7 @@ cardano_mainnet.stake_associated_addresses(stake_address,
 
 
 
-### Stake assets associated addresses
+### Stake Assets Associated Addresses
 Obtain information about assets associated with addresses of a specific account.</blockquote>
 
 
@@ -384,6 +632,7 @@ cardano_mainnet.stake_assets_associated_addresses(stake_address,
                                                   pandas=True) # Optional: Return a pandas dataframe 
 ```
 
+    [INFO] Function stake_associated_addresses, 1 API calls.
     [INFO] No data available.
     [INFO] Function stake_assets_associated_addresses, 1 API calls.
 
@@ -418,9 +667,10 @@ cardano_mainnet.stake_assets_associated_addresses(stake_address,
 
 
 
-# Addresse Informations
+# Address
+___
 
-### Addresses
+### Specific Address
 Obtain information about a specific address.
 
 
@@ -438,13 +688,16 @@ cardano_mainnet.address_info(address)
 
 
 
-### Address details
+### Address Details
 Obtain details about an address.
 
 
 ```python
 cardano_mainnet.address_details(address)
 ```
+
+
+
 
     {'address': 'addr1q8z24xgrlj3m2qjh2vxyqg2fh33y3tegufkll5c4lu8u35gkhpw3h4yhn93ve2whllg0wjazjs5jj8332mgqe332f3uq8m7m6h',
      'received_sum': [{'unit': 'lovelace', 'quantity': '350000000'}],
@@ -461,6 +714,9 @@ UTXOs of the address.
 cardano_mainnet.address_utxo(address)
 ```
 
+
+
+
     [{'tx_hash': '996ff0a57282ef943ecdbc263cf9c41c178d65587d70d9d9dcbe98e520f8e406',
       'tx_index': 4,
       'output_index': 4,
@@ -469,7 +725,7 @@ cardano_mainnet.address_utxo(address)
 
 
 
-### Address transactions
+### Address Transactions
 Transactions on the address.
 
 
@@ -477,21 +733,28 @@ Transactions on the address.
 cardano_mainnet.address_transaction(address)
 ```
 
+
+
+
     [{'tx_hash': '996ff0a57282ef943ecdbc263cf9c41c178d65587d70d9d9dcbe98e520f8e406',
       'tx_index': 45,
       'block_height': 6095572}]
 
 
 
-## Epochs
+## Epoch
+___
 
-### Latest epoch
+### Latest Epoch
 Obtain the information about the latest epoch.
 
 
 ```python
 cardano_mainnet.latest_epoch()
 ```
+
+
+
 
     {'epoch': 288,
      'start_time': 1630619091,
@@ -506,13 +769,16 @@ cardano_mainnet.latest_epoch()
 
 
 
-### Latest epoch protocol parameters
+### Latest Epoch Protocol Parameters
 Return the protocol parameters for the latest epoch.
 
 
 ```python
 cardano_mainnet.latest_epoch_protocol_parameters()
 ```
+
+
+
 
     {'epoch': 288,
      'min_fee_a': 44,
@@ -537,13 +803,16 @@ cardano_mainnet.latest_epoch_protocol_parameters()
 
 
 
-### Specific epoch
+### Specific Epoch
 Obtain informations about a specific epoch.
 
 
 ```python
 cardano_mainnet.specific_epoch(287)
 ```
+
+
+
 
     {'epoch': 287,
      'start_time': 1630187091,
@@ -558,7 +827,7 @@ cardano_mainnet.specific_epoch(287)
 
 
 
-### Epochs history
+### Epochs History
 Obtain informations about sevrals epochs.
 
 
@@ -566,6 +835,27 @@ Obtain informations about sevrals epochs.
 cardano_mainnet.epochs_history([270, 271, 272],
                                pandas=True) # Optional: Return a pandas dataframe 
 ```
+
+    [INFO] Function epochs_history, 4 API calls.
+
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -628,9 +918,10 @@ cardano_mainnet.epochs_history([270, 271, 272],
 
 
 
-# Pools
+# Pool
+___
 
-### List of stake pools
+### List Of Stake Pools
 List of registered stake pools.
 
 
@@ -640,6 +931,27 @@ cardano_mainnet.registered_polls()
 cardano_mainnet.registered_polls(nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                  pandas=True) # Optional: Return a pandas dataframe 
 ```
+
+    [INFO] Function registered_polls, 1 API calls.
+
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -674,13 +986,16 @@ cardano_mainnet.registered_polls(nb_of_results=100, # Optional: Return max 100 r
 
 
 
-### Specific stake pool informations
+### Specific Stake Pool Informations
 Pool informations.
 
 
 ```python
 cardano_mainnet.pool_informations(pool_id)
 ```
+
+
+
 
     {'pool_id': 'pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288ys5kumqce5',
      'hex': 'cdae4a1a08974113e77ea332cb1da97d9e3fca5cf797f9394739214b',
@@ -710,9 +1025,9 @@ cardano_mainnet.pool_informations(pool_id)
 
 
 
-### Stake pool history
+### Stake Pool History
 
-History of stake pool parameters over epochs.
+History of stake pool over epochs.
 
 
 ```python
@@ -721,6 +1036,27 @@ cardano_mainnet.stake_pool_history(pool_id)
 cardano_mainnet.stake_pool_history(pool_id,
                                    pandas=True) # Optional: Return a pandas dataframe 
 ```
+
+    [INFO] Function param_stake_pool_history, 1 API calls.
+
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -791,9 +1127,10 @@ cardano_mainnet.stake_pool_history(pool_id,
 
 
 
-## Analysis
+## Data Analysis
+___
 
-### Rewards history analysis
+### Rewards History Analysis
 Data table to analyze the stake rewards.
 
 
@@ -801,8 +1138,36 @@ Data table to analyze the stake rewards.
 cardano_mainnet.rewards_history_analysis(stake_address)
 #or
 cardano_mainnet.rewards_history_analysis(stake_address,
-                                         pandas=True). # Optional: Return a pandas dataframe 
+                                         pandas=True) # Optional: Return a pandas dataframe 
 ```
+
+    [INFO] Function stake_reward_history, 1 API calls.
+    [INFO] Function stake_amount_history, 1 API calls.
+    [INFO] Function param_stake_pool_history, 1 API calls.
+    [INFO] Function epochs_history, 47 API calls.
+    [INFO] Function stake_reward_history, 1 API calls.
+    [INFO] Function stake_amount_history, 1 API calls.
+    [INFO] Function param_stake_pool_history, 1 API calls.
+    [INFO] Function epochs_history, 47 API calls.
+
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -831,114 +1196,118 @@ cardano_mainnet.rewards_history_analysis(stake_address,
   <tbody>
     <tr>
       <th>0</th>
-      <td>273</td>
-      <td>587159</td>
-      <td>998824863</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
-      <td>1624139091</td>
-      <td>1624571091</td>
-      <td>1624139124</td>
-      <td>1624571089</td>
-      <td>21464</td>
-      <td>150752</td>
-      <td>15740586909359854</td>
-      <td>32570360903</td>
-      <td>23075664958746578</td>
-      <td>39</td>
-      <td>47829822938326</td>
-      <td>0.002073</td>
-      <td>1120</td>
-      <td>28740378749</td>
-      <td>624003787</td>
+      <td>242</td>
+      <td>879367</td>
+      <td>1424619058</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
+      <td>1610747091</td>
+      <td>1611179091</td>
+      <td>1610747091</td>
+      <td>1611179076</td>
+      <td>21418</td>
+      <td>74057</td>
+      <td>63148817438049616</td>
+      <td>16905060417</td>
+      <td>21755094259019945</td>
+      <td>35</td>
+      <td>60557688009496</td>
+      <td>0.002784</td>
+      <td>720</td>
+      <td>37719841941</td>
+      <td>340000000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>274</td>
-      <td>715853</td>
-      <td>998824863</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
-      <td>1624571091</td>
-      <td>1625003091</td>
-      <td>1624571155</td>
-      <td>1625003071</td>
-      <td>21521</td>
-      <td>133041</td>
-      <td>11764235372205745</td>
-      <td>28650900551</td>
-      <td>23094302016775953</td>
-      <td>50</td>
-      <td>50332107694676</td>
-      <td>0.002179</td>
-      <td>1174</td>
-      <td>36776812909</td>
-      <td>704368129</td>
+      <td>243</td>
+      <td>970119</td>
+      <td>1424619058</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
+      <td>1611179091</td>
+      <td>1611611091</td>
+      <td>1611179091</td>
+      <td>1611611090</td>
+      <td>21586</td>
+      <td>58682</td>
+      <td>44531349200446205</td>
+      <td>13368193376</td>
+      <td>21849089085260375</td>
+      <td>40</td>
+      <td>60943951290359</td>
+      <td>0.002789</td>
+      <td>757</td>
+      <td>41840863127</td>
+      <td>340000000</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>275</td>
-      <td>902199</td>
-      <td>1618824863</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
-      <td>1625003091</td>
-      <td>1625435091</td>
-      <td>1625003255</td>
-      <td>1625435086</td>
-      <td>21505</td>
-      <td>136339</td>
-      <td>13402253806474700</td>
-      <td>29088470734</td>
-      <td>23006172979540278</td>
-      <td>37</td>
-      <td>47430899220515</td>
-      <td>0.002062</td>
-      <td>1190</td>
-      <td>27005861046</td>
-      <td>606658610</td>
+      <td>244</td>
+      <td>1164610</td>
+      <td>1424619058</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
+      <td>1611611091</td>
+      <td>1612043091</td>
+      <td>1611611091</td>
+      <td>1612043078</td>
+      <td>21491</td>
+      <td>59591</td>
+      <td>29427703690683743</td>
+      <td>13516792921</td>
+      <td>21956206748623667</td>
+      <td>50</td>
+      <td>62177721021153</td>
+      <td>0.002832</td>
+      <td>767</td>
+      <td>51169599395</td>
+      <td>340000000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>276</td>
-      <td>824733</td>
-      <td>1619412022</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
-      <td>1625435091</td>
-      <td>1625867091</td>
-      <td>1625435146</td>
-      <td>1625867083</td>
-      <td>21298</td>
-      <td>144737</td>
-      <td>12581437590766031</td>
-      <td>30139500685</td>
-      <td>23092420021153886</td>
-      <td>33</td>
-      <td>46277458382635</td>
-      <td>0.002004</td>
-      <td>1204</td>
-      <td>24108337832</td>
-      <td>577683378</td>
+      <td>245</td>
+      <td>1228869</td>
+      <td>1425498425</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
+      <td>1612043091</td>
+      <td>1612475091</td>
+      <td>1612043091</td>
+      <td>1612475007</td>
+      <td>21485</td>
+      <td>88703</td>
+      <td>52975770722098664</td>
+      <td>20044918510</td>
+      <td>22086904770458818</td>
+      <td>55</td>
+      <td>63400598572150</td>
+      <td>0.002871</td>
+      <td>784</td>
+      <td>54946961660</td>
+      <td>340000000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>277</td>
-      <td>1056705</td>
-      <td>1620127875</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
-      <td>1625867091</td>
-      <td>1626299091</td>
-      <td>1625867167</td>
-      <td>1626299088</td>
-      <td>21323</td>
-      <td>135191</td>
-      <td>9892737538002395</td>
-      <td>28508156761</td>
-      <td>23196615273348567</td>
-      <td>41</td>
-      <td>45104996094565</td>
-      <td>0.001944</td>
-      <td>1221</td>
-      <td>30007226603</td>
-      <td>636672266</td>
+      <td>246</td>
+      <td>857871</td>
+      <td>1426468544</td>
+      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
+      <td>1612475091</td>
+      <td>1612907091</td>
+      <td>1612475091</td>
+      <td>1612907067</td>
+      <td>21327</td>
+      <td>142367</td>
+      <td>143252676044465523</td>
+      <td>31528825577</td>
+      <td>22190441040634090</td>
+      <td>39</td>
+      <td>62762389516418</td>
+      <td>0.002828</td>
+      <td>790</td>
+      <td>38037964874</td>
+      <td>340000000</td>
     </tr>
   </tbody>
 </table>
 </div>
+
+
+
+
