@@ -9,7 +9,6 @@ header_param_name = 'project_id'
 # Blockfrost Network URL
 bf_url_cardano_mainnet = 'https://cardano-mainnet.blockfrost.io/api/v0/'
 bf_url_cardano_testnet = 'https://cardano-testnet.blockfrost.io/api/v0/'
-bf_url_cardano_local = 'https://localhost:3000/'
 
 # Blockfrost Stake URL
 bf_url_stake = 'accounts/'
@@ -61,11 +60,7 @@ class Auth:
             
         elif 'testnet' in network:
             self.network = bf_url_cardano_testnet
-            
-        elif 'local' in network:
-            self.network = bf_url_cardano_local
-            
-         
+    
     def stake_informations(self, stake_address: str) -> dict:
         """
         Obtain informations about a stake account.
@@ -217,7 +212,7 @@ class Auth:
         
         print('[INFO] Function stake_mir_history, {} API calls.'.format(count_api_calls))
         
-        return pd.DataFrame.from_dict(response) if pandas else reponse
+        return pd.DataFrame.from_dict(response) if pandas else response
     
     
     def stake_associated_addresses(self, stake_address: str, data_order: str='asc', nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, dict]:
