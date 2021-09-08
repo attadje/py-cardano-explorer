@@ -18,6 +18,10 @@ pool_id = "pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288ys5kumqce5"
 api_key = os.getenv('BLOCKFROST_API_KEY')
 ```
 
+# Python Cardano Explorer
+
+Python wrapper for accessing and processing information stored on the Cardano blockchain using [Blockfrost API](https://blockfrost.io/).
+
 <br />
 
 **Table of contents**
@@ -25,8 +29,8 @@ api_key = os.getenv('BLOCKFROST_API_KEY')
 - [Usage](#Usage)
 - [Api Key](#Api-Key)
 - [Using With Proxy](#Using-With-Proxy)
-- [Network](#Network)
-  * [Stake Informations](#Stak-Informations)
+- [Network Informations](#NNetwork-Informations)
+  * [Network Info](#Network-Info)
 - [Stake](#Stake)
   * [Stake Informations](#Stake-Informations)
   * [Stake Reward History](#Stake-Reward-History)
@@ -58,12 +62,13 @@ api_key = os.getenv('BLOCKFROST_API_KEY')
 <br />
 
 ## Install
-___
 
+
+```python
 pip3 install cardano_explorer
+```
 
 ## Usage
-___
 
 
 ```python
@@ -71,7 +76,6 @@ from cardano_explorer import blockfrost_api
 ```
 
 ## Api Key
-___
 If you have an API key, you can either set it as environment variable **BLOCKFROST_API_KEY** or set it manually.
 
 
@@ -82,7 +86,6 @@ cardano_mainnet = blockfrost_api.Auth(api_key=api_key)
 ```
 
 ## Using with proxy
-___
 
 
 ```python
@@ -106,10 +109,9 @@ cardano_mainnet = blockfrost_api.Auth(network='mainnet')
 cardano_mainnet = blockfrost_api.Auth(network='testnet')
 ```
 
-## Network
-___
+## Network Informations
 
-### Network Informations
+### Network Info
 Return detailed about the network.
 
 
@@ -128,7 +130,6 @@ cardano_mainnet.network_info()
 
 
 ## Stake
-___
 
 ### Stake Informations
 Obtain information about a specific stake account.
@@ -670,7 +671,6 @@ cardano_mainnet.stake_assets_associated_addresses(stake_address,
 
 
 # Address
-___
 
 ### Specific Address
 Obtain information about a specific address.
@@ -745,7 +745,6 @@ cardano_mainnet.address_transaction(address)
 
 
 ## Epoch
-___
 
 ### Latest Epoch
 Obtain the information about the latest epoch.
@@ -921,7 +920,6 @@ cardano_mainnet.epochs_history([270, 271, 272],
 
 
 # Pool
-___
 
 ### List Of Stake Pools
 List of registered stake pools.
@@ -1130,7 +1128,6 @@ cardano_mainnet.stake_pool_history(pool_id,
 
 
 ## Data Analysis
-___
 
 ### Rewards History Analysis
 Data table to analyze the stake rewards.
@@ -1312,4 +1309,13 @@ cardano_mainnet.rewards_history_analysis(stake_address,
 
 
 
+# Developing
+Tests run assuming you have set the API key in the environment variable ***BLOCKFROST_API_KEY***, otherwise they will error.
 
+
+```python
+python3 setup.py pytest
+```
+
+# Credit
+- [Blockfrost API](https://blockfrost.io/).
