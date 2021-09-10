@@ -39,6 +39,13 @@ bf_url_latest_epoch_protocol_parameters = 'epochs/latest/parameters'
 bf_url_polls = 'pools/'
 bf_url_param_stake_pool_history = '/history'
 
+# Blockfrost Assets URL
+bf_url_assets = 'assets/'
+bf_url_asset_history = '/history'
+bf_url_asset_transactions = '/transactions'
+bf_url_asset_addresses = '/addresses'
+bf_url_assets_policy = 'policy/'
+
 class Auth:
     def __init__(self, api_key: str=None, network: str="mainnet", proxies: dict=None):
         
@@ -493,6 +500,117 @@ class Auth:
         df = df.join(df_stake_pool_hist.set_index('stake_pool_epoch'), on='epoch')
 
         return df if pandas else df.to_dict()
+
+    def assets(self, data_order: str='asc', nb_of_results: int=100, pandas: bool=False) -> Union[pd.DataFrame, dict]:
+        """
+        List of assets.
+        
+        :param data_order: Optional, use 'desc' if you want reverse the data order (default: Ascending)
+        :param nb_of_results: Optional, Number of results wanted. The api return 100 results at a time (default: 100)
+        :param pandas: Optional, True for return a pandas dataframe (default: False)
+        :return: Dictionary or DataFrame of the assets
+        """
+        
+
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, bf_url_assets, self.proxies)
+        
+        print('[INFO] Function assets_list, {} API calls.'.format(count_api_calls))
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
+
+
+    def specific_asset(self, asset: str) -> dict: 
+        """
+        Obtain information about a specific asset.
+        
+        :param : :param assets: Assets (Concatenation of the policy_id and hex-encoded asset_name)
+        :return: Dictionary with the info about the asset
+        """
+        
+        url_assets_info = self.network + bf_url_assets + asset
+
+        response = query_blockfrost(url_assets_info, self.api_key, self.proxies)
+        
+        return response
+
+        
+    def asset_history(self, asset: str, data_order: str='asc', nb_of_results: int=100, pandas: bool=False) -> Union[pd.DataFrame, dict]:
+        """
+        Obtain the history of a specific asset.
+        
+        :param assets: Assets (Concatenation of the policy_id and hex-encoded asset_name)
+        :param data_order: Optional, use 'desc' if you want reverse the data order (default: Ascending)
+        :param nb_of_results: Optional, Number of results wanted. The api return 100 results at a time (default: 100)
+        :param pandas: Optional, True for return a pandas dataframe (default: False)
+        :return: Dictionary or DataFrame of the assets
+        """
+        
+        url_assets_history = bf_url_assets + asset + bf_url_asset_history
+
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_assets_history, self.proxies)
+        
+        print('[INFO] Function asset_history, {} API calls.'.format(count_api_calls))
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
+
+
+    def asset_transactions(self, asset: str, data_order: str='asc', nb_of_results: int=100, pandas: bool=False) -> Union[pd.DataFrame, dict]:
+        """
+        List of a specific asset transactions.
+        
+        :param assets: Assets (Concatenation of the policy_id and hex-encoded asset_name)
+        :param data_order: Optional, use 'desc' if you want reverse the data order (default: Ascending)
+        :param nb_of_results: Optional, Number of results wanted. The api return 100 results at a time (default: 100)
+        :param pandas: Optional, True for return a pandas dataframe (default: False)
+        :return: Dictionary or DataFrame of the assets
+        """
+        
+        url_assets_transactions = bf_url_assets + asset + bf_url_asset_transactions
+
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_assets_transactions, self.proxies)
+        
+        print('[INFO] Function asset_transactions, {} API calls.'.format(count_api_calls))
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
+
+        
+    def asset_addresses(self, asset: str, data_order: str='asc', nb_of_results: int=100, pandas: bool=False) -> Union[pd.DataFrame, dict]:
+        """
+        List of a addresses containing a specific asset.
+        
+        :param assets: Assets (Concatenation of the policy_id and hex-encoded asset_name)
+        :param data_order: Optional, use 'desc' if you want reverse the data order (default: Ascending)
+        :param nb_of_results: Optional, Number of results wanted. The api return 100 results at a time (default: 100)
+        :param pandas: Optional, True for return a pandas dataframe (default: False)
+        :return: Dictionary or DataFrame of the assets
+        """
+        
+        url_assets_addresses = bf_url_assets + asset + bf_url_asset_addresses
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_assets_addresses, self.proxies)
+        
+        print('[INFO] Function asset_addresses, {} API calls.'.format(count_api_calls))
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
+
+    
+    def assets_policy(self, policy_id: str, data_order: str='asc', nb_of_results: int=100, pandas: bool=False) -> Union[pd.DataFrame, dict]:
+        """
+        List of asset minted under a specific policy.
+        
+        :param policy_id: Policy ID of the asset
+        :param data_order: Optional, use 'desc' if you want reverse the data order (default: Ascending)
+        :param nb_of_results: Optional, Number of results wanted. The api return 100 results at a time (default: 100)
+        :param pandas: Optional, True for return a pandas dataframe (default: False)
+        :return: Dictionary or DataFrame of the assets
+        """
+        
+        url_assets_addresses = bf_url_assets + bf_url_assets_policy + policy_id
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_assets_addresses, self.proxies)
+        
+        print('[INFO] Function assets_policy, {} API calls.'.format(count_api_calls))
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
+
       
 def set_query_string_parameter(page: int, data_order: str="") -> str:
     """
