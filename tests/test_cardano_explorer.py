@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 import unittest
 from cardano_explorer import blockfrost_api

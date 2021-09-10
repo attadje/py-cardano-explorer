@@ -11,40 +11,40 @@ bf_url_cardano_mainnet = 'https://cardano-mainnet.blockfrost.io/api/v0/'
 bf_url_cardano_testnet = 'https://cardano-testnet.blockfrost.io/api/v0/'
 
 # Blockfrost Stake URL
-bf_url_stake = 'accounts/'
-bf_url_stake_rewards = '/rewards'
-bf_url_stake_amount_history = '/history'
-bf_url_stake_delegation = '/delegations'
-bf_url_stake_registration = '/registrations'
-bf_url_stake_withdrawal_history = '/withdrawals'
-bf_url_stake_mir_history = '/mirs'
-bf_url_associated_addresses = '/addresses'
-bf_url_assets_associated_addresses = '/addresses/assets'
+bf_stake_url = 'accounts/'
+bf_stake_rewards_url = '/rewards'
+bf_stake_amount_history_url = '/history'
+bf_stake_delegation_url = '/delegations'
+bf_stake_registration_url = '/registrations'
+bf_stake_withdrawal_history_url = '/withdrawals'
+bf_stake_mir_history_url = '/mirs'
+bf_associated_addresses_url = '/addresses'
+bf_assets_associated_addresses_url = '/addresses/assets'
 
 # Blockfrost Addresse URL
-bf_url_address = 'addresses/'
-bf_url_address_details = '/total'
-bf_url_address_utxo = '/utxos'
-bf_url_address_transaction = '/transactions'
+bf_address_url = 'addresses/'
+bf_address_details_url = '/total'
+bfbf_address_utxo_url = '/utxos'
+bf_address_transaction_url = '/transactions'
 
 # Blockfrost Network Information URL
-bf_url_network_informations = '/network'
+bf_network_informations_url = '/network'
 
 # Blockfrost Epochs URL
-bf_url_epoch = 'epochs/'
-bf_url_latest_epoch = 'epochs/latest'
-bf_url_latest_epoch_protocol_parameters = 'epochs/latest/parameters'
+bf_epoch_url = 'epochs/'
+bf_latest_epoch_url = 'epochs/latest'
+bf_latest_epoch_protocol_parameters_url = 'epochs/latest/parameters'
 
 # Blockfrost Pools URL
-bf_url_polls = 'pools/'
-bf_url_param_stake_pool_history = '/history'
+bf_polls_url = 'pools/'
+bf_param_stake_pool_history_url = '/history'
 
 # Blockfrost Assets URL
-bf_url_assets = 'assets/'
-bf_url_asset_history = '/history'
-bf_url_asset_transactions = '/transactions'
-bf_url_asset_addresses = '/addresses'
-bf_url_assets_policy = 'policy/'
+bf_assets_url = 'assets/'
+bf_asset_history_url = '/history'
+bf_asset_transactions_url = '/transactions'
+bf_asset_addresses_url = '/addresses'
+bf_assets_policy_url = 'policy/'
 
 class Auth:
     def __init__(self, api_key: str=None, network: str="mainnet", proxies: dict=None):
@@ -76,7 +76,7 @@ class Auth:
         :return: Dictionary with the informations about a specific stake account
         """
         
-        url_stake_info = self.network + bf_url_stake + stake_address
+        url_stake_info = self.network + bf_stake_url + stake_address
         
         response = query_blockfrost(url_stake_info, self.api_key, self.proxies)
         
@@ -94,11 +94,11 @@ class Auth:
         :return: Dictionary or DataFrame of the rewards history 
         """
         
-        url_rewards_history = "{}{}{}".format(bf_url_stake,
+        rewards_history_url = "{}{}{}".format(bf_stake_url,
                                               stake_address,
-                                              bf_url_stake_rewards)
+                                              bf_stake_rewards_url)
         
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_rewards_history, self.proxies)
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, rewards_history_url, self.proxies)
         
         print('[INFO] Function stake_reward_history, {} API calls.'.format(count_api_calls))
         
@@ -117,11 +117,11 @@ class Auth:
         :return: Dictionary or DataFrame of the stake amount history
         """
         
-        url_stake_amount_history = "{}{}{}".format(bf_url_stake,
+        stake_amount_history_url = "{}{}{}".format(bf_stake_url,
                                                    stake_address,
-                                                   bf_url_stake_amount_history)
+                                                   bf_stake_amount_history_url)
         
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_stake_amount_history, self.proxies)
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, stake_amount_history_url, self.proxies)
         
         print('[INFO] Function stake_amount_history, {} API calls.'.format(count_api_calls))
         
@@ -141,11 +141,11 @@ class Auth:
         :return: Dictionary or DataFrame of the stake delegation history
         """
         
-        url_stake_delegation = "{}{}{}".format(bf_url_stake,
+        stake_delegation_url = "{}{}{}".format(bf_stake_url,
                                                stake_address,
-                                               bf_url_stake_delegation)
+                                               bf_stake_delegation_url)
         
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_stake_delegation, self.proxies)
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, stake_delegation_url, self.proxies)
         
         print('[INFO] Function stake_delegation, {} API calls.'.format(count_api_calls))
         
@@ -164,11 +164,11 @@ class Auth:
         :return: Dictionary or DataFrame of the stake registration and deregistrations history
         """
         
-        url_stake_registration = "{}{}{}".format(bf_url_stake,
+        stake_registration_url = "{}{}{}".format(bf_stake_url,
                                                  stake_address,
-                                                 bf_url_stake_registration)
+                                                 bf_stake_registration_url)
         
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_stake_registration, self.proxies)
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, stake_registration_url, self.proxies)
         
         print('[INFO] Function stake_registration_deregistrations, {} API calls.'.format(count_api_calls))
         
@@ -186,11 +186,11 @@ class Auth:
         :return: Dictionary or DataFrame of the stake withdrawal history 
         """
         
-        url_stake_withdrawal_history = "{}{}{}".format(bf_url_stake,
+        stake_withdrawal_history_url = "{}{}{}".format(bf_stake_url,
                                                        stake_address,
-                                                       bf_url_stake_withdrawal_history)
+                                                       bf_stake_withdrawal_history_url)
         
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_stake_withdrawal_history, self.proxies)
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, stake_withdrawal_history_url, self.proxies)
         
         print('[INFO] Function stake_withdrawal_history, {} API calls.'.format(count_api_calls))
         
@@ -211,11 +211,11 @@ class Auth:
         :return: Dictionary or DataFrame of the stake mir history
         """
         
-        url_stake_mir_history = "{}{}{}".format(bf_url_stake,
+        stake_mir_history_url = "{}{}{}".format(bf_stake_url,
                                                 stake_address,
-                                                bf_url_stake_mir_history)
+                                                bf_stake_mir_history_url)
         
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_stake_mir_history, self.proxies) 
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, stake_mir_history_url, self.proxies) 
         
         print('[INFO] Function stake_mir_history, {} API calls.'.format(count_api_calls))
         
@@ -233,11 +233,11 @@ class Auth:
         :return: Dictionary or DataFrame of the stake associated addresses or empty dictionary if the stake address have no stake ADA
         """
         
-        url_stake_associated_addresses = "{}{}{}".format(bf_url_stake,
+        stake_associated_addresses_url = "{}{}{}".format(bf_stake_url,
                                                          stake_address,
-                                                         bf_url_associated_addresses)
+                                                         bf_associated_addresses_url)
         
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_stake_associated_addresses, self.proxies)
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, stake_associated_addresses_url, self.proxies)
         
         print('[INFO] Function stake_associated_addresses, {} API calls.'.format(count_api_calls))
         
@@ -255,11 +255,11 @@ class Auth:
         :return: Dictionary or DataFrame of the stake associated addresses or empty dictionary if the stake address have no stake ADA
         """
         
-        url_stake_assets_associated_addresses = "{}{}{}".format(bf_url_stake,
+        stake_assets_associated_addresses_url = "{}{}{}".format(bf_stake_url,
                                                                 stake_address,
-                                                                bf_url_assets_associated_addresses)
+                                                                bf_assets_associated_addresses_url)
         
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_stake_assets_associated_addresses, self.proxies)
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, stake_assets_associated_addresses_url, self.proxies)
         
         print('[INFO] Function stake_assets_associated_addresses, {} API calls.'.format(count_api_calls))
         
@@ -275,9 +275,9 @@ class Auth:
         
         """
         
-        url_address_info = self.network + bf_url_address + address
+        address_info_url = self.network + bf_address_url + address
         
-        response = query_blockfrost(url_address_info, self.api_key, self.proxies)
+        response = query_blockfrost(address_info_url, self.api_key, self.proxies)
         
         return response
     
@@ -291,9 +291,9 @@ class Auth:
         :return: Dictionary with the informations details about the address
         """
         
-        url_address_details = self.network + bf_url_address + address + bf_url_address_details
+        address_details_url = self.network + bf_address_url + address + bf_address_details_url
         
-        response = query_blockfrost(url_address_details, self.api_key, self.proxies)
+        response = query_blockfrost(address_details_url, self.api_key, self.proxies)
         
         return response
     
@@ -306,9 +306,9 @@ class Auth:
         :return: Dictionary with the informations details about the UTXO of an address
         """
         
-        url_address_utxo = self.network + bf_url_address + address + bf_url_address_utxo
+        address_utxo_url = self.network + bf_address_url + address + bfbf_address_utxo_url
         
-        response = query_blockfrost(url_address_utxo, self.api_key, self.proxies)
+        response = query_blockfrost(address_utxo_url, self.api_key, self.proxies)
         
         return response
     
@@ -321,9 +321,9 @@ class Auth:
         :return: Dictionary with the informations details about the address transaction
         """
         
-        url_address_transaction = self.network + bf_url_address + address + bf_url_address_transaction
+        address_transaction_url = self.network + bf_address_url + address + bf_address_transaction_url
         
-        response = query_blockfrost(url_address_transaction, self.api_key, self.proxies)
+        response = query_blockfrost(address_transaction_url, self.api_key, self.proxies)
         
         return response
     
@@ -331,9 +331,9 @@ class Auth:
     def network_info(self) -> dict:
         """Return detailed network information."""
         
-        url_network_info = self.network + bf_url_network_informations
+        network_info_url = self.network + bf_network_informations_url
         
-        response = query_blockfrost(url_network_info, self.api_key, self.proxies)
+        response = query_blockfrost(network_info_url, self.api_key, self.proxies)
         
         return response
     
@@ -341,9 +341,9 @@ class Auth:
     def latest_epoch(self) -> dict:
         """Return the information about the latest, therefore current, epoch."""
         
-        url_latest_epoch = self.network + bf_url_latest_epoch
+        latest_epoch_url = self.network + bf_latest_epoch_url
         
-        response = query_blockfrost(url_latest_epoch, self.api_key, self.proxies)
+        response = query_blockfrost(latest_epoch_url, self.api_key, self.proxies)
         
         return response
     
@@ -359,9 +359,9 @@ class Auth:
         # Check if the epoch is greater than 0
         assert(int(epoch) >= 0), "[ERROR] The number of epoch can't be negatif."
         
-        url_specific_epoch = self.network + bf_url_epoch + str(epoch)
+        specific_epoch_url = self.network + bf_epoch_url + str(epoch)
         
-        response = query_blockfrost(url_specific_epoch, self.api_key, self.proxies)
+        response = query_blockfrost(specific_epoch_url, self.api_key, self.proxies)
         
         return response
     
@@ -369,9 +369,9 @@ class Auth:
     def latest_epoch_protocol_parameters(self) -> dict:
         """Return the protocol parameters for the latest epoch."""
         
-        url_address_info = self.network + bf_url_latest_epoch_protocol_parameters
+        address_info_url = self.network + bf_latest_epoch_protocol_parameters_url
         
-        response = query_blockfrost(url_address_info, self.api_key, self.proxies)
+        response = query_blockfrost(address_info_url, self.api_key, self.proxies)
         
         return response
     
@@ -419,7 +419,7 @@ class Auth:
         :return: Dictionary or DataFrame of the registered stake pools
         """
         
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, bf_url_polls, self.proxies)
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, bf_polls_url, self.proxies)
         
         # Rename the column of the pool ID
         response['registered_polls_id'] = response.pop(0)
@@ -437,8 +437,8 @@ class Auth:
         :return: Dictionary with the informations about a pool
         """
         
-        url_pool_informations = self.network + bf_url_polls + pool_id
-        response = query_blockfrost(url_pool_informations, self.api_key, self.proxies)
+        pool_informations_url = self.network + bf_polls_url + pool_id
+        response = query_blockfrost(pool_informations_url, self.api_key, self.proxies)
         
         return response
     
@@ -454,11 +454,11 @@ class Auth:
         :return dict: Dictionary or DataFrame of the history of stake pool parameters over epochs
         """
         
-        url_param_stake_pool_history = "{}{}{}".format(bf_url_polls,
+        param_stake_pool_history_url = "{}{}{}".format(bf_polls_url,
                                                        pool_id,
-                                                       bf_url_param_stake_pool_history)
+                                                       bf_param_stake_pool_history_url)
         
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_param_stake_pool_history, self.proxies)
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, param_stake_pool_history_url, self.proxies)
         
         print('[INFO] Function param_stake_pool_history, {} API calls.'.format(count_api_calls))
         
@@ -512,7 +512,7 @@ class Auth:
         """
         
 
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, bf_url_assets, self.proxies)
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, bf_assets_url, self.proxies)
         
         print('[INFO] Function assets_list, {} API calls.'.format(count_api_calls))
         
@@ -527,9 +527,9 @@ class Auth:
         :return: Dictionary with the info about the asset
         """
         
-        url_assets_info = self.network + bf_url_assets + asset
+        specific_asset_url = self.network + bf_assets_url + asset
 
-        response = query_blockfrost(url_assets_info, self.api_key, self.proxies)
+        response = query_blockfrost(specific_asset_url, self.api_key, self.proxies)
         
         return response
 
@@ -545,9 +545,9 @@ class Auth:
         :return: Dictionary or DataFrame of the assets
         """
         
-        url_assets_history = bf_url_assets + asset + bf_url_asset_history
+        assets_history_url = bf_assets_url + asset + bf_asset_history_url
 
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_assets_history, self.proxies)
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, assets_history_url, self.proxies)
         
         print('[INFO] Function asset_history, {} API calls.'.format(count_api_calls))
         
@@ -565,9 +565,9 @@ class Auth:
         :return: Dictionary or DataFrame of the assets
         """
         
-        url_assets_transactions = bf_url_assets + asset + bf_url_asset_transactions
+        assets_transactions_url = bf_assets_url + asset + bf_asset_transactions_url
 
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_assets_transactions, self.proxies)
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, assets_transactions_url, self.proxies)
         
         print('[INFO] Function asset_transactions, {} API calls.'.format(count_api_calls))
         
@@ -585,8 +585,8 @@ class Auth:
         :return: Dictionary or DataFrame of the assets
         """
         
-        url_assets_addresses = bf_url_assets + asset + bf_url_asset_addresses
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_assets_addresses, self.proxies)
+        assets_addresses_url = bf_assets_url + asset + bf_asset_addresses_url
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, assets_addresses_url, self.proxies)
         
         print('[INFO] Function asset_addresses, {} API calls.'.format(count_api_calls))
         
@@ -604,8 +604,8 @@ class Auth:
         :return: Dictionary or DataFrame of the assets
         """
         
-        url_assets_addresses = bf_url_assets + bf_url_assets_policy + policy_id
-        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, url_assets_addresses, self.proxies)
+        assets_policy_url = bf_assets_url + bf_assets_policy_url + policy_id
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, assets_policy_url, self.proxies)
         
         print('[INFO] Function assets_policy, {} API calls.'.format(count_api_calls))
         
