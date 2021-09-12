@@ -1,4 +1,5 @@
 import os
+import binascii
 import requests
 import pandas as pd
 from typing import Union, Optional, List, Dict, Tuple
