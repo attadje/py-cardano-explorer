@@ -44,16 +44,17 @@ Python wrapper for accessing and processing information stored on the Cardano bl
   * [Get Assets Informations](#Get-Assets-Informations)
 - [Data Analysis](#Data-Analysis)
   * [Rewards History Analysis](#Rewards-History-Analysis)
+- [Donation](#Donate)
 
 <br />
 
-## Install
+## Install (Not available yet)
+The library is not deployed yet, clone the project if you want testing the functions
 
 
 ```python
 pip3 install cardano_explorer
 ```
-
 
 ## Usage
 
@@ -77,8 +78,8 @@ cardano_mainnet = blockfrost_api.Auth(api_key=api_key)
 
 ```python
 proxies = {
- "http": "http://@:port",
- "https": "https://@:port",
+ "http": "http://user:password@server:port",
+ "https": "https://user:password@server:portt",
 }
 
 cardano_mainnet = blockfrost_api.Auth(proxies=proxies)
@@ -111,9 +112,9 @@ cardano_mainnet.network_info()
 
     {'supply': {'max': '45000000000000000',
       'total': '33206309572085375',
-      'circulating': '32854649043385098',
-      'locked': '10734513504016'},
-     'stake': {'live': '23379617482483942', 'active': '23395112387185878'}}
+      'circulating': '32854644466406483',
+      'locked': '10756061545447'},
+     'stake': {'live': '23378092915484642', 'active': '23395112387185878'}}
 
 
 
@@ -155,8 +156,6 @@ cardano_mainnet.stake_reward_history(stake_address,
                                      nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                      pandas=True) # Optional: Return a pandas dataframe
 ```
-
-
 
 <div>
 <table border="1" class="dataframe">
@@ -217,6 +216,9 @@ cardano_mainnet.stake_amount_history(stake_address,
                                      nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                      pandas=True) # Optional: Return a pandas dataframe
 ```
+
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -276,6 +278,8 @@ cardano_mainnet.stake_delegation(stake_address,
                                  pandas=True) # Optional: Return a pandas dataframe
 ```
 
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -327,6 +331,8 @@ cardano_mainnet.stake_registration_deregistrations(stake_address,
                                                    pandas=True) # Optional: Return a pandas dataframe
 ```
 
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -359,6 +365,10 @@ cardano_mainnet.stake_withdrawal_history(stake_address,
                                          nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                          pandas=True) # Optional: Return a pandas dataframe
 ```
+
+
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -392,6 +402,8 @@ cardano_mainnet.stake_mir_history(stake_address,
                                   pandas=True) # Optional: Return a pandas dataframe
 ```
 
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -430,6 +442,7 @@ cardano_mainnet.stake_associated_addresses(stake_address,
                                            pandas=True) # Optional: Return a pandas dataframe
 ```
 
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -476,6 +489,8 @@ cardano_mainnet.stake_assets_associated_addresses(stake_address,
                                                   nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                                   pandas=True) # Optional: Return a pandas dataframe
 ```
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -533,16 +548,38 @@ UTXOs of the address.
 
 ```python
 cardano_mainnet.address_utxo(address)
+#or
+cardano_mainnet.address_utxo(address,
+                             pandas=True) # Optional: Return a pandas dataframe
 ```
 
 
-
-
-    [{'tx_hash': '996ff0a57282ef943ecdbc263cf9c41c178d65587d70d9d9dcbe98e520f8e406',
-      'tx_index': 4,
-      'output_index': 4,
-      'amount': [{'unit': 'lovelace', 'quantity': '350000000'}],
-      'block': '73768f4ca2a0c96611a1fbd7f53a3b1b573fb0371012e54a943cf58926eb9cea'}]
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tx_hash</th>
+      <th>tx_index</th>
+      <th>output_index</th>
+      <th>amount</th>
+      <th>block</th>
+      <th>data_hash</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>996ff0a57282ef943ecdbc263cf9c41c178d65587d70d9...</td>
+      <td>4</td>
+      <td>4</td>
+      <td>[{'unit': 'lovelace', 'quantity': '350000000'}]</td>
+      <td>73768f4ca2a0c96611a1fbd7f53a3b1b573fb0371012e5...</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -551,15 +588,31 @@ Transactions on the address.
 
 
 ```python
-cardano_mainnet.address_transaction(address)
+cardano_mainnet.address_transaction(address,
+                                   pandas=True) # Optional: Return a pandas dataframe
 ```
 
 
-
-
-    [{'tx_hash': '996ff0a57282ef943ecdbc263cf9c41c178d65587d70d9d9dcbe98e520f8e406',
-      'tx_index': 45,
-      'block_height': 6095572}]
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>tx_hash</th>
+      <th>tx_index</th>
+      <th>block_height</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>996ff0a57282ef943ecdbc263cf9c41c178d65587d70d9...</td>
+      <td>45</td>
+      <td>6095572</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -655,6 +708,8 @@ Obtain informations about sevrals epochs.
 cardano_mainnet.epochs_history([270, 271, 272],
                                pandas=True) # Optional: Return a pandas dataframe
 ```
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -729,6 +784,9 @@ cardano_mainnet.registered_polls()
 cardano_mainnet.registered_polls(nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                  pandas=True) # Optional: Return a pandas dataframe
 ```
+
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -813,6 +871,9 @@ cardano_mainnet.stake_pool_history(pool_id)
 cardano_mainnet.stake_pool_history(pool_id,
                                    pandas=True) # Optional: Return a pandas dataframe
 ```
+
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -870,7 +931,7 @@ cardano_mainnet.stake_pool_history(pool_id,
     <tr>
       <th>83</th>
       <td>293</td>
-      <td>22</td>
+      <td>15</td>
       <td>63400551099817</td>
       <td>0.002710</td>
       <td>1440</td>
@@ -890,12 +951,21 @@ List of assets.
 
 
 ```python
+policy_id='40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728'
+asset_name='436c61794e6174696f6e33393836' # (ASCII: ClayNation3986)
+```
+
+
+```python
 cardano_mainnet.assets()
 #or
 cardano_mainnet.assets(data_order='asc', # Optional: Data order (default: Ascending)
                        nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                        pandas=True) # Optional: Return a pandas dataframe
 ```
+
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -981,6 +1051,9 @@ cardano_mainnet.asset_history(policy_id+asset_name,
                               nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                               pandas=True) # Optional: Return a pandas dataframe
 ```
+
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1015,6 +1088,9 @@ cardano_mainnet.asset_addresses(policy_id+asset_name,
                                 nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                 pandas=True) # Optional: Return a pandas dataframe
 ```
+
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1048,6 +1124,9 @@ cardano_mainnet.assets_policy(policy_id,
                               nb_of_results=None, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                               pandas=True) # Optional: Return a pandas dataframe
 ```
+
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1089,7 +1168,7 @@ cardano_mainnet.assets_policy(policy_id,
 
 
 ### Get Assets Informations
-Get informations about the assests under a specific policy.
+Get the information about the assests under a specific policy.
 
 
 ```python
@@ -1097,6 +1176,9 @@ assets_info, assets_not_found = cardano_mainnet.assets_policy_informations(polic
                                                                            nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                                                            pandas=True) # Optional: Return a pandas dataframe
 ```
+
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1212,6 +1294,9 @@ cardano_mainnet.rewards_history_analysis(stake_address)
 cardano_mainnet.rewards_history_analysis(stake_address,
                                          pandas=True) # Optional: Return a pandas dataframe
 ```
+
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1364,3 +1449,14 @@ python3 setup.py pytest
 
 # Credit
 - [Blockfrost API](https://blockfrost.io/).
+
+# Donate
+
+If the project has been useful to you, feel free to put a star or donate (ADA) at this address :blush:.
+
+![Drag Racing](src/qr_donation_50x50.jpg)
+
+Thank you.
+
+# Disclaimer
+The project is still under development, If you find bugs or want additional features, open an issue and/or create a pull request.
