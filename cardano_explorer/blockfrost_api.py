@@ -26,7 +26,7 @@ bf_assets_associated_addresses_url = '/addresses/assets'
 # Blockfrost Addresse URL
 bf_address_url = 'addresses/'
 bf_address_details_url = '/total'
-bfbf_address_utxo_url = '/utxos'
+bf_address_utxo_url = '/utxos'
 bf_address_transaction_url = '/transactions'
 
 # Blockfrost Network Information URL
@@ -300,7 +300,7 @@ class Auth:
         return response
     
     
-    def address_utxo(self, address: str) -> dict:
+    def address_utxo(self, address: str, pandas: bool=False) -> dict:
         """
         Obtain UTXO of the address.
         
@@ -308,14 +308,14 @@ class Auth:
         :return: Dictionary with the informations details about the UTXO of an address
         """
         
-        address_utxo_url = self.network + bf_address_url + address + bfbf_address_utxo_url
+        address_utxo_url = self.network + bf_address_url + address + bf_address_utxo_url
         
         response = query_blockfrost(address_utxo_url, self.api_key, self.proxies)
         
-        return response
+        return pd.DataFrame.from_dict(response) if pandas else response
     
     
-    def address_transaction(self, address: str) -> dict:
+    def address_transaction(self, address: str, pandas: bool=False) -> dict:
         """
         Transactions on the address.
         
@@ -327,7 +327,7 @@ class Auth:
         
         response = query_blockfrost(address_transaction_url, self.api_key, self.proxies)
         
-        return response
+        return pd.DataFrame.from_dict(response) if pandas else response
     
     
     def network_info(self) -> dict:
