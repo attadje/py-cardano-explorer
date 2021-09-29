@@ -1,7 +1,8 @@
 import os
-import binascii
 import requests
 import pandas as pd
+from time import sleep
+from tqdm import tqdm
 from typing import Union, Optional, List, Dict, Tuple
 
 # API Header parameter
@@ -515,7 +516,7 @@ class Auth:
 
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, bf_assets_url, self.proxies)
         
-        print('[INFO] Function assets_list, {} API calls.'.format(count_api_calls))
+        print('[INFO] Function assets, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
@@ -611,6 +612,41 @@ class Auth:
         print('[INFO] Function assets_policy, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
+
+
+    def assets_policy_informations(self, policy_id: str, nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, list]:
+        '''
+        Obtain informations about the assets minted under a specific policy ID.
+
+        :param policy_id: Policy ID
+        :nb_of_results: Optional, Number of results wanted. The api return 100 results at a time (default: None)
+        :param pandas: Optional, True for return a pandas dataframe (default: False)
+        :return: Dict or DataFrame with the informations on each asset under the policy and the list ofbthe asset not found
+        '''
+        
+        assets_data, assets_not_found  = [], []
+        
+        print('[INFO] Get the asset names minted under the policy ID: {}'.format(policy_id))
+        asset_minted_names = self.assets_policy(policy_id, pandas=True, nb_of_results=nb_of_results)['asset'].tolist()
+
+        print('[INFO] Get the information about the assets.'.format(policy_id))
+        for asset in tqdm(asset_minted_names):
+            try:
+                response = self.specific_asset(asset)
+            except Exception as e:
+                # Save the asset name in a list if he is not found on the network
+                if '404' in str(e):
+                    assets_not_found.append(convert_hex_to_ascii(asset))
+                    continue
+                    
+                raise Exception('[ERROR] {}'.format(e))
+
+            # Add the asset data info to the list of assets
+            assets_data.append(process_onchain_metadata(response))
+
+        print('[INFO] Function specific_asset, {} API calls.'.format(len(assets_data)))
+
+        return (pd.DataFrame.from_dict(assets_data), assets_not_found)  if pandas else (assets_data, assets_not_found)
 
       
 def set_query_string_parameter(page: int, data_order: str="") -> str:
@@ -736,3 +772,32 @@ def query_on_several_pages(network: str, api_key: str, data_order: str, nb_of_re
     _dict = pd.concat(dataframes).reset_index(drop=True).to_dict()
 
     return _dict, count_api_calls
+
+
+def process_onchain_metadata(asset: dict) -> Dict:
+    """
+    Create a column for each onchain metadata item.
+    
+    :param assets_data: Asset data dictionary
+    :return: Formated asset data dictionary
+    """
+    
+    f_assets_data = {}
+    
+    for asset_item in asset:
+        # If the asset have metadata
+        if isinstance(asset[asset_item], dict):
+            # Metadata dictionary
+            metadata = asset[asset_item]
+            # Browse the data, and add each item in the formated asset data dictionary
+            for metadata_item in metadata:
+                f_assets_data[metadata_item] = metadata[metadata_item]
+            continue
+        # If not, add the item and his unique value to the formated asset data dictionary 
+        f_assets_data[asset_item] = asset[asset_item]
+    
+    return f_assets_data
+
+def convert_hex_to_ascii(hex_string: str) -> str:
+    """Convert hex string to ascii format"""
+    return bytearray.fromhex(hex_string).decode()

@@ -10,17 +10,17 @@ assert (os.getenv('BLOCKFROST_API_KEY') is not None), '[ERROR] Your blockfrost a
 pool_id= "pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288ys5kumqce5"
 address= 'addr1q8z24xgrlj3m2qjh2vxyqg2fh33y3tegufkll5c4lu8u35gkhpw3h4yhn93ve2whllg0wjazjs5jj8332mgqe332f3uq8m7m6h'
 stake_address= 'stake1u8uzevd539lxn40jt60g72a649zdphe9e8hrye4nf5jv0js9uzhzg'
-policy_id='ceb5dedd6cda3f0b4a98919b5d3827e15e324771642b57e0e6aabd57'
-asset_name='476f6c64486f736b696e736f6e3431'
+policy_id='40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728'
+asset_name='436c61794e6174696f6e33393836'
 
 cardano_mainnet = blockfrost_api.Auth()
 
 class Test(unittest.TestCase):
     
     def test_pool(self):
-        print("****************************")
-        print('[INFO] POOL Functions tests.')
-        print("****************************")
+        print("*************************")
+        print('[INFO] Test POOL functions')
+        print("*************************")
         self.assertFalse(cardano_mainnet.registered_polls(nb_of_results=100, pandas=True).empty)
         self.assertTrue(isinstance(cardano_mainnet.pool_informations(pool_id), dict))
         self.assertFalse(cardano_mainnet.stake_pool_history(pool_id, nb_of_results=100, pandas=True).empty)
@@ -42,9 +42,9 @@ class Test(unittest.TestCase):
         self.assertEqual(blockfrost_api.set_query_string_parameter(1), '?page=1&')
         
     def test_epoch(self):
-        print("*****************************")
-        print("[INFO] EPOCH Functions tests.")
-        print("*****************************")
+        print("****************************")
+        print("[INFO] Test EPOCH Functions.")
+        print("****************************")
         self.assertTrue(isinstance(cardano_mainnet.latest_epoch()['epoch'], int))
         self.assertTrue(isinstance(cardano_mainnet.latest_epoch_protocol_parameters()['epoch'], int))
         self.assertTrue(isinstance(cardano_mainnet.specific_epoch(287)['epoch'], int))
@@ -66,9 +66,9 @@ class Test(unittest.TestCase):
         self.assertTrue(isinstance(cardano_mainnet.address_info(address)['type'], str))
         
     def test_stake(self):
-        print("*****************************")
-        print("[INFO] Stake Functions tests.")
-        print("*****************************")
+        print("****************************")
+        print("[INFO] Test Stake Functions.")
+        print("****************************")
         self.assertTrue(isinstance(cardano_mainnet.stake_informations(stake_address)['active_epoch'], int))
         self.assertFalse(cardano_mainnet.stake_reward_history(stake_address, nb_of_results=100, pandas=True).empty)
         self.assertFalse(cardano_mainnet.stake_amount_history(stake_address, nb_of_results=100, pandas=True).empty)
@@ -86,15 +86,29 @@ class Test(unittest.TestCase):
         self.assertFalse(cardano_mainnet.rewards_history_analysis(stake_address, pandas=True).empty)
 
     def test_asset(self):
-        print("***************************")
-        print("[INFO] ASSET Function test.")
-        print("***************************")
+        print("****************************")
+        print("[INFO] Test ASSET functions.")
+        print("****************************")
         self.assertFalse(cardano_mainnet.assets(policy_id+asset_name, pandas=True).empty)
         self.assertTrue(cardano_mainnet.specific_asset(policy_id+asset_name)['asset'] == policy_id+asset_name)
         self.assertFalse(cardano_mainnet.asset_history(policy_id+asset_name, pandas=True).empty)
         self.assertFalse(cardano_mainnet.asset_transactions(policy_id+asset_name, pandas=True).empty)
         self.assertFalse(cardano_mainnet.asset_addresses(policy_id+asset_name, pandas=True).empty)  
-        self.assertFalse(cardano_mainnet.assets_policy(policy_id, pandas=True).empty)      
-        
+        self.assertFalse(cardano_mainnet.assets_policy(policy_id, pandas=True).empty)  
+
+
+    def test_convert_hex_to_ascii(self):
+         print("**************************************************")
+         print("[INFO] Test of the function 'convert_hex_to_ascii'")
+         print("**************************************************")
+         self.assertTrue(blockfrost_api.convert_hex_to_ascii('436c61794e6174696f6e33393836')=='ClayNation3986')
+
+    def test_info_about_assets_policy(self):
+         print("***********************************************************")
+         print("[INFO] Test of the function 'assets_policy_informations'")
+         print("***********************************************************")
+         self.assertTrue(isinstance(cardano_mainnet.assets_policy_informations('762fd23f1de309673a847a0c16e45647549effa84befa7dec4f7da8e', pandas=True), tuple))
+
+
 if __name__ == '__main__':
     unittest.main()
