@@ -102,7 +102,7 @@ class Auth:
         
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, rewards_history_url, self.proxies)
         
-        print('[INFO] Function stake_reward_history, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function stake_reward_history, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
     
@@ -125,7 +125,7 @@ class Auth:
         
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, stake_amount_history_url, self.proxies)
         
-        print('[INFO] Function stake_amount_history, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function stake_amount_history, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
         
@@ -149,7 +149,7 @@ class Auth:
         
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, stake_delegation_url, self.proxies)
         
-        print('[INFO] Function stake_delegation, {} API calls.'.format(count_api_calls))
+        #('[INFO] Function stake_delegation, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
     
@@ -172,7 +172,7 @@ class Auth:
         
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, stake_registration_url, self.proxies)
         
-        print('[INFO] Function stake_registration_deregistrations, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function stake_registration_deregistrations, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
     
@@ -219,7 +219,7 @@ class Auth:
         
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, stake_mir_history_url, self.proxies) 
         
-        print('[INFO] Function stake_mir_history, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function stake_mir_history, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
     
@@ -263,7 +263,7 @@ class Auth:
         
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, stake_assets_associated_addresses_url, self.proxies)
         
-        print('[INFO] Function stake_assets_associated_addresses, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function stake_assets_associated_addresses, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
     
@@ -405,7 +405,7 @@ class Auth:
             epochs_history.append(self.specific_epoch(epoch))
             count_api_calls += 1
                
-        print('[INFO] Function epochs_history, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function epochs_history, {} API calls.'.format(count_api_calls))
             
         return pd.DataFrame.from_dict(epochs_history) if pandas else epochs_history
     
@@ -462,7 +462,7 @@ class Auth:
         
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, param_stake_pool_history_url, self.proxies)
         
-        print('[INFO] Function param_stake_pool_history, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function param_stake_pool_history, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
@@ -516,7 +516,7 @@ class Auth:
 
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, bf_assets_url, self.proxies)
         
-        print('[INFO] Function assets, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function assets, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
@@ -551,7 +551,7 @@ class Auth:
 
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, assets_history_url, self.proxies)
         
-        print('[INFO] Function asset_history, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function asset_history, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
@@ -571,7 +571,7 @@ class Auth:
 
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, assets_transactions_url, self.proxies)
         
-        print('[INFO] Function asset_transactions, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function asset_transactions, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
@@ -590,7 +590,7 @@ class Auth:
         assets_addresses_url = bf_assets_url + asset + bf_asset_addresses_url
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, assets_addresses_url, self.proxies)
         
-        print('[INFO] Function asset_addresses, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function asset_addresses, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
@@ -609,7 +609,7 @@ class Auth:
         assets_policy_url = bf_assets_url + bf_assets_policy_url + policy_id
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, assets_policy_url, self.proxies)
         
-        print('[INFO] Function assets_policy, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function assets_policy, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
@@ -626,10 +626,10 @@ class Auth:
         
         assets_data, assets_not_found  = [], []
         
-        print('[INFO] Get the asset names minted under the policy ID: {}'.format(policy_id))
+        #print('[INFO] Get the asset names minted under the policy ID: {}'.format(policy_id))
         asset_minted_names = self.assets_policy(policy_id, pandas=True, nb_of_results=nb_of_results)['asset'].tolist()
 
-        print('[INFO] Get the information about the assets.'.format(policy_id))
+        #print('[INFO] Get the information about the assets.'.format(policy_id))
         for asset in tqdm(asset_minted_names):
             try:
                 response = self.specific_asset(asset)
@@ -644,7 +644,7 @@ class Auth:
             # Add the asset data info to the list of assets
             assets_data.append(process_onchain_metadata(response))
 
-        print('[INFO] Function specific_asset, {} API calls.'.format(len(assets_data)))
+        #print('[INFO] Function specific_asset, {} API calls.'.format(len(assets_data)))
 
         return (pd.DataFrame.from_dict(assets_data), assets_not_found)  if pandas else (assets_data, assets_not_found)
 
@@ -759,7 +759,7 @@ def query_on_several_pages(network: str, api_key: str, data_order: str, nb_of_re
         if not data:
             # If no data have been found, return an empty dictionary
             if not dataframes:
-                print("[INFO] No data available." )
+                #print("[INFO] No data available." )
                 return {}, count_api_calls
             
             _dict = pd.concat(dataframes).reset_index(drop=True).to_dict()
