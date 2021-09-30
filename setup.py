@@ -11,7 +11,7 @@ setuptools.setup(
     download_url = 'https://github.com/djessy-atta/py-cardano-explorer/archive/refs/tags/v0.1-beta.6.tar.gz',
     keywords = ['CARDANO', 'API', 'WRAPPER', 'BLOCKCHAIN'],
     license='MIT',
-    install_requires=['pandas>=1.1.1', 'requests>=2.26.0', 'typing>=3.7.4.3', 'numpy==1.21.2', 'tqdm>=4.62.2'],
+    install_requires=['pandas>=1.3.2', 'requests>=2.26.0', 'typing>=3.7.4.3', 'numpy==1.21.2', 'tqdm>=4.62.2'],
     tests_require=['pytest>=6.2.5', 'pytest-runner>=5.3.1', 'tqdm>=4.62.2'],
     test_suite='test_cardano_explorer',
     classifiers=[
