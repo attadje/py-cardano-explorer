@@ -53,9 +53,8 @@ The library is not deployed yet, clone the project if you want testing the funct
 
 
 ```python
-pip3 install cardano_explorer
+pip install cardano_explorer
 ```
-
 
 ## Usage
 
@@ -113,15 +112,11 @@ cardano_mainnet.network_info()
 
     {'supply': {'max': '45000000000000000',
       'total': '33206309572085375',
-<<<<<<< HEAD
-      'circulating': '32854644466406483',
-      'locked': '10756061545447'},
-     'stake': {'live': '23378092915484642', 'active': '23395112387185878'}}
-=======
-      'circulating': '32854649043385098',
-      'locked': '10734513504016'},
-     'stake': {'live': '23379617482483942', 'active': '23395112387185878'}}
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
+      'circulating': '32854605043085013',
+      'locked': '11030148142156',
+      'treasury': '630037263793143',
+      'reserves': '11793690427914625'},
+     'stake': {'live': '23374530755001598', 'active': '23395112387185878'}}
 
 
 
@@ -151,24 +146,18 @@ cardano_mainnet.stake_informations(stake_address)
 
 
 
-### Stake Reward History
+### Stake Reward History 
 Obtain information about the reward history of a specific account.
 
 
 ```python
-cardano_mainnet.stake_reward_history(stake_address)
+cardano_mainnet.stake_reward_history(stake_address) 
 #or      
-cardano_mainnet.stake_reward_history(stake_address,
+cardano_mainnet.stake_reward_history(stake_address, 
                                      data_order='asc', # Optional: Data order (default: Ascending)
                                      nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                      pandas=True) # Optional: Return a pandas dataframe
 ```
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -216,24 +205,20 @@ cardano_mainnet.stake_reward_history(stake_address,
 
 
 
-### Stake Amount History
+### Stake Amount History 
 Obtain information about the history of a specific account.
 
 
 ```python
 cardano_mainnet.stake_amount_history(stake_address)
 #or                        
-cardano_mainnet.stake_amount_history(stake_address,
+cardano_mainnet.stake_amount_history(stake_address, 
                                      data_order='asc', # Optional: Data order (default: Ascending)
                                      nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                      pandas=True) # Optional: Return a pandas dataframe
 ```
-<<<<<<< HEAD
-
 
 <div>
-=======
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -287,17 +272,13 @@ Obtain information about the delegation of a specific account.
 ```python
 cardano_mainnet.stake_delegation(stake_address)
 #or
-cardano_mainnet.stake_delegation(stake_address,
+cardano_mainnet.stake_delegation(stake_address, 
                                  data_order='asc', # Optional: Data order (default: Ascending)
                                  nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                  pandas=True) # Optional: Return a pandas dataframe
 ```
 
-<<<<<<< HEAD
-
 <div>
-=======
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -343,17 +324,13 @@ Obtain information about the registrations and deregistrations of a specific acc
 ```python
 cardano_mainnet.stake_registration_deregistrations(stake_address)
 #or
-cardano_mainnet.stake_registration_deregistrations(stake_address,
+cardano_mainnet.stake_registration_deregistrations(stake_address, 
                                                    data_order='asc', # Optional: Data order (default: Ascending)
                                                    nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                                    pandas=True) # Optional: Return a pandas dataframe
 ```
 
-<<<<<<< HEAD
-
 <div>
-=======
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -381,18 +358,13 @@ Obtain information about the withdrawals of a specific account.
 ```python
 cardano_mainnet.stake_withdrawal_history(stake_adress)
 #or
-cardano_mainnet.stake_withdrawal_history(stake_address,
+cardano_mainnet.stake_withdrawal_history(stake_address, 
                                          data_order='asc', # Optional: Data order (default: Ascending)
                                          nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                          pandas=True) # Optional: Return a pandas dataframe
 ```
-<<<<<<< HEAD
-
-
 
 <div>
-=======
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -420,17 +392,12 @@ Obtain information about the MIRs of a specific account.
 ```python
 cardano_mainnet.stake_mir_history(stake_address)
 #or
-cardano_mainnet.stake_mir_history(stake_address,
+cardano_mainnet.stake_mir_history(stake_address, 
                                   data_order='asc', # Optional: Data order (default: Ascending)
                                   nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                   pandas=True) # Optional: Return a pandas dataframe
 ```
-
-<<<<<<< HEAD
-
 <div>
-=======
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -463,16 +430,12 @@ Obtain information about the MIRs of a specific account.
 ```python
 cardano_mainnet.stake_associated_addresses(stake_address)
 #or
-cardano_mainnet.stake_associated_addresses(stake_address,
+cardano_mainnet.stake_associated_addresses(stake_address, 
                                            data_order='asc', # Optional: Data order (default: Ascending)
                                            nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                           pandas=True) # Optional: Return a pandas dataframe
+                                           pandas=True) # Optional: Return a pandas dataframe 
 ```
-
-<<<<<<< HEAD
 <div>
-=======
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -514,16 +477,13 @@ Obtain information about assets associated with addresses of a specific account.
 ```python
 cardano_mainnet.stake_associated_addresses(stake_address)
 #or
-cardano_mainnet.stake_assets_associated_addresses(stake_address,
+cardano_mainnet.stake_assets_associated_addresses(stake_address, 
                                                   data_order='asc', # Optional: Data order (default: Ascending)
                                                   nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                                  pandas=True) # Optional: Return a pandas dataframe
+                                                  pandas=True) # Optional: Return a pandas dataframe 
 ```
-<<<<<<< HEAD
 
 <div>
-=======
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -583,8 +543,10 @@ UTXOs of the address.
 cardano_mainnet.address_utxo(address)
 #or
 cardano_mainnet.address_utxo(address,
-                             pandas=True) # Optional: Return a pandas dataframe
+                             pandas=True) # Optional: Return a pandas dataframe 
 ```
+
+
 
 
 <div>
@@ -621,9 +583,11 @@ Transactions on the address.
 
 
 ```python
-cardano_mainnet.address_transaction(address,
-                                   pandas=True) # Optional: Return a pandas dataframe
+cardano_mainnet.address_transaction(address, 
+                                   pandas=True) # Optional: Return a pandas dataframe 
 ```
+
+
 
 
 <div>
@@ -739,13 +703,10 @@ Obtain informations about sevrals epochs.
 
 ```python
 cardano_mainnet.epochs_history([270, 271, 272],
-                               pandas=True) # Optional: Return a pandas dataframe
+                               pandas=True) # Optional: Return a pandas dataframe 
 ```
-<<<<<<< HEAD
 
 <div>
-=======
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -818,14 +779,9 @@ List of registered stake pools.
 cardano_mainnet.registered_polls()
 #or
 cardano_mainnet.registered_polls(nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                 pandas=True) # Optional: Return a pandas dataframe
+                                 pandas=True) # Optional: Return a pandas dataframe 
 ```
-<<<<<<< HEAD
-
-
 <div>
-=======
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -908,14 +864,13 @@ History of stake pool over epochs.
 cardano_mainnet.stake_pool_history(pool_id)
 #or
 cardano_mainnet.stake_pool_history(pool_id,
-                                   pandas=True) # Optional: Return a pandas dataframe
+                                   pandas=True) # Optional: Return a pandas dataframe 
 ```
-<<<<<<< HEAD
+
+
 
 
 <div>
-=======
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -967,16 +922,13 @@ cardano_mainnet.stake_pool_history(pool_id,
       <td>57943587612745</td>
       <td>0.002484</td>
       <td>1451</td>
-<<<<<<< HEAD
-=======
       <td>0</td>
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
       <td>0</td>
     </tr>
     <tr>
       <th>83</th>
       <td>293</td>
-      <td>22</td>
+      <td>50</td>
       <td>63400551099817</td>
       <td>0.002710</td>
       <td>1440</td>
@@ -1000,58 +952,8 @@ cardano_mainnet.assets()
 #or
 cardano_mainnet.assets(data_order='asc', # Optional: Data order (default: Ascending)
                        nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                       pandas=True) # Optional: Return a pandas dataframe
+                       pandas=True) # Optional: Return a pandas dataframe 
 ```
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>asset</th>
-      <th>quantity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>00000002df633853f6a47465c9496721d2d5b1291b8398...</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>83</th>
-      <td>293</td>
-      <td>15</td>
-      <td>63400551099817</td>
-      <td>0.002710</td>
-      <td>1440</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-# Assets
-
-### Assets List
-List of assets.
-
-
-```python
-policy_id='40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728'
-asset_name='436c61794e6174696f6e33393836' # (ASCII: ClayNation3986)
-```
-
-
-```python
-cardano_mainnet.assets()
-#or
-cardano_mainnet.assets(data_order='asc', # Optional: Data order (default: Ascending)
-                       nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                       pandas=True) # Optional: Return a pandas dataframe
-```
-
 
 <div>
 <table border="1" class="dataframe">
@@ -1096,7 +998,6 @@ cardano_mainnet.assets(data_order='asc', # Optional: Data order (default: Ascend
 
 ### Specific Asset
 Information about a specific asset.
-<<<<<<< HEAD
 
 
 ```python
@@ -1106,17 +1007,6 @@ cardano_mainnet.specific_asset(policy_id+asset_name)
 
 
 
-=======
-
-
-```python
-cardano_mainnet.specific_asset(policy_id+asset_name)
-```
-
-
-
-
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
     {'asset': '40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728436c61794e6174696f6e33393836',
      'policy_id': '40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728',
      'asset_name': '436c61794e6174696f6e33393836',
@@ -1151,59 +1041,6 @@ cardano_mainnet.asset_history(policy_id+asset_name,
                               nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                               pandas=True) # Optional: Return a pandas dataframe
 ```
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>tx_hash</th>
-      <th>action</th>
-      <th>amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>117f97ccf6e98a16697e7cc205daf2d0bfe83d849a63df...</td>
-      <td>minted</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-### Asset Transactions
-List of a specific asset transactions.
-
-
-```python
-cardano_mainnet.asset_addresses(policy_id+asset_name)
-#or
-cardano_mainnet.asset_addresses(policy_id+asset_name,
-                                data_order='asc', # Optional: Data order (default: Ascending)
-                                nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                pandas=True) # Optional: Return a pandas dataframe
-```
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>address</th>
-      <th>quantity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>addr1qytstx6xt93ux775sg2k5f9l4xfpat8e06mpg8mm7...</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-<<<<<<< HEAD
 
 <div>
 <table border="1" class="dataframe">
@@ -1230,13 +1067,7 @@ cardano_mainnet.asset_addresses(policy_id+asset_name,
 
 ### Asset Transactions
 List of a specific asset transactions.
-=======
 
-
-### Assets Of A Specific Policy
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
-
-List of asset minted under a specific policy
 
 ```python
 cardano_mainnet.asset_addresses(policy_id+asset_name)
@@ -1244,10 +1075,8 @@ cardano_mainnet.asset_addresses(policy_id+asset_name)
 cardano_mainnet.asset_addresses(policy_id+asset_name,
                                 data_order='asc', # Optional: Data order (default: Ascending)
                                 nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                pandas=True) # Optional: Return a pandas dataframe
+                                pandas=True) # Optional: Return a pandas dataframe 
 ```
-
-
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -1280,10 +1109,8 @@ cardano_mainnet.assets_policy(policy_id)
 cardano_mainnet.assets_policy(policy_id,
                               data_order='asc', # Optional: Data order (default: Ascending)
                               nb_of_results=None, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                              pandas=True) # Optional: Return a pandas dataframe
+                              pandas=True) # Optional: Return a pandas dataframe 
 ```
-
-
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -1325,195 +1152,17 @@ cardano_mainnet.assets_policy(policy_id,
 
 
 
-### Get Assets Informations
-Get the information about the assests under a specific policy.
-
-
-```python
-assets_info, assets_not_found = cardano_mainnet.assets_policy_informations(policy_id, # Policy ID of the project
-                                                                           nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                                                           pandas=True) # Optional: Return a pandas dataframe
-```
-
-
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>asset</th>
-      <th>policy_id</th>
-      <th>asset_name</th>
-      <th>fingerprint</th>
-      <th>quantity</th>
-      <th>initial_mint_tx_hash</th>
-      <th>mint_or_burn_count</th>
-      <th>name</th>
-      <th>image</th>
-      <th>body</th>
-      <th>eyes</th>
-      <th>brows</th>
-      <th>mouth</th>
-      <th>Project</th>
-      <th>clothes</th>
-      <th>background</th>
-      <th>accessories</th>
-      <th>hats and hair</th>
-      <th>metadata</th>
-      <th>wings</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>436c61794e6174696f6e37383939</td>
-      <td>asset1xkngd3y2njd3dzhfg25rtfp66gyvke6skqftxc</td>
-      <td>1</td>
-      <td>d7e089dce7c170f1af519fab710f9ed5d4d8680978035d...</td>
-      <td>1</td>
-      <td>Clay Nation #7899</td>
-      <td>ipfs://QmdXSPVnjRMsT2LuUMW5MMAKunwjpL34WDWjSy3...</td>
-      <td>Tan Clay</td>
-      <td>Trippy Eyes</td>
-      <td>Blue Eyebrows</td>
-      <td>Grin</td>
-      <td>Clay Nation by Clay Mates</td>
-      <td>Tracksuit</td>
-      <td>Seafoam Green</td>
-      <td>Silver Chain</td>
-      <td>Clay Nation Hat &amp; Mullet</td>
-      <td>None</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>436c61794e6174696f6e38343838</td>
-      <td>asset14pm7d5k9xtgeu87g7skz8sqvxjkepwsysdmvcg</td>
-      <td>1</td>
-      <td>a5e9fb001c2a0838d380acccc90eb06f9c06c74ce94eee...</td>
-      <td>1</td>
-      <td>Clay Nation #8488</td>
-      <td>ipfs://QmZfeNhctaLzmpNYAvkaoLcHR3yCvtBn44TNuUL...</td>
-      <td>Tan Clay</td>
-      <td>Big Eyes</td>
-      <td>Normal Eyebrows</td>
-      <td>Joint in Mouth</td>
-      <td>Clay Nation by Clay Mates</td>
-      <td>Tshirt Green</td>
-      <td>Cyan</td>
-      <td>No Accessories</td>
-      <td>Top Hat</td>
-      <td>None</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>436c61794e6174696f6e33323332</td>
-      <td>asset1lge5ddeauys6emy6mzyduumsrlslm0t6kdm4fj</td>
-      <td>1</td>
-      <td>befa4ce55af8c4c7691262bb3ffd07eba5c3bdfe9165f2...</td>
-      <td>1</td>
-      <td>Clay Nation #3232</td>
-      <td>ipfs://QmPG4UcamUUfjD5E92B3RMWp5gVe7hUN9ixmamc...</td>
-      <td>White Clay</td>
-      <td>Normal Eyes</td>
-      <td>Pierced Eyebrows</td>
-      <td>Pipe</td>
-      <td>Clay Nation by Clay Mates</td>
-      <td>Tshirt Green</td>
-      <td>Salmon</td>
-      <td>Silver Chain</td>
-      <td>Pigtails</td>
-      <td>None</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-## Data Analysis
-___
-
-### Rewards History Analysis
-Stake rewards analysis.
-
-
-```python
-cardano_mainnet.rewards_history_analysis(stake_address)
-#or
-cardano_mainnet.rewards_history_analysis(stake_address,
-                                         pandas=True) # Optional: Return a pandas dataframe
-```
-
-
-<<<<<<< HEAD
-<div>
-=======
-```python
-cardano_mainnet.assets_policy(policy_id)
-#or
-cardano_mainnet.assets_policy(policy_id,
-                              data_order='asc', # Optional: Data order (default: Ascending)
-                              nb_of_results=None, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                              pandas=True) # Optional: Return a pandas dataframe
-```
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>asset</th>
-      <th>quantity</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-### Get Assets Informations
+### Get Assets Informations 
 Get informations about the assests under a specific policy.
 
 
 ```python
 assets_info, assets_not_found = cardano_mainnet.assets_policy_informations(policy_id, # Policy ID of the project
                                                                            nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                                                           pandas=True) # Optional: Return a pandas dataframe
+                                                                           pandas=True) # Optional: Return a pandas dataframe 
 ```
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1587,29 +1236,6 @@ assets_info, assets_not_found = cardano_mainnet.assets_policy_informations(polic
       <td>None</td>
       <td>NaN</td>
     </tr>
-    <tr>
-      <th>2</th>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>436c61794e6174696f6e33323332</td>
-      <td>asset1lge5ddeauys6emy6mzyduumsrlslm0t6kdm4fj</td>
-      <td>1</td>
-      <td>befa4ce55af8c4c7691262bb3ffd07eba5c3bdfe9165f2...</td>
-      <td>1</td>
-      <td>Clay Nation #3232</td>
-      <td>ipfs://QmPG4UcamUUfjD5E92B3RMWp5gVe7hUN9ixmamc...</td>
-      <td>White Clay</td>
-      <td>Normal Eyes</td>
-      <td>Pierced Eyebrows</td>
-      <td>Pipe</td>
-      <td>Clay Nation by Clay Mates</td>
-      <td>Tshirt Green</td>
-      <td>Salmon</td>
-      <td>Silver Chain</td>
-      <td>Pigtails</td>
-      <td>None</td>
-      <td>NaN</td>
-    </tr>
   </tbody>
 </table>
 </div>
@@ -1627,9 +1253,13 @@ Stake rewards analysis.
 cardano_mainnet.rewards_history_analysis(stake_address)
 #or
 cardano_mainnet.rewards_history_analysis(stake_address,
-                                         pandas=True) # Optional: Return a pandas dataframe
+                                         pandas=True) # Optional: Return a pandas dataframe 
 ```
->>>>>>> f37f8d72c067194f71b7d7335f0d0f332a4f84dd
+
+
+
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1657,114 +1287,114 @@ cardano_mainnet.rewards_history_analysis(stake_address,
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>242</td>
-      <td>879367</td>
-      <td>1424619058</td>
-      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
-      <td>1610747091</td>
-      <td>1611179091</td>
-      <td>1610747091</td>
-      <td>1611179076</td>
-      <td>21418</td>
-      <td>74057</td>
-      <td>63148817438049616</td>
-      <td>16905060417</td>
-      <td>21755094259019945</td>
-      <td>35</td>
-      <td>60557688009496</td>
-      <td>0.002784</td>
-      <td>720</td>
-      <td>37719841941</td>
-      <td>340000000</td>
+      <th>14</th>
+      <td>287</td>
+      <td>2270290</td>
+      <td>2843385384</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>1630187091</td>
+      <td>1630619091</td>
+      <td>1630187230</td>
+      <td>1630619085</td>
+      <td>21065</td>
+      <td>401343</td>
+      <td>74754307451589173</td>
+      <td>86536781869</td>
+      <td>23041097075076811</td>
+      <td>47</td>
+      <td>40998606047892</td>
+      <td>0.001779</td>
+      <td>1413</td>
+      <td>33319647907</td>
+      <td>669796479</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>243</td>
-      <td>970119</td>
-      <td>1424619058</td>
-      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
-      <td>1611179091</td>
-      <td>1611611091</td>
-      <td>1611179091</td>
-      <td>1611611090</td>
-      <td>21586</td>
-      <td>58682</td>
-      <td>44531349200446205</td>
-      <td>13368193376</td>
-      <td>21849089085260375</td>
-      <td>40</td>
-      <td>60943951290359</td>
-      <td>0.002789</td>
-      <td>757</td>
-      <td>41840863127</td>
-      <td>340000000</td>
+      <th>15</th>
+      <td>288</td>
+      <td>1768631</td>
+      <td>2866605326</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>1630619091</td>
+      <td>1631051091</td>
+      <td>1630619101</td>
+      <td>1631051088</td>
+      <td>21136</td>
+      <td>475383</td>
+      <td>120564869080762073</td>
+      <td>99992854778</td>
+      <td>23136223153988390</td>
+      <td>49</td>
+      <td>55449417952886</td>
+      <td>0.002397</td>
+      <td>1439</td>
+      <td>34863643156</td>
+      <td>685236431</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>244</td>
-      <td>1164610</td>
-      <td>1424619058</td>
-      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
-      <td>1611611091</td>
-      <td>1612043091</td>
-      <td>1611611091</td>
-      <td>1612043078</td>
-      <td>21491</td>
-      <td>59591</td>
-      <td>29427703690683743</td>
-      <td>13516792921</td>
-      <td>21956206748623667</td>
-      <td>50</td>
-      <td>62177721021153</td>
-      <td>0.002832</td>
-      <td>767</td>
-      <td>51169599395</td>
-      <td>340000000</td>
+      <th>16</th>
+      <td>289</td>
+      <td>2390373</td>
+      <td>2868437494</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>1631051091</td>
+      <td>1631483091</td>
+      <td>1631051131</td>
+      <td>1631483087</td>
+      <td>21195</td>
+      <td>501443</td>
+      <td>30450853050129419</td>
+      <td>105082493097</td>
+      <td>23311196777534712</td>
+      <td>66</td>
+      <td>55724573270655</td>
+      <td>0.002390</td>
+      <td>1443</td>
+      <td>47200199605</td>
+      <td>808601996</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>245</td>
-      <td>1228869</td>
-      <td>1425498425</td>
-      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
-      <td>1612043091</td>
-      <td>1612475091</td>
-      <td>1612043091</td>
-      <td>1612475007</td>
-      <td>21485</td>
-      <td>88703</td>
-      <td>52975770722098664</td>
-      <td>20044918510</td>
-      <td>22086904770458818</td>
-      <td>55</td>
-      <td>63400598572150</td>
-      <td>0.002871</td>
-      <td>784</td>
-      <td>54946961660</td>
-      <td>340000000</td>
+      <th>17</th>
+      <td>290</td>
+      <td>1878132</td>
+      <td>3002707784</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>1631483091</td>
+      <td>1631915091</td>
+      <td>1631483266</td>
+      <td>1631915089</td>
+      <td>21320</td>
+      <td>423156</td>
+      <td>28653067841498377</td>
+      <td>88193252097</td>
+      <td>23253494675755279</td>
+      <td>49</td>
+      <td>54675837934319</td>
+      <td>0.002351</td>
+      <td>1440</td>
+      <td>34877628423</td>
+      <td>685376284</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>246</td>
-      <td>857871</td>
-      <td>1426468544</td>
-      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
-      <td>1612475091</td>
-      <td>1612907091</td>
-      <td>1612475091</td>
-      <td>1612907067</td>
-      <td>21327</td>
-      <td>142367</td>
-      <td>143252676044465523</td>
-      <td>31528825577</td>
-      <td>22190441040634090</td>
-      <td>39</td>
-      <td>62762389516418</td>
-      <td>0.002828</td>
-      <td>790</td>
-      <td>38037964874</td>
-      <td>340000000</td>
+      <th>18</th>
+      <td>291</td>
+      <td>2059700</td>
+      <td>3004575519</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>1631915091</td>
+      <td>1632347091</td>
+      <td>1631915193</td>
+      <td>1632347076</td>
+      <td>21261</td>
+      <td>415399</td>
+      <td>27614827533993432</td>
+      <td>88508486990</td>
+      <td>23219858534473043</td>
+      <td>54</td>
+      <td>54806809508971</td>
+      <td>0.002360</td>
+      <td>1451</td>
+      <td>38286415852</td>
+      <td>719464158</td>
     </tr>
   </tbody>
 </table>
@@ -1785,9 +1415,9 @@ python3 setup.py pytest
 
 # Donate
 
-If the project has been useful to you, feel free to put a star or donate (ADA) at this address :blush:.
+If this wrapper has been useful to you, feel free to put a star or donate (ADA) at this address :blush:.
 
-![Drag Racing](src/qr_donation_50x50.jpg)
+![wallet address](../img/qr_donation_50x50.jpg)
 
 Thank you.
 
