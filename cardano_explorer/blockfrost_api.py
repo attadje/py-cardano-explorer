@@ -241,7 +241,7 @@ class Auth:
         
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, stake_associated_addresses_url, self.proxies)
         
-        print('[INFO] Function stake_associated_addresses, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function stake_associated_addresses, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
     
@@ -426,7 +426,7 @@ class Auth:
         # Rename the column of the pool ID
         response['registered_polls_id'] = response.pop(0)
                   
-        print('[INFO] Function registered_polls, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function registered_polls, {} API calls.'.format(count_api_calls))
                         
         return pd.DataFrame.from_dict(response) if pandas else response
     
