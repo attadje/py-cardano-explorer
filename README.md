@@ -1,4 +1,4 @@
-# Python Cardano Explorer [![PyPI version](https://badge.fury.io/py/cryptocompare.svg)]
+# Python Cardano Explorer ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/cryptocompare)
 
 Python wrapper for accessing and processing information stored on the Cardano blockchain using [Blockfrost API](https://blockfrost.io/).
 
