@@ -194,7 +194,7 @@ class Auth:
         
         response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, stake_withdrawal_history_url, self.proxies)
         
-        print('[INFO] Function stake_withdrawal_history, {} API calls.'.format(count_api_calls))
+        #print('[INFO] Function stake_withdrawal_history, {} API calls.'.format(count_api_calls))
         
         if pandas:
             return pd.DataFrame.from_dict(response)
