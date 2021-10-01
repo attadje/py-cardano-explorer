@@ -50,7 +50,7 @@ cardano_mainnet = blockfrost_api.Auth(network='mainnet')
 cardano_mainnet = blockfrost_api.Auth(network='testnet')
 ```
 
-## Network Informations
+## Quickstart
 
 ### Network Info
 Return detailed about the network.
@@ -71,17 +71,11 @@ cardano_mainnet.network_info()
       'reserves': '11793690427914625'},
      'stake': {'live': '23374530755001598', 'active': '23395112387185878'}}
 
+# Documentation
+The official documentation is hosted on GitHub: [https://github.com/djessy-atta/py-cardano-explorer](https://github.com/djessy-atta/py-cardano-explorer).
 
 # Credit
 - [Blockfrost API](https://blockfrost.io/).
-
-# Donate
-
-If this wrapper has been useful to you, feel free to put a star or donate (ADA) at this address.
-
-![wallet address](https://github.com/djessy-atta/py-cardano-explorer/raw/main/src/img/qr_donation_50x50.jpg)
-
-Thank you.
 
 # Disclaimer
 The project is still under development, If you find bugs or want additional features, open an issue and/or create a pull request.
