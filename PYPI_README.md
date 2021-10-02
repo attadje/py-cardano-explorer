@@ -52,9 +52,7 @@ cardano_mainnet = blockfrost_api.Auth(network='testnet')
 
 ## Quickstart
 
-### Network Info
 Return detailed about the network.
-
 
 ```python
 cardano_mainnet.network_info()
@@ -72,7 +70,7 @@ cardano_mainnet.network_info()
      'stake': {'live': '23374530755001598', 'active': '23395112387185878'}}
 
 # Documentation
-The official documentation is hosted on GitHub: [https://github.com/djessy-atta/py-cardano-explorer](https://github.com/djessy-atta/py-cardano-explorer).
+The official documentation is hosted on [GitHub](https://github.com/djessy-atta/py-cardano-explorer).
 
 # Credit
 - [Blockfrost API](https://blockfrost.io/).
