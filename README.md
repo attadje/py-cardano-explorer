@@ -14,6 +14,7 @@ Python wrapper for accessing and processing information stored on the Cardano bl
 - [Stake](#Stake)
   * [Stake Informations](#Stake-Informations)
   * [Stake Reward History](#Stake-Reward-History)
+  * [Stake Rewards History Analysis](#Stake-Rewards-History-Analysis)
   * [Stake Amount History](#Stake-Amount-History)
   * [Stake Delegation History](#Stake-Delegation-History)
   * [Stake Registrations And Deregistrations History](#Stake-Registrations-And-Deregistrations-History)
@@ -42,8 +43,6 @@ Python wrapper for accessing and processing information stored on the Cardano bl
   * [Asset History](#Asset-History)
   * [Assets Of A Apecific Policy](#Assets-Of-A-Apecific-Policy)
   * [Get Assets Informations](#Get-Assets-Informations)
-- [Data Analysis](#Data-Analysis)
-  * [Rewards History Analysis](#Rewards-History-Analysis)
 - [Donation](#Donate)
 
 <br />
@@ -201,6 +200,163 @@ cardano_mainnet.stake_reward_history(stake_address,
       <td>291</td>
       <td>2059700</td>
       <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+### Stake Rewards History Analysis
+Stake rewards analysis.
+
+
+```python
+#cardano_mainnet.rewards_history_analysis(stake_address)
+#or
+cardano_mainnet.rewards_history_analysis(stake_address,
+                                         pandas=True) # Optional: Return a pandas dataframe 
+```
+
+
+
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>epoch</th>
+      <th>rewards_amount</th>
+      <th>stake_amount</th>
+      <th>pool_id</th>
+      <th>epoch_start_time</th>
+      <th>epoch_end_time</th>
+      <th>epoch_first_block_time</th>
+      <th>epoch_last_block_time</th>
+      <th>epoch_block_count</th>
+      <th>epoch_tx_count</th>
+      <th>epoch_output</th>
+      <th>epoch_fees</th>
+      <th>epoch_active_stake</th>
+      <th>stake_pool_blocks</th>
+      <th>stake_pool_active_stake</th>
+      <th>stake_pool_active_size</th>
+      <th>stake_pool_delegators_count</th>
+      <th>stake_pool_rewards</th>
+      <th>stake_pool_fees</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>15</th>
+      <td>288</td>
+      <td>1768631</td>
+      <td>2866605326</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>1630619091</td>
+      <td>1631051091</td>
+      <td>1630619101</td>
+      <td>1631051088</td>
+      <td>21136</td>
+      <td>475383</td>
+      <td>120564869080762073</td>
+      <td>99992854778</td>
+      <td>23136223153988390</td>
+      <td>49</td>
+      <td>55449417952886</td>
+      <td>0.002397</td>
+      <td>1439</td>
+      <td>34863643156</td>
+      <td>685236431</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>289</td>
+      <td>2390373</td>
+      <td>2868437494</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>1631051091</td>
+      <td>1631483091</td>
+      <td>1631051131</td>
+      <td>1631483087</td>
+      <td>21195</td>
+      <td>501443</td>
+      <td>30450853050129419</td>
+      <td>105082493097</td>
+      <td>23311196777534712</td>
+      <td>66</td>
+      <td>55724573270655</td>
+      <td>0.002390</td>
+      <td>1443</td>
+      <td>47200199605</td>
+      <td>808601996</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>290</td>
+      <td>1878132</td>
+      <td>3002707784</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>1631483091</td>
+      <td>1631915091</td>
+      <td>1631483266</td>
+      <td>1631915089</td>
+      <td>21320</td>
+      <td>423156</td>
+      <td>28653067841498377</td>
+      <td>88193252097</td>
+      <td>23253494675755279</td>
+      <td>49</td>
+      <td>54675837934319</td>
+      <td>0.002351</td>
+      <td>1440</td>
+      <td>34877628423</td>
+      <td>685376284</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>291</td>
+      <td>2059700</td>
+      <td>3004575519</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>1631915091</td>
+      <td>1632347091</td>
+      <td>1631915193</td>
+      <td>1632347076</td>
+      <td>21261</td>
+      <td>415399</td>
+      <td>27614827533993432</td>
+      <td>88508486990</td>
+      <td>23219858534473043</td>
+      <td>54</td>
+      <td>54806809508971</td>
+      <td>0.002360</td>
+      <td>1451</td>
+      <td>38286415852</td>
+      <td>719464158</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>292</td>
+      <td>2173115</td>
+      <td>3006965892</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>1632347091</td>
+      <td>1632779091</td>
+      <td>1632347163</td>
+      <td>1632779076</td>
+      <td>21264</td>
+      <td>448774</td>
+      <td>19991338650818976</td>
+      <td>94575307119</td>
+      <td>23325839206372436</td>
+      <td>60</td>
+      <td>57943587612745</td>
+      <td>0.002484</td>
+      <td>1451</td>
+      <td>42628197872</td>
+      <td>762881978</td>
     </tr>
   </tbody>
 </table>
@@ -801,8 +957,11 @@ List of registered stake pools.
 cardano_mainnet.registered_polls()
 #or
 cardano_mainnet.registered_polls(nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                 pandas=True).head() # Optional: Return a pandas dataframe 
+                                 pandas=True) # Optional: Return a pandas dataframe 
 ```
+
+
+
 
 <div>
 <table border="1" class="dataframe">
@@ -1276,165 +1435,6 @@ assets_info, assets_not_found = cardano_mainnet.assets_policy_informations(polic
       <td>Top Hat</td>
       <td>None</td>
       <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-## Data Analysis
-
-### Rewards History Analysis
-Stake rewards analysis.
-
-
-```python
-cardano_mainnet.rewards_history_analysis(stake_address)
-#or
-cardano_mainnet.rewards_history_analysis(stake_address,
-                                         pandas=True) # Optional: Return a pandas dataframe 
-```
-
-
-
-
-<div>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>epoch</th>
-      <th>rewards_amount</th>
-      <th>stake_amount</th>
-      <th>pool_id</th>
-      <th>epoch_start_time</th>
-      <th>epoch_end_time</th>
-      <th>epoch_first_block_time</th>
-      <th>epoch_last_block_time</th>
-      <th>epoch_block_count</th>
-      <th>epoch_tx_count</th>
-      <th>epoch_output</th>
-      <th>epoch_fees</th>
-      <th>epoch_active_stake</th>
-      <th>stake_pool_blocks</th>
-      <th>stake_pool_active_stake</th>
-      <th>stake_pool_active_size</th>
-      <th>stake_pool_delegators_count</th>
-      <th>stake_pool_rewards</th>
-      <th>stake_pool_fees</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>14</th>
-      <td>287</td>
-      <td>2270290</td>
-      <td>2843385384</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
-      <td>1630187091</td>
-      <td>1630619091</td>
-      <td>1630187230</td>
-      <td>1630619085</td>
-      <td>21065</td>
-      <td>401343</td>
-      <td>74754307451589173</td>
-      <td>86536781869</td>
-      <td>23041097075076811</td>
-      <td>47</td>
-      <td>40998606047892</td>
-      <td>0.001779</td>
-      <td>1413</td>
-      <td>33319647907</td>
-      <td>669796479</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>288</td>
-      <td>1768631</td>
-      <td>2866605326</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
-      <td>1630619091</td>
-      <td>1631051091</td>
-      <td>1630619101</td>
-      <td>1631051088</td>
-      <td>21136</td>
-      <td>475383</td>
-      <td>120564869080762073</td>
-      <td>99992854778</td>
-      <td>23136223153988390</td>
-      <td>49</td>
-      <td>55449417952886</td>
-      <td>0.002397</td>
-      <td>1439</td>
-      <td>34863643156</td>
-      <td>685236431</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>289</td>
-      <td>2390373</td>
-      <td>2868437494</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
-      <td>1631051091</td>
-      <td>1631483091</td>
-      <td>1631051131</td>
-      <td>1631483087</td>
-      <td>21195</td>
-      <td>501443</td>
-      <td>30450853050129419</td>
-      <td>105082493097</td>
-      <td>23311196777534712</td>
-      <td>66</td>
-      <td>55724573270655</td>
-      <td>0.002390</td>
-      <td>1443</td>
-      <td>47200199605</td>
-      <td>808601996</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>290</td>
-      <td>1878132</td>
-      <td>3002707784</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
-      <td>1631483091</td>
-      <td>1631915091</td>
-      <td>1631483266</td>
-      <td>1631915089</td>
-      <td>21320</td>
-      <td>423156</td>
-      <td>28653067841498377</td>
-      <td>88193252097</td>
-      <td>23253494675755279</td>
-      <td>49</td>
-      <td>54675837934319</td>
-      <td>0.002351</td>
-      <td>1440</td>
-      <td>34877628423</td>
-      <td>685376284</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>291</td>
-      <td>2059700</td>
-      <td>3004575519</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
-      <td>1631915091</td>
-      <td>1632347091</td>
-      <td>1631915193</td>
-      <td>1632347076</td>
-      <td>21261</td>
-      <td>415399</td>
-      <td>27614827533993432</td>
-      <td>88508486990</td>
-      <td>23219858534473043</td>
-      <td>54</td>
-      <td>54806809508971</td>
-      <td>0.002360</td>
-      <td>1451</td>
-      <td>38286415852</td>
-      <td>719464158</td>
     </tr>
   </tbody>
 </table>
