@@ -1,4 +1,5 @@
-# Python Cardano Explorer
+# Python Cardano Explorer ![PyPI - Python Version](https://img.shields.io/badge/python-%3E%3D3.8-blue) ![PyPI - Python Version](https://img.shields.io/badge/pypi%20package-v0.1--beta.6-green) 
+
 Python wrapper for accessing and processing information stored on the Cardano blockchain using [Blockfrost API](https://blockfrost.io/).
 
 <br />
@@ -47,7 +48,9 @@ Python wrapper for accessing and processing information stored on the Cardano bl
 
 <br />
 
-## Install
+## Install (Not available yet)
+The library is not deployed yet, clone the project if you want testing the functions
+
 
 ```python
 pip install cardano_explorer
@@ -1463,7 +1466,7 @@ python3 setup.py pytest
 
 If this wrapper has been useful to you, feel free to put a star or donate (ADA) at this address :blush:.
 
-![wallet address](../src/img/wallet_address_50x50.jpg)
+![wallet address](src/img/wallet_address_50x50.jpg)
 
 Thank you.
 
