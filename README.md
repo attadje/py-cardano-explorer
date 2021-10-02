@@ -1,4 +1,4 @@
-# Python Cardano Explorer ![PyPI - Python Version](https://img.shields.io/badge/python-%3E%3D3.8-blue) ![PyPI - Python Version](https://img.shields.io/badge/pypi%20package-v0.1--beta.6-green) 
+# Python Cardano Explorer ![PyPI - Python Version](https://img.shields.io/badge/python-%3E%3D3.8-blue) ![PyPI - Python Version](https://img.shields.io/badge/pypi%20package-v0.1--beta.13-green) 
 
 Python wrapper for accessing and processing information stored on the Cardano blockchain using [Blockfrost API](https://blockfrost.io/).
 
@@ -804,13 +804,6 @@ cardano_mainnet.registered_polls()
 cardano_mainnet.registered_polls(nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                  pandas=True).head() # Optional: Return a pandas dataframe 
 ```
-
-    [INFO] Function registered_polls, 1 API calls.
-    [INFO] Function registered_polls, 1 API calls.
-
-
-
-
 
 <div>
 <table border="1" class="dataframe">
