@@ -48,9 +48,7 @@ Python wrapper for accessing and processing information stored on the Cardano bl
 
 <br />
 
-## Install (Not available yet)
-The library is not deployed yet, clone the project if you want testing the functions
-
+## Install 
 
 ```python
 pip install cardano_explorer
