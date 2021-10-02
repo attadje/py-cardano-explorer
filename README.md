@@ -1,5 +1,4 @@
-# Python Cardano Explorer ![PyPI - Python Version](https://img.shields.io/badge/python-%3E%3D3.8-blue) ![PyPI - Python Version](https://img.shields.io/badge/pypi%20package-v0.1--beta.6-green) 
-
+# Python Cardano Explorer
 Python wrapper for accessing and processing information stored on the Cardano blockchain using [Blockfrost API](https://blockfrost.io/).
 
 <br />
@@ -48,7 +47,7 @@ Python wrapper for accessing and processing information stored on the Cardano bl
 
 <br />
 
-## Install 
+## Install
 
 ```python
 pip install cardano_explorer
@@ -156,6 +155,10 @@ cardano_mainnet.stake_reward_history(stake_address,
                                      nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                      pandas=True) # Optional: Return a pandas dataframe
 ```
+
+
+
+
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -216,6 +219,9 @@ cardano_mainnet.stake_amount_history(stake_address,
                                      pandas=True) # Optional: Return a pandas dataframe
 ```
 
+
+
+
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -229,33 +235,33 @@ cardano_mainnet.stake_amount_history(stake_address,
   <tbody>
     <tr>
       <th>0</th>
-      <td>242</td>
-      <td>1424619058</td>
-      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
+      <td>273</td>
+      <td>998824863</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>243</td>
-      <td>1424619058</td>
-      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
+      <td>274</td>
+      <td>998824863</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>244</td>
-      <td>1424619058</td>
-      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
+      <td>275</td>
+      <td>1618824863</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>245</td>
-      <td>1425498425</td>
-      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
+      <td>276</td>
+      <td>1619412022</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>246</td>
-      <td>1426468544</td>
-      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
+      <td>277</td>
+      <td>1620127875</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
     </tr>
   </tbody>
 </table>
@@ -276,6 +282,9 @@ cardano_mainnet.stake_delegation(stake_address,
                                  pandas=True) # Optional: Return a pandas dataframe
 ```
 
+
+
+
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -290,24 +299,10 @@ cardano_mainnet.stake_delegation(stake_address,
   <tbody>
     <tr>
       <th>0</th>
-      <td>242</td>
-      <td>b602262e1264dabd6c10747415558934d196834d7c7dea...</td>
-      <td>747625479</td>
-      <td>pool1u7mqtde27swkarngjsn5mmw3sy20zavlafgqkmg8q...</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>248</td>
-      <td>5822a3b2ebc0a45426aff524e5a0fd2bf7906f671e875a...</td>
-      <td>747452454</td>
-      <td>pool1m62sl6rauje9cknrkhwl39tc4hujudkd7gp478dpz...</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>259</td>
-      <td>2c0c3c2123b74b926d2b6969ea21f49ae92861acecf2b8...</td>
-      <td>21263559</td>
-      <td>pool1lurfk0k0wwx54hlg8a7zp3jtstu57u59aeq7aketl...</td>
+      <td>273</td>
+      <td>97a774aa60a2926c9949bfe1edf1dcc2f2297d36633e14...</td>
+      <td>497824863</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
     </tr>
   </tbody>
 </table>
@@ -325,8 +320,11 @@ cardano_mainnet.stake_registration_deregistrations(stake_address)
 cardano_mainnet.stake_registration_deregistrations(stake_address, 
                                                    data_order='asc', # Optional: Data order (default: Ascending)
                                                    nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                                   pandas=True) # Optional: Return a pandas dataframe
+                                                   pandas=True). # Optional: Return a pandas dataframe
 ```
+
+
+
 
 <div>
 <table border="1" class="dataframe">
@@ -340,7 +338,7 @@ cardano_mainnet.stake_registration_deregistrations(stake_address,
   <tbody>
     <tr>
       <th>0</th>
-      <td>b602262e1264dabd6c10747415558934d196834d7c7dea...</td>
+      <td>97a774aa60a2926c9949bfe1edf1dcc2f2297d36633e14...</td>
       <td>registered</td>
     </tr>
   </tbody>
@@ -354,13 +352,16 @@ Obtain information about the withdrawals of a specific account.
 
 
 ```python
-cardano_mainnet.stake_withdrawal_history(stake_adress)
+cardano_mainnet.stake_withdrawal_history(stake_address)
 #or
 cardano_mainnet.stake_withdrawal_history(stake_address, 
                                          data_order='asc', # Optional: Data order (default: Ascending)
                                          nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                          pandas=True) # Optional: Return a pandas dataframe
 ```
+
+
+
 
 <div>
 <table border="1" class="dataframe">
@@ -395,6 +396,10 @@ cardano_mainnet.stake_mir_history(stake_address,
                                   nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                   pandas=True) # Optional: Return a pandas dataframe
 ```
+
+
+
+
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -407,13 +412,13 @@ cardano_mainnet.stake_mir_history(stake_address,
   <tbody>
     <tr>
       <th>0</th>
-      <td>443b98009b9a705c7112b031d223f26a3399f8cf1e7f12...</td>
-      <td>16922</td>
+      <td>c041e475d161444a6a8ca9005ef3deb36ebd579c347d90...</td>
+      <td>74456</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>f707cb4decf7f21991f506bba051a0184ca8ecbd402f79...</td>
-      <td>5196</td>
+      <td>9ede69b0ebd0903b1cc6a914a79fabd9a5d6dd94e8c110...</td>
+      <td>22861</td>
     </tr>
   </tbody>
 </table>
@@ -433,6 +438,10 @@ cardano_mainnet.stake_associated_addresses(stake_address,
                                            nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                            pandas=True) # Optional: Return a pandas dataframe 
 ```
+
+
+
+
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -444,23 +453,23 @@ cardano_mainnet.stake_associated_addresses(stake_address,
   <tbody>
     <tr>
       <th>0</th>
-      <td>addr1q9asyce9kg8x8srwjuehtj0sxzc206rn5nv8tzc66...</td>
+      <td>addr1qx96yn08e5u7hthawh63ss6269dkzxekq85elrthw...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>addr1qyyzytknnnr3yy3hrxt7puzxy2zle6cfs3c839rdw...</td>
+      <td>addr1q9u0kfvd57parl03j8v9fz52xqz8yjkcu47lcy8hw...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>addr1q8qe2873c334m7s3j2g27fq4sjqkh03mr28z3nd3l...</td>
+      <td>addr1q8m6tn3edl333c8yzms8dzrkkckm0vn0dkvq436au...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>addr1q9226w0sg40mjhnzdt3myvnucrljqg7pyxgn9vypc...</td>
+      <td>addr1q9py3k58fmyu896charn6mey8c5f22uq830m4udsy...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>addr1q8amjln6cua3scnthlm8jd7vnz4w4j7hmpkj7l8vt...</td>
+      <td>addr1q8mk7kft30hwmj2yttltm8j5f4ccuguxr9z3werwm...</td>
     </tr>
   </tbody>
 </table>
@@ -481,14 +490,24 @@ cardano_mainnet.stake_assets_associated_addresses(stake_address,
                                                   pandas=True) # Optional: Return a pandas dataframe 
 ```
 
+
+
+
 <div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>unit</th>
+      <th>quantity</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>0</th>
+      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
+      <td>1</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -704,6 +723,9 @@ cardano_mainnet.epochs_history([270, 271, 272],
                                pandas=True) # Optional: Return a pandas dataframe 
 ```
 
+
+
+
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -777,8 +799,16 @@ List of registered stake pools.
 cardano_mainnet.registered_polls()
 #or
 cardano_mainnet.registered_polls(nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                 pandas=True) # Optional: Return a pandas dataframe 
+                                 pandas=True).head() # Optional: Return a pandas dataframe 
 ```
+
+    [INFO] Function registered_polls, 1 API calls.
+    [INFO] Function registered_polls, 1 API calls.
+
+
+
+
+
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -920,13 +950,13 @@ cardano_mainnet.stake_pool_history(pool_id,
       <td>57943587612745</td>
       <td>0.002484</td>
       <td>1451</td>
-      <td>0</td>
-      <td>0</td>
+      <td>42628197872</td>
+      <td>762881978</td>
     </tr>
     <tr>
       <th>83</th>
       <td>293</td>
-      <td>50</td>
+      <td>67</td>
       <td>63400551099817</td>
       <td>0.002710</td>
       <td>1440</td>
@@ -952,6 +982,9 @@ cardano_mainnet.assets(data_order='asc', # Optional: Data order (default: Ascend
                        nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                        pandas=True) # Optional: Return a pandas dataframe 
 ```
+
+
+
 
 <div>
 <table border="1" class="dataframe">
@@ -1040,6 +1073,9 @@ cardano_mainnet.asset_history(policy_id+asset_name,
                               pandas=True) # Optional: Return a pandas dataframe
 ```
 
+
+
+
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -1075,6 +1111,10 @@ cardano_mainnet.asset_addresses(policy_id+asset_name,
                                 nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                 pandas=True) # Optional: Return a pandas dataframe 
 ```
+
+
+
+
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -1087,7 +1127,7 @@ cardano_mainnet.asset_addresses(policy_id+asset_name,
   <tbody>
     <tr>
       <th>0</th>
-      <td>addr1qytstx6xt93ux775sg2k5f9l4xfpat8e06mpg8mm7...</td>
+      <td>addr1q9vzk47zqxj54kew38j735n92mncnyhq57uekgn4w...</td>
       <td>1</td>
     </tr>
   </tbody>
@@ -1106,9 +1146,13 @@ cardano_mainnet.assets_policy(policy_id)
 #or
 cardano_mainnet.assets_policy(policy_id,
                               data_order='asc', # Optional: Data order (default: Ascending)
-                              nb_of_results=None, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
+                              nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                               pandas=True) # Optional: Return a pandas dataframe 
 ```
+
+
+
+
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -1159,6 +1203,10 @@ assets_info, assets_not_found = cardano_mainnet.assets_policy_informations(polic
                                                                            nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
                                                                            pandas=True) # Optional: Return a pandas dataframe 
 ```
+
+
+
+
 
 <div>
 <table border="1" class="dataframe">
@@ -1415,7 +1463,7 @@ python3 setup.py pytest
 
 If this wrapper has been useful to you, feel free to put a star or donate (ADA) at this address :blush:.
 
-![wallet address](src/img/qr_donation_50x50.jpg)
+![wallet address](../src/img/wallet_address_50x50.jpg)
 
 Thank you.
 
