@@ -48,6 +48,19 @@ bf_asset_transactions_url = '/transactions'
 bf_asset_addresses_url = '/addresses'
 bf_assets_policy_url = 'policy/'
 
+# Blockfrost Transaction URL
+bf_tx_url = 'txs/'
+bf_tx_utxos_url = '/utxos'
+bf_stake_address_certificates_url = '/stakes'
+bf_tx_delegation_certificates_url = '/delegations'
+bf_tx_withdrawal_url = '/withdrawals'
+bf_tx_transaction_mirs_url = '/mirs'
+bf_tx_stake_pool_update_url = '/pool_updates'
+bf_tx_stake_pool_retirement_cert_url = '/pool_retires'
+bf_tx_metadata_url = '/metadata'
+bf_tx_cbor_metadata_url = '/metadata/cbor'
+bf_tx_redeemers_url = '/redeemers'
+
 class Auth:
     def __init__(self, api_key: str=None, network: str="mainnet", proxies: dict=None):
         
@@ -525,7 +538,7 @@ class Auth:
         """
         Obtain information about a specific asset.
         
-        :param : :param assets: Assets (Concatenation of the policy_id and hex-encoded asset_name)
+        :param assets: Assets (Concatenation of the policy_id and hex-encoded asset_name)
         :return: Dictionary with the info about the asset
         """
         
@@ -647,6 +660,175 @@ class Auth:
         #print('[INFO] Function specific_asset, {} API calls.'.format(len(assets_data)))
 
         return (pd.DataFrame.from_dict(assets_data), assets_not_found)  if pandas else (assets_data, assets_not_found)
+
+
+    def specific_tx(self, txs_hash: str) -> dict: 
+        """
+        Obtain the content of the requested transaction.
+        
+        :param txs_hash: Transaction hash
+        :return: Dictionary with the info about the content of the transaction
+        """
+        
+        specific_tx_url = self.network + bf_tx_url + txs_hash
+
+        response = query_blockfrost(specific_tx_url, self.api_key, self.proxies)
+        
+        return response
+
+
+    def tx_utxos(self, txs_hash: str) -> dict: 
+        """
+        Return the inputs and UTXOs of the specific transaction.
+        
+        :param txs_hash: Transaction hash
+        :return: Dictionary with the info about the inputs and UTXOs of the specific transaction
+        """
+        
+        specific_tx_utxos_url = self.network + bf_tx_url + txs_hash + bf_tx_utxos_url
+
+        response = query_blockfrost(specific_tx_utxos_url, self.api_key, self.proxies)
+        
+        return response
+
+
+    def tx_stake_address_certif(self, txs_hash: str, pandas: bool=False) -> dict: 
+        """
+        Obtain information about (de)registration of stake addresses within a transaction.
+        
+        :param txs_hash: Transaction hash
+        :return: Dictionary with the info about (de)registration of stake addresses within a transaction
+        """
+        
+        stake_address_certificates_url = self.network + bf_tx_url + txs_hash + bf_stake_address_certificates_url
+
+        response = query_blockfrost(stake_address_certificates_url, self.api_key, self.proxies)
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
+
+
+    def tx_delegation_cert(self, txs_hash: str, pandas: bool=False) -> dict: 
+        """
+        Obtain information about delegation certificates of a specific transaction.
+        
+        :param txs_hash: Transaction hash
+        :return: Dictionary with the info about delegation certificates of a specific transaction
+        """
+        
+        tx_delegation_certificates_url = self.network + bf_tx_url + txs_hash + bf_tx_delegation_certificates_url
+
+        response = query_blockfrost(tx_delegation_certificates_url, self.api_key, self.proxies)
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
+
+    
+    def tx_withdrawal_url(self, txs_hash: str, pandas: bool=False) -> dict: 
+        """
+        Obtain information about withdrawals of a specific transaction.
+        
+        :param txs_hash: Transaction hash
+        :return: Dictionary with the info about withdrawals of a specific transaction
+        """
+        
+        tx_withdrawal_url = self.network + bf_tx_url + txs_hash + bf_tx_withdrawal_url
+
+        response = query_blockfrost(tx_withdrawal_url, self.api_key, self.proxies)
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
+
+    
+    def tx_transaction_mirs(self, txs_hash: str, pandas: bool=False) -> dict: 
+        """
+        Obtain information about withdrawals of a specific transaction.
+        
+        :param txs_hash: Transaction hash
+        :return: Dictionary with the info about withdrawals of a specific transaction
+        """
+        
+        tx_transaction_mirs = self.network + bf_tx_url + txs_hash + bf_tx_transaction_mirs_url
+
+        response = query_blockfrost(tx_transaction_mirs, self.api_key, self.proxies)
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
+
+        tx_stake_pool_update
+
+    def tx_stake_pool_update(self, txs_hash: str, pandas: bool=False) -> dict: 
+        """
+        Obtain information about stake pool registration and update certificates of a specific transaction.
+        
+        :param txs_hash: Transaction hash
+        :return: Dictionary with the info about stake pool registration and update certificates of a specific transaction
+        """
+        
+        tx_stake_pool_update_url = self.network + bf_tx_url + txs_hash + bf_tx_stake_pool_update_url
+
+        response = query_blockfrost(tx_stake_pool_update_url, self.api_key, self.proxies)
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
+
+
+    def tx_stake_pool_retirement_cert(self, txs_hash: str, pandas: bool=False) -> dict: 
+        """
+        Obtain information about stake pool retirements within a specific transaction.
+        
+        :param txs_hash: Transaction hash
+        :return: Dictionary with the info about stake pool retirements within a specific transaction
+        """
+        
+        tx_stake_pool_retirement_cert_url = self.network + bf_tx_url + txs_hash + bf_tx_stake_pool_retirement_cert_url
+
+        response = query_blockfrost(tx_stake_pool_retirement_cert_url , self.api_key, self.proxies)
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
+
+
+    def tx_metadata(self, txs_hash: str, pandas: bool=False) -> dict: 
+        """
+        Obtain the transaction metadata.
+        
+        :param txs_hash: Transaction hash
+        :return: Dictionary with the info about the transaction metadata
+        """
+        
+        tx_metadata_url = self.network + bf_tx_url + txs_hash + bf_tx_metadata_url
+
+        response = query_blockfrost(tx_metadata_url , self.api_key, self.proxies)
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
+
+
+    def tx_cbor_metadata(self, txs_hash: str, pandas: bool=False) -> dict: 
+        """
+        Obtain the transaction metadata in CBOR.
+        
+        :param txs_hash: Transaction hash
+        :return: Dictionary with the info about the transaction metadata in CBOR
+        """
+        
+        tx_cbor_metadata_url = self.network + bf_tx_url + txs_hash + bf_tx_cbor_metadata_url
+
+        response = query_blockfrost(tx_cbor_metadata_url, self.api_key, self.proxies)
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
+
+
+    def tx_redeemers(self, txs_hash: str, pandas: bool=False) -> dict: 
+        """
+        Obtain the transaction redeemers.
+        
+        :param txs_hash: Transaction hash
+        :return: Dictionary with the info about the transaction redeemers.
+        """
+        
+        tx_redeemers_url = self.network + bf_tx_url + txs_hash + bf_tx_redeemers_url
+
+        response = query_blockfrost(tx_redeemers_url, self.api_key, self.proxies)
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
+
+
+
 
       
 def set_query_string_parameter(page: int, data_order: str="") -> str:
