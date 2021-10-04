@@ -1862,7 +1862,7 @@ python3 setup.py pytest
 
 If this wrapper has been useful to you, feel free to put a star or donate (ADA) at this address :blush:.
 
-![wallet address](../src/img/wallet_address_50x50.jpg)
+![wallet address](src/img/wallet_address_50x50.jpg)
 
 Thank you.
 
