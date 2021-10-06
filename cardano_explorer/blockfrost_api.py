@@ -1,70 +1,12 @@
+#!/usr/bin/env python
+
 import os
 import requests
 import pandas as pd
 from time import sleep
 from tqdm import tqdm
+from blockfrost_api_urls import *
 from typing import Union, Optional, List, Dict, Tuple
-
-# API Header parameter
-header_param_name = 'project_id'
-
-# Blockfrost Network URL
-bf_url_cardano_mainnet = 'https://cardano-mainnet.blockfrost.io/api/v0/'
-bf_url_cardano_testnet = 'https://cardano-testnet.blockfrost.io/api/v0/'
-
-# Blockfrost Stake URL
-bf_stake_url = 'accounts/'
-bf_stake_rewards_url = '/rewards'
-bf_stake_amount_history_url = '/history'
-bf_stake_delegation_url = '/delegations'
-bf_stake_registration_url = '/registrations'
-bf_stake_withdrawal_history_url = '/withdrawals'
-bf_stake_mir_history_url = '/mirs'
-bf_associated_addresses_url = '/addresses'
-bf_assets_associated_addresses_url = '/addresses/assets'
-
-# Blockfrost Addresse URL
-bf_address_url = 'addresses/'
-bf_address_details_url = '/total'
-bf_address_utxo_url = '/utxos'
-bf_address_transaction_url = '/transactions'
-
-# Blockfrost Network Information URL
-bf_network_informations_url = '/network'
-
-# Blockfrost Epochs URL
-bf_epoch_url = 'epochs/'
-bf_latest_epoch_url = 'epochs/latest'
-bf_latest_epoch_protocol_parameters_url = 'epochs/latest/parameters'
-
-# Blockfrost Pools URL
-bf_polls_url = 'pools/'
-bf_param_stake_pool_history_url = '/history'
-
-# Blockfrost Assets URL
-bf_assets_url = 'assets/'
-bf_asset_history_url = '/history'
-bf_asset_transactions_url = '/transactions'
-bf_asset_addresses_url = '/addresses'
-bf_assets_policy_url = 'policy/'
-
-# Blockfrost Transaction URL
-bf_tx_url = 'txs/'
-bf_tx_utxos_url = '/utxos'
-bf_stake_address_certificates_url = '/stakes'
-bf_tx_delegation_certificates_url = '/delegations'
-bf_tx_withdrawal_url = '/withdrawals'
-bf_tx_transaction_mirs_url = '/mirs'
-bf_tx_stake_pool_update_url = '/pool_updates'
-bf_tx_stake_pool_retirement_cert_url = '/pool_retires'
-bf_tx_metadata_url = '/metadata'
-bf_tx_cbor_metadata_url = '/metadata/cbor'
-bf_tx_redeemers_url = '/redeemers'
-
-# Blockfrost Script URL
-bf_scripts_url = '/scripts'
-bf_specific_script_url = '/scripts/'
-bf_redeem_specific_script_url = '/redeemers'
 
 class Auth:
     def __init__(self, api_key: str=None, network: str="mainnet", proxies: dict=None):
@@ -77,7 +19,6 @@ class Auth:
             # Check if the Blockfrost API Key is configured in a environmental variable 
             assert (os.getenv('BLOCKFROST_API_KEY') is not None), '[ERROR] Your blockfrost api key is not configured in your environement path.'
             self.api_key = os.getenv('BLOCKFROST_API_KEY')
-        
         else:
             self.api_key = api_key
         
@@ -101,8 +42,7 @@ class Auth:
         response = query_blockfrost(url_stake_info, self.api_key, self.proxies)
         
         return response
-            
-            
+                 
     def stake_reward_history(self, stake_address: str, data_order: str='asc', nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         Obtain the reward history.
@@ -124,7 +64,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
     
-
     def stake_amount_history(self, stake_address: str, data_order: str='asc', nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         Obtain the stake amount history.
@@ -146,8 +85,7 @@ class Auth:
         #print('[INFO] Function stake_amount_history, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
-        
-       
+         
     def stake_delegation(self, stake_address: str, data_order: str='asc', nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         Obtain information about the stake delegation.
@@ -169,7 +107,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
     
-    
     def stake_registration_deregistrations(self, stake_address: str, data_order: str='asc', nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         Obtain information about the stake registration et deregistrations.
@@ -190,7 +127,6 @@ class Auth:
         #print('[INFO] Function stake_registration_deregistrations, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
-    
     
     def stake_withdrawal_history(self, stake_address: str, data_order: str='asc', nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
@@ -216,7 +152,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
     
-    
     def stake_mir_history(self, stake_address: str, data_order: str='asc', nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         Obtain information about the stake mir history.
@@ -237,7 +172,6 @@ class Auth:
         #print('[INFO] Function stake_mir_history, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
-    
     
     def stake_associated_addresses(self, stake_address: str, data_order: str='asc', nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
@@ -260,7 +194,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
     
-    
     def stake_assets_associated_addresses(self, stake_address: str, data_order: str='asc', nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         Obtain information about the stake assets associated addresses.
@@ -282,7 +215,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
     
-    
     def address_info(self, address: str) -> dict:
         """
         Obtain informations about an address.
@@ -298,7 +230,6 @@ class Auth:
         
         return response
     
-    
     def address_details(self, address: str) -> dict:
         """
         Obtain details information about an address.
@@ -312,7 +243,6 @@ class Auth:
         response = query_blockfrost(address_details_url, self.api_key, self.proxies)
         
         return response
-    
     
     def address_utxo(self, address: str, pandas: bool=False) -> dict:
         """
@@ -328,7 +258,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
     
-    
     def address_transaction(self, address: str, pandas: bool=False) -> dict:
         """
         Transactions on the address.
@@ -343,7 +272,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
     
-    
     def network_info(self) -> dict:
         """Return detailed network information."""
         
@@ -353,7 +281,6 @@ class Auth:
         
         return response
     
-    
     def latest_epoch(self) -> dict:
         """Return the information about the latest, therefore current, epoch."""
         
@@ -362,7 +289,6 @@ class Auth:
         response = query_blockfrost(latest_epoch_url, self.api_key, self.proxies)
         
         return response
-    
     
     def specific_epoch(self, epoch: int) -> dict:
         """
@@ -381,7 +307,6 @@ class Auth:
         
         return response
     
-    
     def latest_epoch_protocol_parameters(self) -> dict:
         """Return the protocol parameters for the latest epoch."""
         
@@ -390,8 +315,7 @@ class Auth:
         response = query_blockfrost(address_info_url, self.api_key, self.proxies)
         
         return response
-    
-    
+     
     def epochs_history(self, epochs: list, pandas: bool=False) -> Union[pd.DataFrame, dict]:            
         """
         Obtain history about the epochs.
@@ -423,7 +347,6 @@ class Auth:
             
         return pd.DataFrame.from_dict(epochs_history) if pandas else epochs_history
     
-    
     def registered_polls(self, data_order: str='asc', nb_of_results: int=100, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         Obtain the list of registered stake pools.
@@ -443,8 +366,7 @@ class Auth:
         #print('[INFO] Function registered_polls, {} API calls.'.format(count_api_calls))
                         
         return pd.DataFrame.from_dict(response) if pandas else response
-    
-    
+     
     def pool_informations(self, pool_id: str) -> dict: 
         """
         Obtain Pool information.
@@ -457,8 +379,7 @@ class Auth:
         response = query_blockfrost(pool_informations_url, self.api_key, self.proxies)
         
         return response
-    
-    
+      
     def stake_pool_history(self, pool_id: str, data_order: str='asc', nb_of_results: int=100, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         Obtain history of stake pool parameters over epochs
@@ -479,8 +400,7 @@ class Auth:
         #print('[INFO] Function param_stake_pool_history, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
-
-    
+ 
     def rewards_history_analysis(self, stake_address: str, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         Create a dataframe with explanatory variables of the stake rewards for each epochs.
@@ -534,7 +454,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
-
     def specific_asset(self, asset: str) -> dict: 
         """
         Obtain information about a specific asset.
@@ -548,8 +467,7 @@ class Auth:
         response = query_blockfrost(specific_asset_url, self.api_key, self.proxies)
         
         return response
-
-        
+ 
     def asset_history(self, asset: str, data_order: str='asc', nb_of_results: int=100, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         Obtain the history of a specific asset.
@@ -569,7 +487,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
-
     def asset_transactions(self, asset: str, data_order: str='asc', nb_of_results: int=100, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         List of a specific asset transactions.
@@ -588,8 +505,7 @@ class Auth:
         #print('[INFO] Function asset_transactions, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
-
-        
+     
     def asset_addresses(self, asset: str, data_order: str='asc', nb_of_results: int=100, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         List of a addresses containing a specific asset.
@@ -608,7 +524,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
-    
     def assets_policy(self, policy_id: str, data_order: str='asc', nb_of_results: int=100, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         List of asset minted under a specific policy.
@@ -626,7 +541,6 @@ class Auth:
         #print('[INFO] Function assets_policy, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
-
 
     def assets_policy_info(self, policy_id: str, nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, list]:
         '''
@@ -662,7 +576,6 @@ class Auth:
 
         return (pd.DataFrame.from_dict(assets_data), assets_not_found)  if pandas else (assets_data, assets_not_found)
 
-
     def specific_tx(self, txs_hash: str) -> dict: 
         """
         Obtain the content of the requested transaction.
@@ -676,7 +589,6 @@ class Auth:
         response = query_blockfrost(specific_tx_url, self.api_key, self.proxies)
         
         return response
-
 
     def tx_utxos(self, txs_hash: str) -> dict: 
         """
@@ -692,7 +604,6 @@ class Auth:
         
         return response
 
-
     def tx_stake_address_cert(self, txs_hash: str, pandas: bool=False) -> dict: 
         """
         Obtain information about (de)registration of stake addresses within a transaction.
@@ -706,7 +617,6 @@ class Auth:
         response = query_blockfrost(stake_address_certificates_url, self.api_key, self.proxies)
         
         return pd.DataFrame.from_dict(response) if pandas else response
-
 
     def tx_delegation_cert(self, txs_hash: str, pandas: bool=False) -> dict: 
         """
@@ -722,7 +632,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
-    
     def tx_withdrawal_url(self, txs_hash: str, pandas: bool=False) -> dict: 
         """
         Obtain information about withdrawals of a specific transaction.
@@ -737,7 +646,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
-    
     def tx_transaction_mirs(self, txs_hash: str, pandas: bool=False) -> dict: 
         """
         Obtain information about withdrawals of a specific transaction.
@@ -752,7 +660,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
-  
     def tx_stake_pool_update(self, txs_hash: str, pandas: bool=False) -> dict: 
         """
         Obtain information about stake pool registration and update certificates of a specific transaction.
@@ -766,7 +673,6 @@ class Auth:
         response = query_blockfrost(tx_stake_pool_update_url, self.api_key, self.proxies)
         
         return pd.DataFrame.from_dict(response) if pandas else response
-
 
     def tx_stake_pool_retirement_cert(self, txs_hash: str, pandas: bool=False) -> dict: 
         """
@@ -782,7 +688,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
-
     def tx_metadata(self, txs_hash: str, pandas: bool=False) -> dict: 
         """
         Obtain the transaction metadata.
@@ -796,7 +701,6 @@ class Auth:
         response = query_blockfrost(tx_metadata_url , self.api_key, self.proxies)
         
         return pd.DataFrame.from_dict(response) if pandas else response
-
 
     def tx_cbor_metadata(self, txs_hash: str, pandas: bool=False) -> dict: 
         """
@@ -812,7 +716,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
-
     def tx_redeemers(self, txs_hash: str, pandas: bool=False) -> dict: 
         """
         Obtain the transaction redeemers.
@@ -826,7 +729,6 @@ class Auth:
         response = query_blockfrost(tx_redeemers_url, self.api_key, self.proxies)
         
         return pd.DataFrame.from_dict(response) if pandas else response
-
 
     def scripts_list(self, data_order: str='asc', nb_of_results: int=100, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
@@ -845,7 +747,6 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
-    
     def specific_script(self, script_hash: str) -> dict: 
         """
         Information about a specific script.
@@ -898,10 +799,9 @@ def set_query_string_parameter(page: int, data_order: str="") -> str:
     
     return query_string_parameter
 
-
 def query_blockfrost(url: str, api_key: str, proxies: dict=None) -> dict:
     """
-    Query blockfrost api.
+    Query Blockfrost API.
     
     :param url: The url
     :param api_key: Blockfrost api Key
@@ -923,7 +823,6 @@ def query_blockfrost(url: str, api_key: str, proxies: dict=None) -> dict:
                                                    json['error'],
                                                    url,
                                                    json['message']))
-
 
 def nb_results_to_return(nb_of_results: int) -> Tuple[int, bool]:
     """
@@ -948,7 +847,6 @@ def nb_results_to_return(nb_of_results: int) -> Tuple[int, bool]:
         return nb_last_page(nb_of_results), get_all_data
 
     return nb_last_page(nb_of_results), False
-
 
 def query_on_several_pages(network: str, api_key: str, data_order: str, nb_of_results: int, query_url: str, proxies: dict) -> Tuple[dict, int]:
     """
@@ -1001,7 +899,6 @@ def query_on_several_pages(network: str, api_key: str, data_order: str, nb_of_re
     _dict = pd.concat(dataframes).reset_index(drop=True).to_dict()
 
     return _dict, count_api_calls
-
 
 def process_onchain_metadata(asset: dict) -> Dict:
     """
