@@ -61,6 +61,11 @@ bf_tx_metadata_url = '/metadata'
 bf_tx_cbor_metadata_url = '/metadata/cbor'
 bf_tx_redeemers_url = '/redeemers'
 
+# Blockfrost Script URL
+bf_scripts_url = '/scripts'
+bf_specific_script_url = '/scripts/'
+bf_redeem_specific_script_url = '/redeemers'
+
 class Auth:
     def __init__(self, api_key: str=None, network: str="mainnet", proxies: dict=None):
         
@@ -143,8 +148,6 @@ class Auth:
         return pd.DataFrame.from_dict(response) if pandas else response
         
        
-
-    
     def stake_delegation(self, stake_address: str, data_order: str='asc', nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         Obtain information about the stake delegation.
@@ -165,7 +168,6 @@ class Auth:
         #('[INFO] Function stake_delegation, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
-    
     
     
     def stake_registration_deregistrations(self, stake_address: str, data_order: str='asc', nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, dict]:
@@ -295,7 +297,6 @@ class Auth:
         response = query_blockfrost(address_info_url, self.api_key, self.proxies)
         
         return response
-    
     
     
     def address_details(self, address: str) -> dict:
@@ -627,7 +628,7 @@ class Auth:
         return pd.DataFrame.from_dict(response) if pandas else response
 
 
-    def assets_policy_informations(self, policy_id: str, nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, list]:
+    def assets_policy_info(self, policy_id: str, nb_of_results: int=None, pandas: bool=False) -> Union[pd.DataFrame, list]:
         '''
         Obtain informations about the assets minted under a specific policy ID.
 
@@ -692,7 +693,7 @@ class Auth:
         return response
 
 
-    def tx_stake_address_certif(self, txs_hash: str, pandas: bool=False) -> dict: 
+    def tx_stake_address_cert(self, txs_hash: str, pandas: bool=False) -> dict: 
         """
         Obtain information about (de)registration of stake addresses within a transaction.
         
@@ -751,8 +752,7 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
 
-        tx_stake_pool_update
-
+  
     def tx_stake_pool_update(self, txs_hash: str, pandas: bool=False) -> dict: 
         """
         Obtain information about stake pool registration and update certificates of a specific transaction.
@@ -828,8 +828,55 @@ class Auth:
         return pd.DataFrame.from_dict(response) if pandas else response
 
 
+    def scripts_list(self, data_order: str='asc', nb_of_results: int=100, pandas: bool=False) -> Union[pd.DataFrame, dict]:
+        """
+        List of scripts.
+        
+        :param data_order: Optional, use 'desc' if you want reverse the data order (default: Ascending)
+        :param nb_of_results: Optional, Number of results wanted. The api return 100 results at a time (default: 100)
+        :param pandas: Optional, True for return a pandas dataframe (default: False)
+        :return: Dictionary or DataFrame of the scripts hash
+        """
+        
+        scripts_url = bf_assets_url + bf_scripts_url
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, bf_scripts_url, self.proxies)
+        
+        #print('[INFO] Function script_list, {} API calls.'.format(count_api_calls))
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
 
+    
+    def specific_script(self, script_hash: str) -> dict: 
+        """
+        Information about a specific script.
+        
+        :param script_hash: Script hash
+        :return: Dictionary with the info about a specific script.
+        """
+        
+        specific_script_url = self.network + bf_specific_script_url + script_hash
 
+        response = query_blockfrost(specific_script_url, self.api_key, self.proxies)
+        
+        return response
+
+    def redeem_specific_script(self, script_hash: str, data_order: str='asc', nb_of_results: int=100, pandas: bool=False) -> Union[pd.DataFrame, dict]:
+        """
+        List of redeemers of a specific script.
+        
+        :param script_hash: Script hash
+        :param data_order: Optional, use 'desc' if you want reverse the data order (default: Ascending)
+        :param nb_of_results: Optional, Number of results wanted. The api return 100 results at a time (default: 100)
+        :param pandas: Optional, True for return a pandas dataframe (default: False)
+        :return: Dictionary or DataFrame of the redeemers of a specific script
+        """
+        
+        redeem_specific_script_url = bf_specific_script_url + script_hash + bf_redeem_specific_script_url
+        response, count_api_calls = query_on_several_pages(self.network, self.api_key, data_order, nb_of_results, redeem_specific_script_url, self.proxies)
+        
+        #print('[INFO] Function redeem_specific_script, {} API calls.'.format(count_api_calls))
+        
+        return pd.DataFrame.from_dict(response) if pandas else response
       
 def set_query_string_parameter(page: int, data_order: str="") -> str:
     """
