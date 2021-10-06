@@ -44,16 +44,16 @@ Python wrapper for accessing and processing information stored on the Cardano bl
   * [Assets Of A Apecific Policy](#Assets-Of-A-Apecific-Policy)
   * [Get Assets Informations](#Get-Assets-Informations)
 - [Transactions](#Transactions)
-  * [Specific transaction](#Specific-transaction)
+  * [Specific Transaction](#Specific-Transaction)
   * [Transaction UTXOs](#Transaction-UTXOs)
-  * [Transaction stake addresses certificates](#Transaction-stake-addresses-certificates)
+  * [Transaction Stake Addresses Certificates](#Transaction-Stake-Addresses-Certificates)
   * [Transaction delegation certificates](#Transaction-delegation-certificates)
-  * [Transaction withdrawal](#Transaction-withdrawal)
+  * [Transaction Withdrawal](#Transaction-Withdrawal)
   * [Transaction MIRs](#Transaction-MIRs)
-  * [Transaction stake pool registration and update certificates](#Transaction-stake-pool-registration-and-update-certificates)
-  * [Transaction stake pool retirement certificates](#Transaction-stake-pool-retirement-certificates)
-  * [Transaction metadata](#Transaction-metadata)
-  * [Transaction metadata in CBOR](#Transaction-metadata-in-CBOR)
+  * [Transaction Stake Pool Registration And Update Certificates](#Transaction-Stake-Pool-Registration-And-Update-Certificates)
+  * [Transaction Stake Pool Cetirement Certificates](#Transaction-Stake-Pool-Retirement-Certificates)
+  * [Transaction Metadata](#Transaction-Metadata)
+  * [Transaction Metadata in CBOR](#Transaction-Metadata-In-CBOR)
   * [Transaction Redeemers](#Transaction-Redeemers)
 - [Scripts](#Scripts)
   * [List of scripts](#Scripts)
@@ -186,7 +186,6 @@ cardano_mainnet.stake_reward_history(stake_address,
 
 <div>
 
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -248,19 +247,7 @@ cardano_mainnet.rewards_history_analysis(stake_address,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -420,19 +407,7 @@ cardano_mainnet.stake_amount_history(stake_address,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -496,19 +471,7 @@ cardano_mainnet.stake_delegation(stake_address,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -550,19 +513,7 @@ cardano_mainnet.stake_registration_deregistrations(stake_address,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -600,19 +551,7 @@ cardano_mainnet.stake_withdrawal_history(stake_address,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -650,19 +589,7 @@ cardano_mainnet.stake_mir_history(stake_address,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -705,19 +632,7 @@ cardano_mainnet.stake_associated_addresses(stake_address,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -769,19 +684,7 @@ cardano_mainnet.stake_assets_associated_addresses(stake_address,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -855,19 +758,7 @@ cardano_mainnet.address_utxo(address,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -909,19 +800,7 @@ cardano_mainnet.address_transaction(address,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1041,19 +920,7 @@ cardano_mainnet.epochs_history([270, 271, 272],
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1133,19 +1000,7 @@ cardano_mainnet.registered_polls(nb_of_results=100, # Optional: Return max 100 r
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1235,19 +1090,7 @@ cardano_mainnet.stake_pool_history(pool_id,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1336,19 +1179,7 @@ cardano_mainnet.assets(data_order='asc', # Optional: Data order (default: Ascend
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1459,19 +1290,7 @@ cardano_mainnet.asset_addresses(policy_id+asset_name,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1510,19 +1329,7 @@ cardano_mainnet.assets_policy(policy_id,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1580,19 +1387,7 @@ assets_info, assets_not_found = cardano_mainnet.assets_policy_informations(polic
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1674,7 +1469,7 @@ assets_info, assets_not_found = cardano_mainnet.assets_policy_informations(polic
 
 # Transactions
 
-### Specific transaction
+### Specific Transaction
 
 Return content of the requested transaction.
 
@@ -1743,7 +1538,7 @@ cardano_mainnet.tx_utxos(tx_hash)
 
 
 
-### Transaction stake addresses certificates
+### Transaction Stake Addresses Certificates
 
 Obtain information about (de)registration of stake addresses within a transaction.
 
@@ -1759,19 +1554,7 @@ cardano_mainnet.tx_stake_address_cert(stake_tx_hash,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1794,7 +1577,7 @@ cardano_mainnet.tx_stake_address_cert(stake_tx_hash,
 
 
 
-### Transaction delegation certificates
+### Transaction Delegation Certificates
 
 Obtain information about delegation certificates of a specific transaction.
 
@@ -1810,19 +1593,7 @@ cardano_mainnet.tx_delegation_cert(stake_tx_hash,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1849,7 +1620,7 @@ cardano_mainnet.tx_delegation_cert(stake_tx_hash,
 
 
 
-### Transaction withdrawal
+### Transaction Withdrawal
 
 Obtain information about withdrawals of a specific transaction.
 
@@ -1865,19 +1636,7 @@ cardano_mainnet.tx_withdrawal_url(stake_withdrawal_tx_hash,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1914,19 +1673,7 @@ cardano_mainnet.tx_transaction_mirs(stake_mir_tx_hash,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1979,7 +1726,7 @@ cardano_mainnet.tx_transaction_mirs(stake_mir_tx_hash,
 
 
 
-### Transaction stake pool registration and update certificates
+### Transaction Stake Pool Registration And Update Certificates
 
 Obtain information about stake pool registration and update certificates of a specific transaction.
 
@@ -1995,19 +1742,7 @@ cardano_mainnet.tx_stake_pool_update(stake_pool_registration_tx_hash,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2060,7 +1795,7 @@ cardano_mainnet.tx_stake_pool_update(stake_pool_registration_tx_hash,
 
 
 
-### Transaction stake pool retirement certificates
+### Transaction Stake Pool Retirement Certificates
 
 Obtain information about stake pool retirements within a specific transaction.
 
@@ -2086,19 +1821,7 @@ pd.DataFrame.from_dict([{
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2121,7 +1844,7 @@ pd.DataFrame.from_dict([{
 
 
 
-### Transaction metadata
+### Transaction Metadata
 
 Obtain the transaction metadata.
 
@@ -2137,19 +1860,7 @@ cardano_mainnet.tx_metadata(tx_hash,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2170,7 +1881,7 @@ cardano_mainnet.tx_metadata(tx_hash,
 
 
 
-### Transaction metadata in CBOR
+### Transaction Metadata In CBOR
 
 Obtain the transaction metadata in CBOR.
 
@@ -2186,19 +1897,7 @@ cardano_mainnet.tx_cbor_metadata(tx_hash,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2237,19 +1936,7 @@ cardano_mainnet.tx_redeemers(script_redeemer_tx_hash,
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2278,7 +1965,7 @@ cardano_mainnet.tx_redeemers(script_redeemer_tx_hash,
 
 # Scripts
 
-### List of scripts
+### List Of Sripts
 
 Obtain the list of scripts.
 
@@ -2295,19 +1982,7 @@ cardano_mainnet.scripts_list(data_order='asc', # Optional: Data order (default: 
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -2342,7 +2017,7 @@ cardano_mainnet.scripts_list(data_order='asc', # Optional: Data order (default: 
 
 
 
-# Specific Script
+### Specific Script
 
 Information about a specific script.
 
@@ -2360,7 +2035,7 @@ cardano_mainnet.specific_script(script_tx_hash)
 
 
 
-# Redeemers Of A Specific Script
+### Redeemers Of A Specific Script
 
 List of redeemers of a specific script
 
