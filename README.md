@@ -1380,9 +1380,6 @@ assets_info, assets_not_found = cardano_mainnet.assets_policy_informations(polic
                                                                            pandas=True) # Optional: Return a pandas dataframe 
 ```
 
-    100%|██████████| 100/100 [00:28<00:00,  3.52it/s]
-
-
 
 
 
