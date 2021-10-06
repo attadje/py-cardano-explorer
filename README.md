@@ -1,4 +1,4 @@
-# Python Cardano Explorer ![PyPI - Python Version](https://img.shields.io/badge/python-%3E%3D3.8-blue) ![PyPI - Python Version](https://img.shields.io/badge/pypi%20package-v0.1--beta.6-green) 
+# Python Cardano Explorer ![PyPI - Python Version](https://img.shields.io/badge/python-%3E%3D3.8-blue) ![PyPI - Python Version](https://img.shields.io/badge/pypi%20package-v0.3--beta.0-green) 
 
 Python wrapper for accessing and processing information stored on the Cardano blockchain using [Blockfrost API](https://blockfrost.io/).
 
@@ -48,11 +48,17 @@ Python wrapper for accessing and processing information stored on the Cardano bl
   * [Transaction UTXOs](#Transaction-UTXOs)
   * [Transaction stake addresses certificates](#Transaction-stake-addresses-certificates)
   * [Transaction delegation certificates](#Transaction-delegation-certificates)
+  * [Transaction withdrawal](#Transaction-withdrawal)
   * [Transaction MIRs](#Transaction-MIRs)
   * [Transaction stake pool registration and update certificates](#Transaction-stake-pool-registration-and-update-certificates)
   * [Transaction stake pool retirement certificates](#Transaction-stake-pool-retirement-certificates)
   * [Transaction metadata](#Transaction-metadata)
-  * [Transaction redeemers](#Transaction-redeemers)
+  * [Transaction metadata in CBOR](#Transaction-metadata-in-CBOR)
+  * [Transaction Redeemers](#Transaction-Redeemers)
+- [Scripts](#Scripts)
+  * [List of scripts](#Scripts)
+  * [Specific Script](#Specific-Script)
+  * [Redeemers Of A Specific Script](#Redeemers-Of-A-Specific-Script)
 - [Developing](#Developing)
 - [Credit](#Credit)
 - [Donation](#Donate)
@@ -106,6 +112,11 @@ cardano_mainnet = blockfrost_api.Auth() # mainnet by default
 cardano_mainnet = blockfrost_api.Auth(network='mainnet')
 #or
 cardano_mainnet = blockfrost_api.Auth(network='testnet')
+```
+
+
+```python
+Function 
 ```
 
 ## Network Informations
@@ -175,6 +186,7 @@ cardano_mainnet.stake_reward_history(stake_address,
 
 <div>
 
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -236,7 +248,19 @@ cardano_mainnet.rewards_history_analysis(stake_address,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -396,7 +420,19 @@ cardano_mainnet.stake_amount_history(stake_address,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -448,7 +484,7 @@ Obtain information about the delegation of a specific account.
 
 
 ```python
-cardano_mainnet.stake_delegation(stake_address)['tx_hash']
+cardano_mainnet.stake_delegation(stake_address)
 #or
 cardano_mainnet.stake_delegation(stake_address, 
                                  data_order='asc', # Optional: Data order (default: Ascending)
@@ -460,7 +496,19 @@ cardano_mainnet.stake_delegation(stake_address,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -495,14 +543,26 @@ cardano_mainnet.stake_registration_deregistrations(stake_address)
 cardano_mainnet.stake_registration_deregistrations(stake_address, 
                                                    data_order='asc', # Optional: Data order (default: Ascending)
                                                    nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                                   pandas=True). # Optional: Return a pandas dataframe
+                                                   pandas=True) # Optional: Return a pandas dataframe
 ```
 
 
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -540,7 +600,19 @@ cardano_mainnet.stake_withdrawal_history(stake_address,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -578,7 +650,19 @@ cardano_mainnet.stake_mir_history(stake_address,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -621,7 +705,19 @@ cardano_mainnet.stake_associated_addresses(stake_address,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -673,7 +769,19 @@ cardano_mainnet.stake_assets_associated_addresses(stake_address,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -747,7 +855,19 @@ cardano_mainnet.address_utxo(address,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -789,7 +909,19 @@ cardano_mainnet.address_transaction(address,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -909,7 +1041,19 @@ cardano_mainnet.epochs_history([270, 271, 272],
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -989,7 +1133,19 @@ cardano_mainnet.registered_polls(nb_of_results=100, # Optional: Return max 100 r
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1038,15 +1194,15 @@ cardano_mainnet.pool_informations(pool_id)
     {'pool_id': 'pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288ys5kumqce5',
      'hex': 'cdae4a1a08974113e77ea332cb1da97d9e3fca5cf797f9394739214b',
      'vrf_key': '5517fbeb4c6a5a613835808de183345eaf85ab0e251210e493e088afa41d9ab0',
-     'blocks_minted': 3073,
-     'live_stake': '55648149168432',
-     'live_size': 0.0023887520907477904,
-     'live_saturation': 0.8479059445396915,
-     'live_delegators': 1443,
-     'active_stake': '55449417952886',
-     'active_size': 0.002396649512923082,
+     'blocks_minted': 3454,
+     'live_stake': '63777749141588',
+     'live_size': 0.002722243022656593,
+     'live_saturation': 0.9701750363479381,
+     'live_delegators': 1411,
+     'active_stake': '880520384',
+     'active_size': 8.842681417401523e-05,
      'declared_pledge': '200000000000',
-     'live_pledge': '203180990314',
+     'live_pledge': '205263294816',
      'margin_cost': 0.01,
      'fixed_cost': '340000000',
      'reward_account': 'stake1u8uzevd539lxn40jt60g72a649zdphe9e8hrye4nf5jv0js9uzhzg',
@@ -1079,7 +1235,19 @@ cardano_mainnet.stake_pool_history(pool_id,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1131,13 +1299,13 @@ cardano_mainnet.stake_pool_history(pool_id,
       <td>63400551099817</td>
       <td>0.002710</td>
       <td>1440</td>
-      <td>0</td>
-      <td>0</td>
+      <td>7493887248</td>
+      <td>411538872</td>
     </tr>
     <tr>
       <th>84</th>
       <td>294</td>
-      <td>13</td>
+      <td>38</td>
       <td>880520384</td>
       <td>0.000088</td>
       <td>4</td>
@@ -1168,7 +1336,19 @@ cardano_mainnet.assets(data_order='asc', # Optional: Data order (default: Ascend
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1258,27 +1438,7 @@ cardano_mainnet.asset_history(policy_id+asset_name,
 
 
 
-<div>
-
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>tx_hash</th>
-      <th>action</th>
-      <th>amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>117f97ccf6e98a16697e7cc205daf2d0bfe83d849a63df...</td>
-      <td>minted</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+    'cc0d4ffb000b4a420eb98f9f3ac4083088acb2db2d1c752ffe7ac72fb332cb7e'
 
 
 
@@ -1299,7 +1459,19 @@ cardano_mainnet.asset_addresses(policy_id+asset_name,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1338,7 +1510,19 @@ cardano_mainnet.assets_policy(policy_id,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1389,14 +1573,26 @@ assets_info, assets_not_found = cardano_mainnet.assets_policy_informations(polic
                                                                            pandas=True) # Optional: Return a pandas dataframe 
 ```
 
-    100%|██████████| 100/100 [00:42<00:00,  2.33it/s]
+    100%|██████████| 100/100 [00:28<00:00,  3.52it/s]
 
 
 
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1563,7 +1759,19 @@ cardano_mainnet.tx_stake_address_cert(stake_tx_hash,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1602,7 +1810,19 @@ cardano_mainnet.tx_delegation_cert(stake_tx_hash,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1635,9 +1855,9 @@ Obtain information about withdrawals of a specific transaction.
 
 
 ```python
-cardano_mainnet.tx_withdrawal_url(stake_tx_hash)
+cardano_mainnet.tx_withdrawal_url(stake_withdrawal_tx_hash)
 #or
-cardano_mainnet.tx_withdrawal_url(stake_tx_hash,
+cardano_mainnet.tx_withdrawal_url(stake_withdrawal_tx_hash,
                                   pandas=True) # Optional: Return a pandas dataframe 
 ```
 
@@ -1645,14 +1865,33 @@ cardano_mainnet.tx_withdrawal_url(stake_tx_hash,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>address</th>
+      <th>amount</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>0</th>
+      <td>stake1uyttshgm6jtejckv48tll58hfw3fg2ffrcc4d5qv...</td>
+      <td>21239707</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -1665,9 +1904,9 @@ Obtain information about Move Instantaneous Rewards (MIRs) of a specific transac
 
 
 ```python
-cardano_mainnet.tx_transaction_mirs(stake_tx_hash)
+cardano_mainnet.tx_transaction_mirs(stake_mir_tx_hash)
 #or
-cardano_mainnet.tx_transaction_mirs(stake_tx_hash,
+cardano_mainnet.tx_transaction_mirs(stake_mir_tx_hash,
                                     pandas=True) # Optional: Return a pandas dataframe
 ```
 
@@ -1675,14 +1914,65 @@ cardano_mainnet.tx_transaction_mirs(stake_tx_hash,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>pot</th>
+      <th>cert_index</th>
+      <th>address</th>
+      <th>amount</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>0</th>
+      <td>reserve</td>
+      <td>0</td>
+      <td>stake1uytqd6u9nv0tme27mew3tfcyysdz38e3v940xmph...</td>
+      <td>20345</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>reserve</td>
+      <td>0</td>
+      <td>stake1uytpqufg9zkmj6lw4t97gtwzqnl5fqfrtyxvyrt3...</td>
+      <td>102354</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>reserve</td>
+      <td>0</td>
+      <td>stake1uytpf8fksuqszgacpfhgdpvpa2phu0r72hyjat9m...</td>
+      <td>969473</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>reserve</td>
+      <td>0</td>
+      <td>stake1uytpsyyj8pz4jmk7psl3z9hclnga05xgvxkh6p70...</td>
+      <td>602920</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>reserve</td>
+      <td>0</td>
+      <td>stake1uytphp0lmjuzagh4x45favh3760dljqxcmgmpyyp...</td>
+      <td>57335</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -1695,9 +1985,9 @@ Obtain information about stake pool registration and update certificates of a sp
 
 
 ```python
-cardano_mainnet.tx_stake_pool_update(stake_tx_hash)
+cardano_mainnet.tx_stake_pool_update(stake_pool_registration_tx_hash)
 #or
-cardano_mainnet.tx_stake_pool_update(stake_tx_hash,
+cardano_mainnet.tx_stake_pool_update(stake_pool_registration_tx_hash,
                                      pandas=True) # Optional: Return a pandas dataframe
 ```
 
@@ -1705,14 +1995,65 @@ cardano_mainnet.tx_stake_pool_update(stake_tx_hash,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>cert_index</th>
+      <th>pool_id</th>
+      <th>vrf_key</th>
+      <th>pledge</th>
+      <th>margin_cost</th>
+      <th>fixed_cost</th>
+      <th>reward_account</th>
+      <th>owners</th>
+      <th>metadata</th>
+      <th>relays</th>
+      <th>active_epoch</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>5517fbeb4c6a5a613835808de183345eaf85ab0e251210...</td>
+      <td>90000000000</td>
+      <td>0.01</td>
+      <td>380000000</td>
+      <td>stake1u9qsgte62jau0qu6kjy8zch8aynt55gql6jsxe05...</td>
+      <td>[stake1u9qsgte62jau0qu6kjy8zch8aynt55gql6jsxe0...</td>
+      <td>{'url': 'https://meta.staking.outofbits.com/so...</td>
+      <td>[{'ipv4': None, 'ipv6': None, 'dns': 'toki.rel...</td>
+      <td>210</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
+      <td>5517fbeb4c6a5a613835808de183345eaf85ab0e251210...</td>
+      <td>90000000000</td>
+      <td>0.01</td>
+      <td>380000000</td>
+      <td>stake1u9qsgte62jau0qu6kjy8zch8aynt55gql6jsxe05...</td>
+      <td>[stake1u9qsgte62jau0qu6kjy8zch8aynt55gql6jsxe0...</td>
+      <td>{'url': 'https://meta.staking.outofbits.com/so...</td>
+      <td>[{'ipv4': None, 'ipv6': None, 'dns': 'toki.rel...</td>
+      <td>210</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -1725,24 +2066,55 @@ Obtain information about stake pool retirements within a specific transaction.
 
 
 ```python
-cardano_mainnet.tx_stake_pool_retirement_cert(stake_tx_hash)
+cardano_mainnet.tx_stake_pool_retirement_cert(tx_hash)
 #or
-cardano_mainnet.tx_stake_pool_retirement_cert(stake_tx_hash,
+cardano_mainnet.tx_stake_pool_retirement_cert(tx_hash,
                                               pandas=True) # Optional: Return a pandas dataframe
+```
+
+
+```python
+import pandas as pd
+pd.DataFrame.from_dict([{
+"cert_index": 0,
+"pool_id": "pool1ekly5isgkaq38em75vevk0df0k0rljju77tljw288ys5kumqce5",
+"retiring_epoch": 280
+}])
 ```
 
 
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>cert_index</th>
+      <th>pool_id</th>
+      <th>retiring_epoch</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>pool1ekly5isgkaq38em75vevk0df0k0rljju77tljw288...</td>
+      <td>280</td>
+    </tr>
   </tbody>
 </table>
 </div>
@@ -1764,18 +2136,37 @@ cardano_mainnet.tx_metadata(tx_hash,
 
 
 
-    [{'label': '721',
-      'json_metadata': {'40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728': {'ClayNation3986': {'body': 'Brown Clay',
-         'eyes': 'Big Eyes',
-         'name': 'Clay Nation #3986',
-         'brows': 'Normal Eyebrows',
-         'image': 'ipfs://QmYREMX1uTQAFScJD4Xv5tUPnWimKyLzBTBFLv1oCyzMj2',
-         'mouth': 'Normal Mouth',
-         'Project': 'Clay Nation by Clay Mates',
-         'clothes': 'Tshirt Green',
-         'background': 'Cyan',
-         'accessories': 'Flower Necklace',
-         'hats and hair': 'Fringe'}}}}]
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>label</th>
+      <th>json_metadata</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>721</td>
+      <td>{'40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c2...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
@@ -1795,7 +2186,19 @@ cardano_mainnet.tx_cbor_metadata(tx_hash,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1818,15 +2221,15 @@ cardano_mainnet.tx_cbor_metadata(tx_hash,
 
 
 
-### Transaction redeemers
+### Transaction Redeemers
 
-Obtain the transaction redeemers.
+Obtain the transaction redeemers of a script.
 
 
 ```python
-cardano_mainnet.tx_redeemers(tx_hash)
+cardano_mainnet.tx_redeemers(script_redeemer_tx_hash)
 #or
-cardano_mainnet.tx_redeemers(tx_hash,
+cardano_mainnet.tx_redeemers(script_redeemer_tx_hash,
                              pandas=True)# Optional: Return a pandas dataframe
 ```
 
@@ -1834,17 +2237,147 @@ cardano_mainnet.tx_redeemers(tx_hash,
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>tx_index</th>
+      <th>purpose</th>
+      <th>unit_mem</th>
+      <th>unit_steps</th>
+      <th>fee</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>spend</td>
+      <td>8879521</td>
+      <td>2890961166</td>
+      <td>2899840687</td>
+    </tr>
   </tbody>
 </table>
 </div>
+
+
+
+# Scripts
+
+### List of scripts
+
+Obtain the list of scripts.
+
+
+```python
+cardano_mainnet.scripts_list()
+#or
+cardano_mainnet.scripts_list(data_order='asc', # Optional: Data order (default: Ascending)
+                             nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
+                             pandas=True) # Optional: Return a pandas dataframe)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>script_hash</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>f55dfaa24ac08874405206588859ec2804b722a51eb716...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1fa88319dd2d0883c1a958d26da1d358444ca95a7eef6d...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4f590a3d80ae0312bad0b64d540c3ff5080e77250e9dbf...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>cc7888851f0f5aa64c136e0c8fb251e9702f3f6c9efcf3...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>81e9ffa364de993fbf2034f6db139adfd65eb69669b361...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+# Specific Script
+
+Information about a specific script.
+
+
+```python
+cardano_mainnet.specific_script(script_tx_hash)
+```
+
+
+
+
+    {'script_hash': 'cc7888851f0f5aa64c136e0c8fb251e9702f3f6c9efcf3a60a54f419',
+     'type': 'plutus',
+     'serialised_size': 3046}
+
+
+
+# Redeemers Of A Specific Script
+
+List of redeemers of a specific script
+
+
+```python
+cardano_mainnet.redeem_specific_script(script_hash)
+```
+
+
+
+
+    {'tx_hash': {0: 'e9d20746cec2d506a5ae201adbfec13ef20279b689f0612cc3802274ce4da2ce'},
+     'tx_index': {0: 0},
+     'purpose': {0: 'mint'},
+     'unit_mem': {0: '1106480'},
+     'unit_steps': {0: '397329109'},
+     'fee': {0: '398435589'}}
 
 
 
