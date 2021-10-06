@@ -2020,7 +2020,7 @@ Information about a specific script.
 
 
 ```python
-cardano_mainnet.specific_script(script_tx_hash)
+cardano_mainnet.specific_script(script_hash)
 ```
 
 

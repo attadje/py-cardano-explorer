@@ -17,7 +17,7 @@ script_tx_hash_redeemers = '34dd0b7ae56b65f4cda029d99cda8322684ec6339ac1c195c164
 stake_mir_tx_hash = 'c041e475d161444a6a8ca9005ef3deb36ebd579c347d90b5b53968d47d5193da'
 stake_withdrawal_tx_hash = '80b09b61d2da86f5847d0b9a5f72d32224fcd7e1aa17161b9d24732339a26836'
 script_redeemer_tx_hash = '34dd0b7ae56b65f4cda029d99cda8322684ec6339ac1c195c16458c1e5e94b96'
-script_tx_hash = 'cc7888851f0f5aa64c136e0c8fb251e9702f3f6c9efcf3a60a54f419'
+script_hash = 'cc7888851f0f5aa64c136e0c8fb251e9702f3f6c9efcf3a60a54f419'
 stake_pool_registration_tx_hash = 'b1bfffc26b6210ced9cc679781922e8b1ac70a2f7719523528639da4ab7f2d88'
 
 cardano_mainnet = blockfrost_api.Auth()
@@ -139,8 +139,8 @@ class Test(unittest.TestCase):
         print("[INFO] Test script functions")
         print("****************************")
         self.assertTrue(isinstance(cardano_mainnet.scripts_list(), dict))
-        self.assertTrue(isinstance(cardano_mainnet.specific_script(script_tx_hash), dict))
-        self.assertTrue(isinstance(cardano_mainnet.redeem_specific_script(script_tx_hash), dict))
+        self.assertTrue(isinstance(cardano_mainnet.specific_script(script_hash), dict))
+        self.assertTrue(isinstance(cardano_mainnet.redeem_specific_script(script_hash), dict))
 
 
 if __name__ == '__main__':
