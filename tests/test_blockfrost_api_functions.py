@@ -115,7 +115,7 @@ class Test(unittest.TestCase):
          print("***********************************************************")
          print("[INFO] Test of the function 'assets_policy_informations'")
          print("***********************************************************")
-         self.assertTrue(isinstance(cardano_mainnet.assets_policy_info(policy_id, nb_of_results=100), list))
+         self.assertTrue(isinstance(cardano_mainnet.assets_policy_info(policy_id, nb_of_results=100), tuple))
 
     def test_transaction(self):
          print("********************************")
