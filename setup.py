@@ -21,7 +21,7 @@ setuptools.setup(
     license='MIT',
     install_requires=['pandas>=1.3.2', 'requests>=2.26.0', 'typing>=3.7.4.3', 'numpy==1.21.2', 'tqdm>=4.62.2'],
     tests_require=['pytest>=6.2.5', 'pytest-runner>=5.3.1', 'tqdm>=4.62.2'],
-    test_suite='test_cardano_explorer',
+    test_suite='test_blockfrost_api',
     classifiers=[
         'Development Status :: 3 - Alpha',  
         'Intended Audience :: Developers',      
