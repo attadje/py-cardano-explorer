@@ -5,7 +5,7 @@ import unittest
 from cardano_explorer import blockfrost_api
 
 # Check if the Blockfrost API Key is configured in a environmental variable 
-assert (os.getenv('BLOCKFROST_API_KEY') is not None), '[ERROR] Your blockfrost api key is not configured in your environement path.'
+# assert (os.getenv('BLOCKFROST_API_KEY') is not None), '[ERROR] Your blockfrost api key is not configured in your environement path.'
 
 pool_id= "pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288ys5kumqce5"
 address= 'addr1q8z24xgrlj3m2qjh2vxyqg2fh33y3tegufkll5c4lu8u35gkhpw3h4yhn93ve2whllg0wjazjs5jj8332mgqe332f3uq8m7m6h'
