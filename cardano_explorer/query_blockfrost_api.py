@@ -4,6 +4,7 @@
 import requests
 import pandas as pd
 from .blockfrost_api_urls import header_param_name
+from typing import Union, Optional, List, Dict, Tuple
 from .utility import nb_results_to_return, set_query_string_parameter
 
 def query_blockfrost(url: str, api_key: str, proxies: dict=None) -> dict:
