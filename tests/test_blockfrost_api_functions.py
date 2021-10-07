@@ -21,7 +21,7 @@ script_redeemer_tx_hash = '34dd0b7ae56b65f4cda029d99cda8322684ec6339ac1c195c1645
 script_hash = 'cc7888851f0f5aa64c136e0c8fb251e9702f3f6c9efcf3a60a54f419'
 stake_pool_registration_tx_hash = 'b1bfffc26b6210ced9cc679781922e8b1ac70a2f7719523528639da4ab7f2d88'
 
-cardano_mainnet = blockfrost_api.Auth()
+cardano_mainnet = blockfrost_api.Auth(api_key='iSXrfNxhpPChKCnts2KX9MJ1eQ7exYgb')
 
 class Test(unittest.TestCase):
     
