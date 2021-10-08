@@ -3,7 +3,7 @@
 import os
 import unittest
 import pandas as pd
-from cardano_explorer import *
+from cardano_explorer import blockfrost_api, utility
 
 # Check if the Blockfrost API Key is configured in a environmental variable 
 # assert (os.getenv('BLOCKFROST_API_KEY') is not None), '[ERROR] Your blockfrost api key is not configured in your environement path.'
