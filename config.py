@@ -1,0 +1,1 @@
+blockfrost_api_key = 'iSXrfNxhpPChKCnts2KX9MJ1eQ7exYgb'

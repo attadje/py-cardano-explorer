@@ -7,7 +7,8 @@ from time import sleep
 from tqdm import tqdm
 from .blockfrost_api_urls import *
 from typing import Union, Optional, List, Dict, Tuple
-from .utility import convert_hex_to_ascii, process_onchain_metadata, nb_results_to_return, set_query_string_parameter
+from .query_blockfrost_api import query_blockfrost, query_on_several_pages
+from .utility import convert_hex_to_ascii, process_onchain_metadata
 
 class Auth:
     def __init__(self, api_key: str=None, network: str="mainnet", proxies: dict=None):
@@ -402,7 +403,7 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
  
-    def rewards_history_analysis(self, stake_address: str, pandas: bool=False) -> Union[pd.DataFrame, dict]:
+    def stake_rewards_corr(self, stake_address: str, pandas: bool=False) -> Union[pd.DataFrame, dict]:
         """
         Create a dataframe with explanatory variables of the stake rewards for each epochs.
 
@@ -780,103 +781,3 @@ class Auth:
         
         return pd.DataFrame.from_dict(response) if pandas else response
       
-def query_blockfrost(url: str, api_key: str, proxies: dict=None) -> dict:
-    """
-    Query Blockfrost API.
-    
-    :param url: The url
-    :param api_key: Blockfrost api Key
-    :return: Dictionary
-    """
-    try:
-        if not proxies:
-            response = requests.get(url, headers={header_param_name:api_key})
-        else:
-            response = requests.get(url, proxies=proxies, headers={header_param_name:api_key})  
-    except Exception as e:
-        raise Exception('[ERROR] {}'.format(e))
-    
-    if response.status_code == 200:
-        return response.json()
-    else:
-        json = response.json()
-        raise Exception("[ERROR {}] {} ({}). {}".format(json['status_code'],
-                                                   json['error'],
-                                                   url,
-                                                   json['message']))
-
-def query_on_several_pages(network: str, api_key: str, data_order: str, nb_of_results: int, query_url: str, proxies: dict) -> Tuple[dict, int]:
-    """
-    Get the data from several pages and the number of api calls.
-    The blockfrost api return max 100 results at the time, this fonction allow to concatenate the data from each pages.
-    
-    :param network: The network (mainnet|testnet|local)
-    :param api_key: Blockfrost api key
-    :param data_order: The data order
-    :param nb_of_results: The number of results wanted 
-    :param query_url: Query url
-    :return: Dictionary with the data and number of api calls
-    """
-            
-    # List of dataframes, where each dataframe represent the data from each page
-    dataframes = []
-    
-    # Set the param for determinated the number of data to return
-    nb_last_page, get_all_data = nb_results_to_return(nb_of_results)
-   
-    nb_page = 0
-    count_api_calls = 0
-
-    # Retrieve the data of each page according to the desired number of data wanted or until the page is empty
-    while (nb_page < nb_last_page) or (get_all_data==True):
-
-        nb_page+=1
-        count_api_calls =+1
-
-        api_query_string_param = set_query_string_parameter(nb_page, data_order)
-
-        url = network + query_url + api_query_string_param
-
-        data = query_blockfrost(url, api_key, proxies)
-
-        # Return the data as soon as a page is empty.
-        if not data:
-            # If no data have been found, return an empty dictionary
-            if not dataframes:
-                #print("[INFO] No data available." )
-                return {}, count_api_calls
-            
-            _dict = pd.concat(dataframes).reset_index(drop=True).to_dict()
-            
-            return _dict, count_api_calls
-
-        # Create a dataframe with the data from each page and add them to the list of data
-        dataframes.append(pd.DataFrame.from_dict(data))
-    
-    _dict = pd.concat(dataframes).reset_index(drop=True).to_dict()
-
-    return _dict, count_api_calls
-
-
-    """
-    Create a column for each onchain metadata item.
-    
-    :param assets_data: Asset data dictionary
-    :return: Formated asset data dictionary
-    """
-    
-    f_assets_data = {}
-    
-    for asset_item in asset:
-        # If the asset have metadata
-        if isinstance(asset[asset_item], dict):
-            # Metadata dictionary
-            metadata = asset[asset_item]
-            # Browse the data, and add each item in the formated asset data dictionary
-            for metadata_item in metadata:
-                f_assets_data[metadata_item] = metadata[metadata_item]
-            continue
-        # If not, add the item and his unique value to the formated asset data dictionary 
-        f_assets_data[asset_item] = asset[asset_item]
-    
-    return f_assets_data
