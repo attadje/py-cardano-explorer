@@ -186,7 +186,7 @@ cardano_mainnet.stake_reward_history(stake_address,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -247,7 +247,7 @@ cardano_mainnet.stake_rewards_corr(stake_address,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -406,7 +406,7 @@ cardano_mainnet.stake_amount_history(stake_address,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -469,7 +469,7 @@ cardano_mainnet.stake_delegation(stake_address,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -510,7 +510,7 @@ cardano_mainnet.stake_registration_deregistrations(stake_address,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -547,7 +547,7 @@ cardano_mainnet.stake_withdrawal_history(stake_address,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -584,7 +584,7 @@ cardano_mainnet.stake_mir_history(stake_address,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -626,7 +626,7 @@ cardano_mainnet.stake_associated_addresses(stake_address,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -677,7 +677,7 @@ cardano_mainnet.stake_assets_associated_addresses(stake_address,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -750,7 +750,7 @@ cardano_mainnet.address_utxo(address,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -793,7 +793,7 @@ cardano_mainnet.address_transaction(address,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -914,7 +914,7 @@ cardano_mainnet.epochs_history([270, 271, 272],
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -993,7 +993,7 @@ cardano_mainnet.registered_polls(nb_of_results=100, # Optional: Return max 100 r
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1082,7 +1082,7 @@ cardano_mainnet.stake_pool_history(pool_id,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1170,7 +1170,7 @@ cardano_mainnet.assets(data_order='asc', # Optional: Data order (default: Ascend
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1260,7 +1260,7 @@ cardano_mainnet.asset_history(policy_id+asset_name,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1299,7 +1299,7 @@ cardano_mainnet.asset_addresses(policy_id+asset_name,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1337,7 +1337,7 @@ cardano_mainnet.assets_policy(policy_id,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1391,7 +1391,7 @@ assets_info, assets_not_found = cardano_mainnet.assets_policy_info(policy_id, # 
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1557,7 +1557,7 @@ cardano_mainnet.tx_stake_address_cert(stake_tx_hash,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1595,7 +1595,7 @@ cardano_mainnet.tx_delegation_cert(stake_tx_hash,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1637,7 +1637,7 @@ cardano_mainnet.tx_withdrawal_url(stake_withdrawal_tx_hash,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1673,7 +1673,7 @@ cardano_mainnet.tx_transaction_mirs(stake_mir_tx_hash,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1741,7 +1741,7 @@ cardano_mainnet.tx_stake_pool_update(stake_pool_registration_tx_hash,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1819,7 +1819,7 @@ pd.DataFrame.from_dict([{
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1857,7 +1857,7 @@ cardano_mainnet.tx_metadata(tx_hash,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1893,7 +1893,7 @@ cardano_mainnet.tx_cbor_metadata(tx_hash,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1931,7 +1931,7 @@ cardano_mainnet.tx_redeemers(script_redeemer_tx_hash,
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
@@ -1976,7 +1976,7 @@ cardano_mainnet.scripts_list(data_order='asc', # Optional: Data order (default: 
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
