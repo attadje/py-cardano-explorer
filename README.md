@@ -232,7 +232,7 @@ cardano_mainnet.stake_reward_history(stake_address,
 
 
 ### Stake Rewards History Analysis
-Stake rewards analysis.
+Add extra informations to the stake reward history.
 
 
 ```python
