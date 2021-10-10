@@ -7,7 +7,7 @@ def convert_hex_to_ascii(hex_string: str) -> str:
     """Convert hex string to ascii format"""
     return bytearray.fromhex(hex_string).decode()
 
-def process_onchain_metadata(asset: dict) -> Dict:
+def add_onchain_metadata(asset: dict) -> Dict:
     """
     Create a column for each onchain metadata item.
     

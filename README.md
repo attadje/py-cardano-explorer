@@ -84,13 +84,16 @@ from cardano_explorer import blockfrost_api
 ```
 
 ## Api Key
-If you have an API key, you can either set it as environment variable **BLOCKFROST_API_KEY** or set it manually.
+If you have an API key, you can either set it as environment variable **BLOCKFROST_API_KEY** or set it manually. 
+
+> You can quickly create your api key on [Blockfrost](https://blockfrost.io/#introduction).  
+The free account allow you up to **50,000 requests** a day and **10 requests per second**,  which is more that enough.
 
 
 ```python
 cardano_mainnet = blockfrost_api.Auth() # API Key is set in a env variable name BLOCKFROST_API_KEY
 #or
-cardano_mainnet = blockfrost_api.Auth(blockfrost_api_key)
+cardano_mainnet = blockfrost_api.Auth(api_key=blockfrost_api_key)
 ```
 
 ## Using With Proxy
@@ -117,11 +120,6 @@ cardano_mainnet = blockfrost_api.Auth(network='mainnet')
 cardano_mainnet = blockfrost_api.Auth(network='testnet')
 ```
 
-
-```python
-Function 
-```
-
 ## Network Informations
 
 ### Network Info
@@ -137,11 +135,11 @@ cardano_mainnet.network_info()
 
     {'supply': {'max': '45000000000000000',
       'total': '33250650235236357',
-      'circulating': '32921401639610463',
-      'locked': '14212376433292',
+      'circulating': '32921356877345090',
+      'locked': '14342846495117',
       'treasury': '643991464810237',
       'reserves': '11749349764763643'},
-     'stake': {'live': '23448496327348395', 'active': '23411124422164299'}}
+     'stake': {'live': '23461249229811191', 'active': '23411124422164299'}}
 
 
 
@@ -186,7 +184,6 @@ cardano_mainnet.stake_reward_history(stake_address,
 
 
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -247,7 +244,6 @@ cardano_mainnet.stake_rewards_corr(stake_address,
 
 
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -407,7 +403,6 @@ cardano_mainnet.stake_amount_history(stake_address,
 
 <div>
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -470,7 +465,6 @@ cardano_mainnet.stake_delegation(stake_address,
 
 <div>
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -511,7 +505,6 @@ cardano_mainnet.stake_registration_deregistrations(stake_address,
 
 <div>
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -548,7 +541,6 @@ cardano_mainnet.stake_withdrawal_history(stake_address,
 
 <div>
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -584,7 +576,6 @@ cardano_mainnet.stake_mir_history(stake_address,
 
 
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -626,7 +617,6 @@ cardano_mainnet.stake_associated_addresses(stake_address,
 
 
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -677,7 +667,6 @@ cardano_mainnet.stake_assets_associated_addresses(stake_address,
 
 
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -751,7 +740,6 @@ cardano_mainnet.address_utxo(address,
 
 <div>
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -793,7 +781,6 @@ cardano_mainnet.address_transaction(address,
 
 
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -915,7 +902,6 @@ cardano_mainnet.epochs_history([270, 271, 272],
 
 <div>
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -993,7 +979,6 @@ cardano_mainnet.registered_polls(nb_of_results=100, # Optional: Return max 100 r
 
 
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -1083,7 +1068,6 @@ cardano_mainnet.stake_pool_history(pool_id,
 
 <div>
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1141,7 +1125,7 @@ cardano_mainnet.stake_pool_history(pool_id,
     <tr>
       <th>85</th>
       <td>295</td>
-      <td>6</td>
+      <td>34</td>
       <td>63837104114656</td>
       <td>0.002727</td>
       <td>1416</td>
@@ -1170,7 +1154,6 @@ cardano_mainnet.assets(data_order='asc', # Optional: Data order (default: Ascend
 
 
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -1261,7 +1244,6 @@ cardano_mainnet.asset_history(policy_id+asset_name,
 
 <div>
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1300,7 +1282,6 @@ cardano_mainnet.asset_addresses(policy_id+asset_name,
 
 <div>
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1327,17 +1308,16 @@ List of assets mint under a specific policy
 
 
 ```python
-cardano_mainnet.assets_policy_info(policy_id,
-                                   data_order='asc', # Optional: Data order (default: Ascending)
-                                   nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                   pandas=True) # Optional: Return a pandas dataframe 
+cardano_mainnet.assets_policy(policy_id,
+                              data_order='asc', # Optional: Data order (default: Ascending)
+                              nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
+                              pandas=True) # Optional: Return a pandas dataframe 
 ```
 
 
 
 
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -1380,7 +1360,8 @@ cardano_mainnet.assets_policy_info(policy_id,
 
 
 ### Get Assets Informations 
-Get informations about the assests mint under a specific policy.
+Get informations about the assests mint under a specific policy.  
+Look [here]() for some examples on how to analyze a CNFT project
 
 
 ```python
@@ -1389,9 +1370,7 @@ assets_info = cardano_mainnet.assets_policy_info(policy_id, # Policy ID
                                                  pandas=True) # Optional: Return a pandas dataframe 
 ```
 
-
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -1404,19 +1383,8 @@ assets_info = cardano_mainnet.assets_policy_info(policy_id, # Policy ID
       <th>quantity</th>
       <th>initial_mint_tx_hash</th>
       <th>mint_or_burn_count</th>
-      <th>name</th>
-      <th>image</th>
-      <th>body</th>
-      <th>eyes</th>
-      <th>brows</th>
-      <th>mouth</th>
-      <th>Project</th>
-      <th>clothes</th>
-      <th>background</th>
-      <th>accessories</th>
-      <th>hats and hair</th>
+      <th>onchain_metadata</th>
       <th>metadata</th>
-      <th>wings</th>
     </tr>
   </thead>
   <tbody>
@@ -1429,42 +1397,8 @@ assets_info = cardano_mainnet.assets_policy_info(policy_id, # Policy ID
       <td>1</td>
       <td>d7e089dce7c170f1af519fab710f9ed5d4d8680978035d...</td>
       <td>1</td>
-      <td>Clay Nation #7899</td>
-      <td>ipfs://QmdXSPVnjRMsT2LuUMW5MMAKunwjpL34WDWjSy3...</td>
-      <td>Tan Clay</td>
-      <td>Trippy Eyes</td>
-      <td>Blue Eyebrows</td>
-      <td>Grin</td>
-      <td>Clay Nation by Clay Mates</td>
-      <td>Tracksuit</td>
-      <td>Seafoam Green</td>
-      <td>Silver Chain</td>
-      <td>Clay Nation Hat &amp; Mullet</td>
+      <td>{'name': 'Clay Nation #7899', 'image': 'ipfs:/...</td>
       <td>None</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c282...</td>
-      <td>436c61794e6174696f6e38343838</td>
-      <td>asset14pm7d5k9xtgeu87g7skz8sqvxjkepwsysdmvcg</td>
-      <td>1</td>
-      <td>a5e9fb001c2a0838d380acccc90eb06f9c06c74ce94eee...</td>
-      <td>1</td>
-      <td>Clay Nation #8488</td>
-      <td>ipfs://QmZfeNhctaLzmpNYAvkaoLcHR3yCvtBn44TNuUL...</td>
-      <td>Tan Clay</td>
-      <td>Big Eyes</td>
-      <td>Normal Eyebrows</td>
-      <td>Joint in Mouth</td>
-      <td>Clay Nation by Clay Mates</td>
-      <td>Tshirt Green</td>
-      <td>Cyan</td>
-      <td>No Accessories</td>
-      <td>Top Hat</td>
-      <td>None</td>
-      <td>NaN</td>
     </tr>
   </tbody>
 </table>
@@ -1558,7 +1492,6 @@ cardano_mainnet.tx_stake_address_cert(stake_tx_hash,
 
 <div>
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1595,7 +1528,6 @@ cardano_mainnet.tx_delegation_cert(stake_tx_hash,
 
 
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -1638,7 +1570,6 @@ cardano_mainnet.tx_withdrawal_url(stake_withdrawal_tx_hash,
 
 <div>
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1673,7 +1604,6 @@ cardano_mainnet.tx_transaction_mirs(stake_mir_tx_hash,
 
 
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -1742,7 +1672,6 @@ cardano_mainnet.tx_stake_pool_update(stake_pool_registration_tx_hash,
 
 <div>
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1763,20 +1692,6 @@ cardano_mainnet.tx_stake_pool_update(stake_pool_registration_tx_hash,
   <tbody>
     <tr>
       <th>0</th>
-      <td>0</td>
-      <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
-      <td>5517fbeb4c6a5a613835808de183345eaf85ab0e251210...</td>
-      <td>90000000000</td>
-      <td>0.01</td>
-      <td>380000000</td>
-      <td>stake1u9qsgte62jau0qu6kjy8zch8aynt55gql6jsxe05...</td>
-      <td>[stake1u9qsgte62jau0qu6kjy8zch8aynt55gql6jsxe0...</td>
-      <td>{'url': 'https://meta.staking.outofbits.com/so...</td>
-      <td>[{'ipv4': None, 'ipv6': None, 'dns': 'toki.rel...</td>
-      <td>210</td>
-    </tr>
-    <tr>
-      <th>1</th>
       <td>0</td>
       <td>pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288...</td>
       <td>5517fbeb4c6a5a613835808de183345eaf85ab0e251210...</td>
@@ -1820,7 +1735,6 @@ pd.DataFrame.from_dict([{
 
 <div>
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1858,7 +1772,6 @@ cardano_mainnet.tx_metadata(tx_hash,
 
 <div>
 
-
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1893,7 +1806,6 @@ cardano_mainnet.tx_cbor_metadata(tx_hash,
 
 
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -1931,7 +1843,6 @@ cardano_mainnet.tx_redeemers(script_redeemer_tx_hash,
 
 
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -1976,7 +1887,6 @@ cardano_mainnet.scripts_list(data_order='asc', # Optional: Data order (default: 
 
 
 <div>
-
 
 <table border="1" class="dataframe">
   <thead>
@@ -2056,7 +1966,7 @@ Tests run assuming you have set the API key in the environment variable ***BLOCK
 
 
 ```python
-python3 setup.py pytest
+python setup.py pytest
 ```
 
 # Credit
