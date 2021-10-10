@@ -1327,10 +1327,10 @@ List of assets mint under a specific policy
 
 
 ```python
-cardano_mainnet.assets_policy(policy_id,
-                              data_order='asc', # Optional: Data order (default: Ascending)
-                              nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                              pandas=True) # Optional: Return a pandas dataframe 
+cardano_mainnet.assets_policy_info(policy_id,
+                                   data_order='asc', # Optional: Data order (default: Ascending)
+                                   nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
+                                   pandas=True) # Optional: Return a pandas dataframe 
 ```
 
 
