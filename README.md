@@ -1,4 +1,4 @@
-# Python Cardano Explorer ![PyPI - Python Version](https://img.shields.io/badge/python-%3E%3D3.8-blue) ![PyPI - Python Version](https://img.shields.io/badge/pypi%20package-v0.3--beta.2-green) 
+# Python Cardano Explorer ![PyPI - Python Version](https://img.shields.io/badge/python-%3E%3D3.8-blue) ![PyPI - Python Version](https://img.shields.io/badge/pypi%20package-v0.3--beta.4-green) 
 
 Python wrapper for accessing and processing information stored on the Cardano blockchain using [Blockfrost API](https://blockfrost.io/).
 
