@@ -554,29 +554,21 @@ class Auth:
         :return: Dict or DataFrame with the informations on each asset under the policy and the list ofbthe asset not found
         '''
         
-        assets_data, assets_not_found  = [], []
+        assets_informations = []
         
         #print('[INFO] Get the asset names minted under the policy ID: {}'.format(policy_id))
         asset_minted_names = self.assets_policy(policy_id, pandas=True, nb_of_results=nb_of_results)['asset'].tolist()
 
         #print('[INFO] Get the information about the assets.'.format(policy_id))
         for asset in tqdm(asset_minted_names):
-            try:
-                response = self.specific_asset(asset)
-            except Exception as e:
-                # Save the asset name in a list if he is not found on the network
-                if '404' in str(e):
-                    assets_not_found.append(convert_hex_to_ascii(asset))
-                    continue
-                    
-                raise Exception('[ERROR] {}'.format(e))
-
+            response = self.specific_asset(asset)
+        
             # Add the asset data info to the list of assets
-            assets_data.append(process_onchain_metadata(response))
+            assets_informations.append(response)
 
         #print('[INFO] Function specific_asset, {} API calls.'.format(len(assets_data)))
 
-        return (pd.DataFrame.from_dict(assets_data), assets_not_found)  if pandas else (assets_data, assets_not_found)
+        return pd.DataFrame.from_dict(assets_informations) if pandas else assets_informations
 
     def specific_tx(self, txs_hash: str) -> dict: 
         """
