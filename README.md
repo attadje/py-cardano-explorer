@@ -41,7 +41,7 @@ Python wrapper for accessing and processing information stored on the Cardano bl
   * [Assets List](#Assets-List)
   * [Specific Asset](#Specific-Asset)
   * [Asset History](#Asset-History)
-  * [Assets Of A Apecific Policy](#Assets-Of-A-Apecific-Policy)
+  * [Assets Of A Specific Policy](#Assets-Of-A-Specific-Policy)
   * [Get Assets Informations](#Get-Assets-Informations)
 - [Transactions](#Transactions)
   * [Specific Transaction](#Specific-Transaction)
@@ -1384,9 +1384,9 @@ Get informations about the assests mint under a specific policy.
 
 
 ```python
-assets_info, assets_not_found = cardano_mainnet.assets_policy_info(policy_id, # Policy ID
-                                                                   nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
-                                                                   pandas=True) # Optional: Return a pandas dataframe 
+assets_info = cardano_mainnet.assets_policy_info(policy_id, # Policy ID
+                                                 nb_of_results=100, # Optional: Return max 100 results at the time (default: None), None for get all the data available.
+                                                 pandas=True) # Optional: Return a pandas dataframe 
 ```
 
 

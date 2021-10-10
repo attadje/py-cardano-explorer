@@ -8,13 +8,13 @@ from cardano_explorer import blockfrost_api, utility
 # Check if the Blockfrost API Key is configured in a environmental variable 
 # assert (os.getenv('BLOCKFROST_API_KEY') is not None), '[ERROR] Your blockfrost api key is not configured in your environement path.'
 
-pool_id= "pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288ys5kumqce5"
-address= 'addr1q8z24xgrlj3m2qjh2vxyqg2fh33y3tegufkll5c4lu8u35gkhpw3h4yhn93ve2whllg0wjazjs5jj8332mgqe332f3uq8m7m6h'
-stake_address= 'stake1u8uzevd539lxn40jt60g72a649zdphe9e8hrye4nf5jv0js9uzhzg'
-policy_id='40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728'
-asset_name='436c61794e6174696f6e33393836'
-tx_hash='117f97ccf6e98a16697e7cc205daf2d0bfe83d849a63df2f40d10bef235848e7'
-stake_tx_hash='97a774aa60a2926c9949bfe1edf1dcc2f2297d36633e14a87ae449b4158a027f'
+pool_id = "pool1ekhy5xsgjaq38em75vevk8df0k0rljju77tljw288ys5kumqce5"
+address = 'addr1q8z24xgrlj3m2qjh2vxyqg2fh33y3tegufkll5c4lu8u35gkhpw3h4yhn93ve2whllg0wjazjs5jj8332mgqe332f3uq8m7m6h'
+stake_address = 'stake1u8uzevd539lxn40jt60g72a649zdphe9e8hrye4nf5jv0js9uzhzg'
+policy_id = '40fa2aa67258b4ce7b5782f74831d46a84c59a0ff0c28262fab21728'
+asset_name = '436c61794e6174696f6e33393836'
+tx_hash = '117f97ccf6e98a16697e7cc205daf2d0bfe83d849a63df2f40d10bef235848e7'
+stake_tx_hash = '97a774aa60a2926c9949bfe1edf1dcc2f2297d36633e14a87ae449b4158a027f'
 script_tx_hash_redeemers = '34dd0b7ae56b65f4cda029d99cda8322684ec6339ac1c195c16458c1e5e94b96'
 stake_mir_tx_hash = 'c041e475d161444a6a8ca9005ef3deb36ebd579c347d90b5b53968d47d5193da'
 stake_withdrawal_tx_hash = '80b09b61d2da86f5847d0b9a5f72d32224fcd7e1aa17161b9d24732339a26836'
@@ -95,7 +95,7 @@ class Test(unittest.TestCase):
         self.assertTrue(isinstance(cardano_mainnet.asset_addresses(policy_id+asset_name, pandas=True), pd.DataFrame))
         self.assertTrue(isinstance(cardano_mainnet.assets_policy(policy_id), dict))
         self.assertTrue(isinstance(cardano_mainnet.assets_policy(policy_id, pandas=True), pd.DataFrame))
-        self.assertTrue(isinstance(cardano_mainnet.assets_policy_info(policy_id, nb_of_results=100), tuple))
+        self.assertTrue(isinstance(cardano_mainnet.assets_policy_info(policy_id, nb_of_results=100), list))
 
     def test_convert_hex_to_ascii(self):
          self.assertTrue(utility.convert_hex_to_ascii('436c61794e6174696f6e33393836')=='ClayNation3986')
