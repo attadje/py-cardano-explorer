@@ -8,7 +8,7 @@ from tqdm import tqdm
 from .blockfrost_api_urls import *
 from typing import Union, Optional, List, Dict, Tuple
 from .query_blockfrost_api import query_blockfrost, query_on_several_pages
-from .utility import convert_hex_to_ascii, process_onchain_metadata
+from .utility import add_onchain_metadata
 
 class Auth:
     def __init__(self, api_key: str=None, network: str="mainnet", proxies: dict=None):
@@ -564,7 +564,7 @@ class Auth:
             response = self.specific_asset(asset)
         
             # Add the asset data info to the list of assets
-            assets_informations.append(response)
+            assets_informations.append(add_onchain_metadata(response))
 
         #print('[INFO] Function specific_asset, {} API calls.'.format(len(assets_data)))
 
