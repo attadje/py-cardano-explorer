@@ -12,25 +12,51 @@ from .query_blockfrost_api import query_blockfrost, query_on_several_pages
 
 class Auth:
     def __init__(self, api_key: str=None, network: str="mainnet", proxies: dict=None):
-        
-        # Set proxies if needed
+        self.api_key = api_key
         self.proxies = proxies
+        self.network = network
         
-        # Set the api key in the environement variable if the api_key variable is not defined
-        if not api_key:
-            # Check if the Blockfrost API Key is configured in a environmental variable 
-            assert (os.getenv('BLOCKFROST_API_KEY') is not None), '[ERROR] Your blockfrost api key is not configured in your environement path.'
-            self.api_key = os.getenv('BLOCKFROST_API_KEY')
+    @property
+    def api_key(self):
+        "Get the api key"
+        return self._api_key
+
+    @api_key.setter
+    def api_key(self, value):
+        "Set the api key"
+        # Used the api key in the environement variable if it is not defined
+        if not value:
+            # Check if the Blockfrost API Key is configured in a environement  variable 
+            assert (os.getenv('BLOCKFROST_API_KEY')  is not None), '[ERROR] Your blockfrost api key is not configured in your environement path.'
+            self._api_key = os.getenv('BLOCKFROST_API_KEY')
         else:
-            self.api_key = api_key
-        
-        # Set the network url
-        if 'mainnet' in network:
-            self.network = bf_url_cardano_mainnet
-            
-        elif 'testnet' in network:
-            self.network = bf_url_cardano_testnet
-    
+            self._api_key = value
+
+    @property
+    def network(self):
+        "Get the network"
+        return self._network
+
+    @network.setter
+    def network(self, value):
+        "Set the network"
+        if 'mainnet' in value:
+            self._network = bf_url_cardano_mainnet
+        elif 'testnet' in value:
+            self._network = bf_url_cardano_testnet
+        else:
+            raise ValueError('{} is not a valid network'.format(value))
+
+    @property
+    def proxies(self):
+        "Set proxies"
+        return self._proxies
+
+    @proxies.setter
+    def proxies(self, value):
+        "Set proxies"
+        self._proxies = value
+ 
     def stake_informations(self, stake_address: str) -> dict:
         """
         Obtain informations about a stake account.
