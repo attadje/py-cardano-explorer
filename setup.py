@@ -16,7 +16,7 @@ setuptools.setup(
     author='ATTA Djessy',
     author_email = 'djessyatta@live.fr',
     url = 'https://github.com/djessy-atta/py-cardano-explorer',
-    download_url = 'https://github.com/djessy-atta/py-cardano-explorer/archive/refs/tags/v0.3-beta.4.tar.gz',
+    download_url = 'https://github.com/attadje/py-cardano-explorer/archive/refs/tags/v0.3-beta.4.tar.gz',
     keywords = ['CARDANO', 'API', 'WRAPPER', 'BLOCKCHAIN', 'BLOCKFROST'],
     license='MIT',
     install_requires=['pandas>=1.3.2', 'requests>=2.26.0', 'typing>=3.7.4.3', 'numpy==1.21.2', 'tqdm>=4.62.2'],
