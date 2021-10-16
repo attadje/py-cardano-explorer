@@ -1,0 +1,1 @@
+repo_url = 'https://api.github.com/repos/Cardano-NFTs/policyIDs/contents/'
