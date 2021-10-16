@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 
 import os
-import requests
 import pandas as pd
 from time import sleep
 from tqdm import tqdm
-from .blockfrost_api_urls import *
-from .utility import add_onchain_metadata
+from .blockfrost.urls import *
+from .blockfrost.util import add_onchain_metadata
 from typing import Union, Optional, List, Dict, Tuple
-from .query_blockfrost_api import query_blockfrost, query_on_several_pages
+from .blockfrost.query import query_blockfrost, query_on_several_pages
 
 class Auth:
     def __init__(self, api_key: str=None, network: str="mainnet", proxies: dict=None):
@@ -26,7 +25,7 @@ class Auth:
         "Set the api key"
         # Used the api key in the environement variable if it is not defined
         if not value:
-            # Check if the Blockfrost API Key is configured in a environement  variable 
+            # Check if the Blockfrost API Key is configured in the env variable 
             assert (os.getenv('BLOCKFROST_API_KEY')  is not None), '[ERROR] Your blockfrost api key is not configured in your environement path.'
             self._api_key = os.getenv('BLOCKFROST_API_KEY')
         else:

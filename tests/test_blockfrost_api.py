@@ -3,7 +3,9 @@
 import os
 import unittest
 import pandas as pd
-from cardano_explorer import blockfrost_api, utility
+from cardano_explorer import blockfrost_api
+from cardano_explorer.blockfrost import util
+from cardano_explorer import cnft_io
 
 # Check if the Blockfrost API Key is configured in a environmental variable 
 # assert (os.getenv('BLOCKFROST_API_KEY') is not None), '[ERROR] Your blockfrost api key is not configured in your environement path.'
@@ -22,9 +24,9 @@ script_redeemer_tx_hash = '34dd0b7ae56b65f4cda029d99cda8322684ec6339ac1c195c1645
 script_hash = 'cc7888851f0f5aa64c136e0c8fb251e9702f3f6c9efcf3a60a54f419'
 stake_pool_registration_tx_hash = 'b1bfffc26b6210ced9cc679781922e8b1ac70a2f7719523528639da4ab7f2d88'
 
-cardano_mainnet = blockfrost_api.Auth(api_key='iSXrfNxhpPChKCnts2KX9MJ1eQ7exYgb')
+cardano_mainnet = blockfrost_api.Auth('iSXrfNxhpPChKCnts2KX9MJ1eQ7exYgb')
 
-class Test(unittest.TestCase):
+class TEST_BLOCKFROST_API(unittest.TestCase):
     
     def test_pool(self):
         self.assertTrue(isinstance(cardano_mainnet.registered_polls(), dict))
@@ -34,14 +36,14 @@ class Test(unittest.TestCase):
         self.assertTrue(isinstance(cardano_mainnet.stake_pool_history(pool_id, pandas=True), pd.DataFrame))
         
     def test_nb_results_to_return(self):
-        self.assertEqual(utility.nb_results_to_return(100), (1, False))
-        self.assertEqual(utility.nb_results_to_return(None), (0, True))
-        self.assertRaises(AssertionError, utility.nb_results_to_return, 5)
-        self.assertRaises(AssertionError, utility.nb_results_to_return, 0)
+        self.assertEqual(util.nb_results_to_return(100), (1, False))
+        self.assertEqual(util.nb_results_to_return(None), (0, True))
+        self.assertRaises(AssertionError, util.nb_results_to_return, 5)
+        self.assertRaises(AssertionError, util.nb_results_to_return, 0)
         
     def test_set_query_string_parameter(self): 
-        self.assertEqual(utility.set_query_string_parameter(1, 'desc'), '?page=1&order=desc')
-        self.assertEqual(utility.set_query_string_parameter(1), '?page=1&')
+        self.assertEqual(util.set_query_string_parameter(1, 'desc'), '?page=1&order=desc')
+        self.assertEqual(util.set_query_string_parameter(1), '?page=1&')
         
     def test_epoch(self):
         self.assertTrue(isinstance(cardano_mainnet.latest_epoch(), dict))
@@ -98,7 +100,7 @@ class Test(unittest.TestCase):
         self.assertTrue(isinstance(cardano_mainnet.assets_policy_info(policy_id, nb_of_results=100), list))
 
     def test_convert_hex_to_ascii(self):
-         self.assertTrue(utility.convert_hex_to_ascii('436c61794e6174696f6e33393836')=='ClayNation3986')
+         self.assertTrue(util.convert_hex_to_ascii('436c61794e6174696f6e33393836')=='ClayNation3986')
 
     def test_transaction(self):
          self.assertTrue(isinstance(cardano_mainnet.specific_tx(tx_hash), dict))
@@ -131,6 +133,7 @@ class Test(unittest.TestCase):
         self.assertTrue(isinstance(cardano_mainnet.specific_script(script_hash), dict))
         self.assertTrue(isinstance(cardano_mainnet.redeem_specific_script(script_hash), dict))
 
-
+    
 if __name__ == '__main__':
     unittest.main()
+
