@@ -2,6 +2,7 @@
 
 import os
 import pandas as pd
+from .blockfrost.config import *
 from time import sleep
 from tqdm import tqdm
 from .blockfrost.urls import *
@@ -10,24 +11,36 @@ from typing import Union, Optional, List, Dict, Tuple
 from .blockfrost.query import query_blockfrost, query_on_several_pages
 
 class Auth:
-    def __init__(self, api_key: str=None, network: str="mainnet", proxies: dict=None):
-        self.api_key = api_key
-        self.proxies = proxies
-        self.network = network
-        
+    def __init__(self, network: str="mainnet", apiKey: str=None,  proxies: dict=None):
+        self.network  = network
+        self.api_key  = apiKey
+        self.proxies  = proxies
+         
     @property
     def api_key(self):
-        "Get the api key"
         return self._api_key
 
     @api_key.setter
     def api_key(self, value):
-        "Set the api key"
-        # Used the api key in the environement variable if it is not defined
+        network = self._network 
+        
+        # If the api key is not specidied, look if she is configured in environement variable
         if not value:
-            # Check if the Blockfrost API Key is configured in the env variable 
-            assert (os.getenv('BLOCKFROST_API_KEY')  is not None), '[ERROR] Your blockfrost api key is not configured in your environement path.'
-            self._api_key = os.getenv('BLOCKFROST_API_KEY')
+            if "mainnet" in network  and os.getenv(bf_osenv_mainnet_apiKey) != None:
+                self._api_key = os.getenv('BLOCKFROST_MAINNET_API_KEY')
+
+            elif "testnet" in network and os.getenv(bf_osenv_testnet_apiKey) != None:
+                self._api_key = os.getenv('BLOCKFROST_LEGACY_API_KEY')
+
+            elif "preview" in network and os.getenv(bf_osenv_preview_apiKey) != None:
+                self._api_key = os.getenv('BLOCKFROST_PREVIEW_API_KEY')
+
+            elif "preprod" in network and os.getenv(bf_osenv_preprod_apiKey) != None:
+                self._api_key = os.getenv('BLOCKFROST_PREPROD_API_KEY')
+
+            else:
+               ValueError(f"[ERROR] Your blockfrost api key for the {network} is not configured in your environement path. Create an environement variable name {network} or set it manually using the param 'api_key'")
+        # Else, use the api key set manually
         else:
             self._api_key = value
 
@@ -42,7 +55,11 @@ class Auth:
         if 'mainnet' in value:
             self._network = bf_url_cardano_mainnet
         elif 'testnet' in value:
-            self._network = bf_url_cardano_testnet
+            self._network = bf_url_cardano_legacy
+        elif 'preprod' in value:
+            self._network = bf_url_cardano_preprod
+        elif 'preview' in value:
+            self._network = bf_url_cardano_preview
         else:
             raise ValueError('{} is not a valid network'.format(value))
 
@@ -797,4 +814,96 @@ class Auth:
         #print('[INFO] Function redeem_specific_script, {} API calls.'.format(count_api_calls))
         
         return pd.DataFrame.from_dict(response) if pandas else response
+
+
+    def latest_block(self) -> dict:
+        """Get the latest block available to the backends, also known as the tip of the blockchain."""
+        url = self.network + bf_blocks_url + bf_blocks_latest_url
+        return query_blockfrost(url, self.api_key, self.proxies)
+
+    
+    def latest_block_tx(self) -> dict:
+        """Get the transactions within the latest block."""
+        url = self.network + bf_blocks_url + bf_blocks_latest_url + bf_blocks_tx_url
+        return query_blockfrost(url, self.api_key, self.proxies)
+
+
+    def specific_block(self, block_hash_or_nb: str) -> dict: 
+        """
+        Get information about a specific script.
+        
+        :param  block_hash_or_nb: Block hash or block number
+        :return: Dictionary with the block informations.
+        """
+        url = self.network + bf_blocks_url + "/{}".format(block_hash_or_nb)
+        return query_blockfrost(url, self.api_key, self.proxies)
+
+    
+    def next_blocks(self, block_hash_or_nb: str) -> dict: 
+        """
+        Get the list of blocks following a specific block.
+        
+        :param  block_hash_or_nb: Block hash or block number
+        :return: List with the information about all the folowing block.
+        """
+        url = self.network + bf_blocks_url + "/{}".format(block_hash_or_nb) + bf_next_blocks_url
+        return query_blockfrost(url, self.api_key, self.proxies)
+
+    def previous_blocks(self, block_hash_or_nb: str) -> dict: 
+        """
+        Get the list of blocks preceding a specific block.
+        
+        :param  block_hash_or_nb: Block hash or block number
+        :return: List with the information about all the previous block.
+        """
+        url = self.network + bf_blocks_url + "/{}".format(block_hash_or_nb) + bf_pevious_block_url
+        return query_blockfrost(url, self.api_key, self.proxies)
+
+    def specific_block_slot(self, slot_number: int) -> dict: 
+        """
+        Get the content of a requested block for a specific slot.
+        
+        :param  slot_number: Slot number
+        :return: Dictionary with the information about the block.
+        """
+        url = self.network + bf_blocks_url + bf_blocks_slot_url + "/{}".format(slot_number)
+        return query_blockfrost(url, self.api_key, self.proxies)
+
+
+    def specific_block_epoch_slot(self, epoch_number: int, slot_number: int) -> dict: 
+        """
+        Get the content of a requested block for a specific slot in an epoch.
+        
+        :param  epoch_number: Epoch number
+        :param  slot_number: Slot number
+        :return: Dictionary with the information about the block.
+        """
+        url = self.network + bf_blocks_url + bf_blocks_epoch + "/{}".format(epoch_number) + bf_blocks_slot_url + "/{}".format(slot_number)
+        return query_blockfrost(url, self.api_key, self.proxies)
+
+
+    def block_transaction(self, block_hash_or_nb: str) -> dict: 
+        """
+        Get the transactions within the block.
+        
+        :param  block_hash_or_nb: Block hash or block number
+        :return: List with the transactions hashes.
+        """
+        url = self.network + bf_blocks_url + "/{}".format(block_hash_or_nb) + bf_blocks_tx_url
+        return query_blockfrost(url, self.api_key, self.proxies)
+
+    def block_addresses_tx(self, block_hash_or_nb: str) -> dict: 
+        """
+        Get a list of addresses affected in the specified block with additional information.
+        
+        :param  block_hash_or_nb: Block hash or block number
+        :return: List with the addresses and transation related.
+        """
+        url = self.network + bf_blocks_url + "/{}".format(block_hash_or_nb) + bf_blocks_addresses_url
+        return query_blockfrost(url, self.api_key, self.proxies)
+
+    
+
+
+    
       

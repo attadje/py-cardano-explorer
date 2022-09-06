@@ -23,8 +23,12 @@ stake_withdrawal_tx_hash = '80b09b61d2da86f5847d0b9a5f72d32224fcd7e1aa17161b9d24
 script_redeemer_tx_hash = '34dd0b7ae56b65f4cda029d99cda8322684ec6339ac1c195c16458c1e5e94b96'
 script_hash = 'cc7888851f0f5aa64c136e0c8fb251e9702f3f6c9efcf3a60a54f419'
 stake_pool_registration_tx_hash = 'b1bfffc26b6210ced9cc679781922e8b1ac70a2f7719523528639da4ab7f2d88'
+block_hash = "aac62b09a1e636d05ae6a9e96790f336440c945a40620f811f44b0221f4513ad"
+block_nb = 7215766
+slot_nb = 124762
+epoch_nb = 337
 
-cardano_mainnet = blockfrost_api.Auth('iSXrfNxhpPChKCnts2KX9MJ1eQ7exYgb')
+cardano_mainnet = blockfrost_api.Auth(network="mainnet")
 
 class TEST_BLOCKFROST_API(unittest.TestCase):
     
@@ -132,6 +136,21 @@ class TEST_BLOCKFROST_API(unittest.TestCase):
         self.assertTrue(isinstance(cardano_mainnet.scripts_list(), dict))
         self.assertTrue(isinstance(cardano_mainnet.specific_script(script_hash), dict))
         self.assertTrue(isinstance(cardano_mainnet.redeem_specific_script(script_hash), dict))
+
+
+    def test_blocks(self):
+        self.assertTrue(isinstance(cardano_mainnet.latest_block(), dict))
+        self.assertTrue(isinstance(cardano_mainnet.latest_block_tx(), list))
+        self.assertTrue(isinstance(cardano_mainnet.specific_block(block_nb), dict))
+        self.assertTrue(isinstance(cardano_mainnet.specific_block(block_hash), dict))
+        self.assertTrue(isinstance(cardano_mainnet.next_blocks(block_nb), list))
+        self.assertTrue(isinstance(cardano_mainnet.previous_blocks(block_nb), list))
+        self.assertTrue(isinstance(cardano_mainnet.previous_blocks(block_hash), list))
+        self.assertTrue(isinstance(cardano_mainnet.specific_block_slot(slot_nb), dict))
+        self.assertTrue(isinstance(cardano_mainnet.specific_block_epoch_slot(epoch_nb, slot_nb), dict))
+        self.assertTrue(isinstance(cardano_mainnet.block_transaction(block_nb), list))
+        self.assertTrue(isinstance(cardano_mainnet.block_transaction(block_hash), list))
+
 
     
 if __name__ == '__main__':

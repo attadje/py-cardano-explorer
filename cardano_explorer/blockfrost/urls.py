@@ -5,7 +5,9 @@ header_param_name = 'project_id'
 
 # Blockfrost Network URL
 bf_url_cardano_mainnet = 'https://cardano-mainnet.blockfrost.io/api/v0/'
-bf_url_cardano_testnet = 'https://cardano-testnet.blockfrost.io/api/v0/'
+bf_url_cardano_preprod = 'https://cardano-preprod.blockfrost.io/api/v0/'
+bf_url_cardano_preview = 'https://cardano-preview.blockfrost.io/api/v0/'
+bf_url_cardano_legacy  = 'https://cardano-testnet.blockfrost.io/api/v0/' #testnet
 
 # Blockfrost Stake URL
 bf_stake_url = 'accounts/'
@@ -60,3 +62,15 @@ bf_tx_redeemers_url = '/redeemers'
 bf_scripts_url = '/scripts'
 bf_specific_script_url = '/scripts/'
 bf_redeem_specific_script_url = '/redeemers'
+
+# Blockfrost Blocks URL
+bf_blocks_url = '/blocks'
+bf_next_blocks_url = '/next'
+bf_blocks_latest_url = '/latest'
+bf_blocks_parameters_url = '/parameters'
+bf_pevious_block_url = '/previous'
+bf_blocks_slot_url = '/slot'
+bf_blocks_epoch = '/epoch'
+bf_blocks_tx_url = '/txs'
+bf_blocks_addresses_url = '/addresses'
+
