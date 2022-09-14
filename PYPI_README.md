@@ -40,7 +40,7 @@ cardano_mainnet = blockfrost_api.Auth(proxies=proxies)
 You can specify the cardano network with the class parameter **network**.
 
 ```python
-cardano_mainnet = blockfrost_api.Auth() # mainnet by default
+mainnet = blockfrost_api.Auth() # mainnet by default
 #or
 preprod = blockfrost_api.Auth(network='preprod')
 #or
