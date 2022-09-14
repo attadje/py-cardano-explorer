@@ -19,9 +19,9 @@ from cardano_explorer import blockfrost_api
 If you have an API key, you can either set it as environment variable **BLOCKFROST_API_KEY** or set it manually.
 
 ```python
-cardano_mainnet = blockfrost_api.Auth()
+mainnet = blockfrost_api.Auth()
 #or
-cardano_mainnet = blockfrost_api.Auth(api_key=api_key)
+mainnet = blockfrost_api.Auth(api_key=api_key)
 ```
 
 ## Using With Proxy
@@ -54,7 +54,7 @@ legacy = blockfrost_api.Auth(network='testnet')
 Return detailed about the network.
 
 ```python
-cardano_mainnet.network_info()
+mainnet.network_info()
 ```
 
     {'supply': {'max': '45000000000000000',
